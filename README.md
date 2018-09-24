@@ -2,9 +2,10 @@ Swift Server Work Group (SSWG)
 --
 The Swift Server work group is a steering team that promotes the use of Swift for developing and deploying server applications. The Swift Server work group will:
 
-Define and prioritize efforts that address the needs of the Swift server community
-Define and run an incubation process for these efforts to reduce duplication of effort, increase compatibility and promote best practices
-Channel feedback for Swift language features needed by the server development community to the Swift Core Team
+* Define and prioritize efforts that address the needs of the Swift server community
+* Define and run an incubation process for these efforts to reduce duplication of effort, increase compatibility and promote best practices
+* Channel feedback for Swift language features needed by the server development community to the Swift Core Team
+
 Analogous to the Core Team for Swift, the work group is responsible for providing overall technical direction and establishing the standards by which libraries and tools are proposed, developed and eventually recommended. Membership of the work group is contribution-based and is expected to evolve over time.
 
 The current Swift Server work group consists of the following people:
