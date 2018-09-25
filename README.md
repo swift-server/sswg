@@ -20,7 +20,7 @@ The current Swift Server work group consists of the following people:
 
 ## Communication
 
-The Swift Server work group uses the [Server](https://forums.swift.org/c/development/server) forum for general discussion.
+The Swift Server work group uses the [Swift Server forum](https://forums.swift.org/c/development/server) for general discussion.
 
 ## Community Participation
 
