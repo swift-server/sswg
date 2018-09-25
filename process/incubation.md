@@ -76,7 +76,7 @@ All projects and their respective levels will be listsed on the Swift Server Eco
 
 The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
 
-Changes to the Swift Server Ecosystem index page will announced by the SSWG using the Swift Server forums.
+Changes to the Swift Server Ecosystem index page will be announced by the SSWG using the Swift Server forums.
 
 ## Minimal Requirements
 
