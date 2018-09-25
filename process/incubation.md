@@ -70,11 +70,11 @@ To be accepted at Graduated level, a project must meet the Incubating level crit
 * Have committers from at least two organizations.
 * Receive a supermajority vote from the SSWG to move to Graduation stage.
 
-### Recommended
+### Ecosystem Index
 
-Projects that have successfully fulfilled the Graduated requirements receive Recommended status on the Swift Server Ecosystem index page. In cases where more than one project solves a particular problem (e.g., two similar database drivers), they will be ordered by popularity. The SSWG reserves the right to define a singular solution for critical building blocks, such as Logging or Metrics APIs, where consistency across the ecosystem is of a critical nature.
+All projects and their respective levels will be listsed on the Swift Server Ecosystem index page. In cases where more than one project solves a particular problem (e.g., two similar database drivers), they will be ordered by popularity. The SSWG reserves the right to define a singular solution for critical building blocks, such as Logging or Metrics APIs, where consistency across the ecosystem is of a critical nature.
 
-The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Recommended project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
+The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
 
 Changes to the Swift Server Ecosystem index page will announced by the SSWG using the Swift Server forums.
 
