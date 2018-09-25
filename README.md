@@ -50,7 +50,7 @@ See [Incubation Process](process/incubation.md)
 
 | Project | Sponser | Maturity Level | Pitched | Accepted |
 |---|---|---|---|---|
-| SwiftNIO | Apple | Graduated  | N/A  | 9/7/2018  |
+| [SwiftNIO](http://github.com/apple/swift-nio/) | Apple | Graduated  | N/A  | 9/7/2018  |
 
 
 ## Meeting Time
