@@ -129,7 +129,7 @@ Changes to the incubation process must be documented and published publicly and 
 * Major: Represents a deeper change in approach or workflow
 * Minor: Small change in concepts or nomenclature.
 
-Updates resulting in a version bump require a supermajority vote from the SSWG. Trivial changes, such as typos or formatting adjustments, do not require a version bump. 
+Updates resulting in a version bump require a supermajority vote from the SSWG. Trivial changes, such as fixing typos or formatting, do not require a version bump. 
 
 ## Resources and References
 
