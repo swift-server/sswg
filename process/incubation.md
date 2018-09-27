@@ -6,15 +6,15 @@ version 1.0
 
 As described on https://swift.org/server/, the goal of the Swift Server Work Group (SSWG) is to create a robust, healthy ecosystem for server application development with Swift. One avenue to achieve this goal is to encourage the development of high quality, well maintained libraries and tools that the community can comfortably lean on.
 
-The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself and will be distributed across different code bases.
+The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself, and they will be distributed across different code bases.
 
 The teams at Apple, IBM, and Vapor have engineers that will actively participate in the development of such libraries and tools and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop, and contribute to such libraries and tools.
 
-The incubation process is designed to help nurture and mature projects ensuring standardization, quality and longevity. It also seeks to increase the visibility of ideas, experiments, or other early work that can add value to the SSWG mission. The following document details this incubation process.
+The incubation process is designed to help nurture and mature projects ensuring standardization, quality, and longevity. It also seeks to increase the visibility of ideas, experiments, or other early work that can add value to the SSWG mission. The following document details this incubation process.
 
 ## Process
 
-Incubation is made of the following stages: **Pitch**, **Proposal**, **Development** and **Recommendation**. The Development stage is where the majority of incubation take place. The SSWG will maintain a public "Swift Server Ecosystem" index page that will list all recommended tools and libraries as well as projects that are part of the incubation process and their respective incubation level.
+Incubation is made of the following stages: **Pitch**, **Proposal**, **Development**, and **Recommendation**. The Development stage is where the majority of incubation take place. The SSWG will maintain a public "Swift Server Ecosystem" index page that will list all recommended tools and libraries as well as projects that are part of the incubation process and their respective incubation level.
 
 ### Pitch
 
@@ -74,7 +74,7 @@ To be accepted at Graduated level, a project must meet the Incubating level crit
 
 All projects and their respective levels will be listsed on the Swift Server Ecosystem index page. In cases where more than one project solves a particular problem (e.g., two similar database drivers), they will be ordered by popularity. The SSWG reserves the right to define a singular solution for critical building blocks, such as Logging or Metrics APIs, where consistency across the ecosystem is of a critical nature.
 
-The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
+The SSWG will meet every 6 month to review all projects, and it reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
 
 Changes to the Swift Server Ecosystem index page will be announced by the SSWG using the Swift Server forums.
 
@@ -124,7 +124,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 
 ## Change Management
 
-Changes to the incubation process must be documented and published publicly and are subject to semantic versioning schema:
+Changes to the incubation process must be documented and published publicly, and they are subject to semantic versioning schema:
 
 * Major: Represents a deeper change in approach or workflow
 * Minor: Small change in concepts or nomenclature.
