@@ -6,9 +6,9 @@ version 1.0
 
 As described on https://swift.org/server/, the goal of the Swift Server Work Group (SSWG) is to create a robust, healthy ecosystem for server application development with Swift. One avenue to achieve this goal is to encourage the development of high quality, well maintained libraries and tools that the community can comfortably lean on.
 
-The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself, and will be distributed across different code bases.
+The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself and will be distributed across different code bases.
 
-The teams at Apple, IBM and Vapor have engineers that will actively participate in the development of such libraries and tools, and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop and contribute to such libraries and tools.
+The teams at Apple, IBM and Vapor have engineers that will actively participate in the development of such libraries and tools and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop and contribute to such libraries and tools.
 
 The incubation process is designed to help nurture and mature projects ensuring standardization, quality and longevity. It also seeks to increase the visibility of ideas, experiments or other early work that can add value to the SSWG mission. The following document details this incubation process.
 
@@ -22,7 +22,7 @@ Pitches are written proposals of new libraries or tools, including ideas for new
 
 ### Proposal
 
-For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG. The scope of the proposed code needs to closely align with the endorsed Pitch, and it is subject to review based on the SSWG graduation criteria defined below. Proposal are submitted by creating a new thread in the Swift Server forum area with a link to the code repository in question.  Proposals submitted to the SSWG must provide the following information:
+For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG. The scope of the proposed code needs to closely align with the endorsed Pitch and it is subject to review based on the SSWG graduation criteria defined below. Proposal are submitted by creating a new thread in the Swift Server forum area with a link to the code repository in question.  Proposals submitted to the SSWG must provide the following information:
 * Name (must be unique within SSWG)
 * Description (what it does, why it is valuable, origin and history)
 * Statement on alignment with SSWG mission
@@ -51,7 +51,7 @@ A **supermajority** (two-thirds) is required for a project to be accepted as Inc
 
 To be accepted at the Sandbox level, a project must meet the [SSWG minimal requirements](#minimal-requirements) detailed below and be endorsed by at least two SSWG sponsors.
 
-Early adopters should treat early stage projects with extra care. While Sandbox projects are safe to try out, it is expected that some projects may fail and never move to the next maturity level. There is no guarantee of production readiness, users, or professional level support. As such, users must exercise their own judgment.
+Early adopters should treat early stage projects with extra care. While Sandbox projects are safe to try out, it is expected that some projects may fail and never move to the next maturity level. There is no guarantee of production readiness, users or professional level support. As such, users must exercise their own judgment.
 
 #### Incubating Level
 
@@ -74,7 +74,7 @@ To be accepted at Graduated level, a project must meet the Incubating level crit
 
 All projects and their respective levels will be listsed on the Swift Server Ecosystem index page. In cases where more than one project solves a particular problem (e.g., two similar database drivers), they will be ordered by popularity. The SSWG reserves the right to define a singular solution for critical building blocks, such as Logging or Metrics APIs, where consistency across the ecosystem is of a critical nature.
 
-The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
+The SSWG will meet every 6 month to review all projects and reserves the right to demote, archive or remove projects that no longer fulfill minimal requirements. For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
 
 Changes to the Swift Server Ecosystem index page will be announced by the SSWG using the Swift Server forums.
 
