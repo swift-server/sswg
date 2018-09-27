@@ -8,7 +8,7 @@ As described on https://swift.org/server/, the goal of the Swift Server Work Gro
 
 The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself, and they will be distributed across different code bases.
 
-The teams at Apple, IBM, and Vapor have engineers that will actively participate in the development of such libraries and tools and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop, and contribute to such libraries and tools.
+The teams at Apple, IBM, and Vapor have engineers that will actively participate in the development of such libraries and tools, and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop, and contribute to such libraries and tools.
 
 The incubation process is designed to help nurture and mature projects ensuring standardization, quality, and longevity. It also seeks to increase the visibility of ideas, experiments, or other early work that can add value to the SSWG mission. The following document details this incubation process.
 
@@ -43,7 +43,7 @@ The SSWG votes on pending proposals on a bi-weekly cadence, with the goal of vot
 
 ### Graduation Criteria
 
-Every SSWG project has an associated maturity level: **Sandbox**, **Incubating**, or **Graduated**. Proposals should state their preferred initial maturity level and the SSWG will take a vote to decide on the actual level. 
+Every SSWG project has an associated maturity level: **Sandbox**, **Incubating**, or **Graduated**. Proposals should state their preferred initial maturity level, and the SSWG will take a vote to decide on the actual level. 
 
 A **supermajority** (two-thirds) is required for a project to be accepted as Incubating or Graduated. If there is not a supermajority of votes to enter at the Graduated level, then the votes toward Graduated are recounted as votes to enter at the Incubating level. If there is not a supermajority of votes to enter at the Incubating level, then all votes are recounted as **sponsorship** to enter at the Sandbox level. If there are not at least two sponsors, the Proposal is rejected.
 
@@ -124,7 +124,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 
 ## Change Management
 
-Changes to the incubation process must be documented and published publicly, and they are subject to semantic versioning schema:
+Changes to the incubation process must be documented and published publicly and are subject to semantic versioning schema:
 
 * Major: Represents a deeper change in approach or workflow
 * Minor: Small change in concepts or nomenclature.
