@@ -36,7 +36,7 @@ These conversations will take place on the [Swift Server forum](https://forums.s
 
 ## Charter
 
-The main goal of the Swift Server work group is to eventually recommend libraries and tools for server application development with Swift. The difference between this work group and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself. The work group will work to nurture, mature and recommend projects as they move into their developemnt and release stages.
+The main goal of the Swift Server work group is to eventually recommend libraries and tools for server application development with Swift. The difference between this work group and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself. The work group will work to nurture, mature and recommend projects as they move into their development and release stages.
 
 ## Voting 
 
