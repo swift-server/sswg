@@ -109,7 +109,10 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 
 ## Best Practices
 
-* CI setup across all supported Swift and Linux versions
+* Address security findings, including in dependencies, within 30d
+* Support new GA versions of Swift within 30d
+* CI setup for two latest Swift.org recommnded versions of Swift 
+* CI setup for two latest versions of Swift.org recommnded Linux distributions
 * Unit tests for both macOS and Linux
 * Use official docker (when appropriate)
 * Documented release methodology
