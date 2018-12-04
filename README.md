@@ -6,7 +6,7 @@ The Swift Server work group is a steering team that promotes the use of Swift fo
 * Define and run an incubation process for these efforts to reduce duplication of effort, increase compatibility and promote best practices
 * Channel feedback for Swift language features needed by the server development community to the Swift Core Team
 
-Analogous to the Core Team for Swift, the work group is responsible for providing overall technical direction and establishing the standards by which libraries and tools are proposed, developed and eventually recommended. Membership of the work group is contribution-based and is expected to evolve over time.
+Analogous to the Core Team for Swift, the work group is responsible for providing overall technical direction and establishing the standards by which libraries and tools are proposed, developed and eventually recommended.
 
 The current Swift Server work group consists of the following people:
 
@@ -34,11 +34,19 @@ Everyone is welcome to contribute in the following ways:
 
 These conversations will take place on the [Swift Server forum](https://forums.swift.org/c/server). Over time, the work group may form smaller working groups to focus on specific technology areas.
 
+## Work Group Membership
+
+Membership in the work group is contribution-based and expected to evolve over time. Adding new members and removing inactive ones is subject to a SSWG vote and require unanimous agreement. A cap of two members per company is in place to avoid overweight representation. A cap of total ten members is in place to keep the group small enough to be effective. Membership term is capped at 2 years, but exiting members may re-apply at the end of their term. When multiple candidates compete for the same seat, the SSWG will vote between the all candidates, with a final voting round between the two candidates that received most votes in the first round.
+
+Companies or individuals that would like to join the SSWG, should apply by posting a request to the [Swift Server forum](https://forums.swift.org/c/server). Applicants will then be invited to the next available SSWG meeting to present their case.
+
+Inactive members that do not participate in four consecutive SSWG meetings will be contacted to confirm their desire to stay with the group. After missing ten consecutive meetings, the SSWG will vote on removing them from the group.
+
 ## Charter
 
 The main goal of the Swift Server work group is to eventually recommend libraries and tools for server application development with Swift. The difference between this work group and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself. The work group will work to nurture, mature and recommend projects as they move into their development and release stages.
 
-## Voting 
+## Voting
 
 In various situations the SSWG shall hold a vote. These votes can happen on the phone, email, or via a voting service, when appropriate. SSWG members can either respond "agree, yes, +1", "disagree, no, -1", or "abstain". A vote passes with two-thirds vote of votes cast based on the SSWG charter. An abstain vote equals not voting at all.
 
@@ -59,4 +67,4 @@ The SSWG meets on the 1st and 3rd Thursday of every month at 9:30AM PT (USA Paci
 
 ## Meeting Notes
 
-* 
+*
