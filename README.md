@@ -16,7 +16,6 @@ The current Swift Server work group consists of the following people:
 * Tanner Nelson ([@tanner0101](https://forums.swift.org/u/tanner0101), Vapor)
 * Johannes Weiss ([@johannesweiss](https://forums.swift.org/u/johannesweiss), Apple)
 * Tom Doron ([@tomerd](https://forums.swift.org/u/tomerd), Apple)
-* Steve Algernon ([@salgernon](https://github.com/salgernon), Apple)
 
 ## Communication
 
