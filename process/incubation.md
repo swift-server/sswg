@@ -8,9 +8,9 @@ As described on https://swift.org/server/, the goal of the Swift Server Work Gro
 
 The difference between the SSWG and the Swift Evolution process is that server-oriented libraries and tools that are produced as a result of work group efforts will exist outside of the Swift language project itself, and they will be distributed across different code bases.
 
-The teams at Apple, IBM, and Vapor have engineers that will actively participate in the development of such libraries and tools, and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where anyone can pitch, propose, develop, and contribute to such libraries and tools.
+The teams at Apple, IBM, and Vapor have engineers that will actively participate in the development of such libraries and tools, and we would love to see the community joining in this effort. To that end, the work group defined and launches an incubation process where *anyone* can pitch, propose, develop, and contribute to such libraries and tools.
 
-The incubation process is designed to help nurture and mature projects ensuring standardization, quality, and longevity. It also seeks to increase the visibility of ideas, experiments, or other early work that can add value to the SSWG mission. The following document details this incubation process.
+The incubation process is designed to help nurture and mature projects ensuring standardization, quality, and longevity. It also seeks to increase the visibility of ideas, experiments, or other early work that can add value to the SSWG mission. The following document details this incubation process. The SSWG [steering group](https://swift.org/server/) has a similar role to the Swift Core Team and will make the final decision on moving pitches/proposals through the incubation process based on the feedback of the community. Just like for Swift Evolution, pitches and proposals can be made by anyone, being part of the SSWG steering group is absolutely not a requirement.
 
 ## Process
 
