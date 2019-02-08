@@ -57,7 +57,8 @@ See [Incubation Process](process/incubation.md)
 
 | Project | Sponser | Maturity Level | Pitched | Accepted |
 |---|---|---|---|---|
-| [SwiftNIO](http://github.com/apple/swift-nio/) | Apple | Graduated  | N/A  | 9/7/2018  |
+| [SwiftNIO](http://github.com/apple/swift-nio/) | Apple | Graduated | N/A | 9/7/2018 |
+| [Logging API](https://github.com/apple/swift-server-logging-api) | Apple | Sandbox | [9/10/2018](https://forums.swift.org/t/logging/16027) | [2/7/2019](https://forums.swift.org/t/february-7th-2019/20249) |
 
 
 ## Meeting Time
@@ -66,4 +67,4 @@ The SSWG meets on the 1st and 3rd Thursday of every month at 9:30AM PT (USA Paci
 
 ## Meeting Notes
 
-*
+All meeting notes are posted to the [Swift Server forums](https://forums.swift.org/c/server/workgroup-meeting-notes).
