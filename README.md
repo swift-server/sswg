@@ -58,7 +58,7 @@ See [Incubation Process](process/incubation.md)
 | Project | Sponser | Maturity Level | Pitched | Accepted |
 |---|---|---|---|---|
 | [SwiftNIO](http://github.com/apple/swift-nio/) | Apple | Graduated | N/A | 9/7/2018 |
-| [Logging API](https://github.com/apple/swift-server-logging-api) | Apple | Sandbox | [9/10/2018](https://forums.swift.org/t/logging/16027) | [2/7/2019](https://forums.swift.org/t/february-7th-2019/20249) |
+| [Swift Log](https://github.com/apple/swift-log) | Apple | Sandbox | [9/10/2018](https://forums.swift.org/t/logging/16027) | [2/7/2019](https://forums.swift.org/t/february-7th-2019/20249) |
 
 
 ## Meeting Time
