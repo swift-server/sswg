@@ -1,6 +1,6 @@
 # Server Logging API
 
-* Proposal: [SSWG-0001](https://github.com/swift-server/sswg/tree/master/proposals/SSWG-0001.md)
+* Proposal: [SSWG-0001](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0001.md)
 * Authors: [Johannes Weiss](https://github.com/weissi), [Tomer Doron](https://github.com/tomerd)
 * Sponsors: Apple
 * Review Manager: [Swift Server Working Group](https://github.com/swift-server/sswg)

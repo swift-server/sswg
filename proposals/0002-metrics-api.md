@@ -1,6 +1,6 @@
 # Server Metrics API
 
-* Proposal: [SSWG-0002](https://github.com/swift-server/sswg/tree/master/proposals/SSWG-0002.md)
+* Proposal: [SSWG-0002](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0002.md)
 * Authors: [Tomer Doron](https://github.com/tomerd)
 * Sponsors: Apple
 * Review Manager: [Tanner Nelson](https://github.com/tanner0101)
