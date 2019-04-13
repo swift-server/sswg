@@ -1,10 +1,10 @@
 # Server Metrics API
 
-* Proposal: [SSWG-0002](https://github.com/swift-server/sswg/tree/master/proposals/SSWG-0002.md)
+* Proposal: [SSWG-0002](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0002.md)
 * Authors: [Tomer Doron](https://github.com/tomerd)
 * Sponsors: Apple
 * Review Manager: [Tanner Nelson](https://github.com/tanner0101)
-* Status: **Active Review (7th...23th March, 2019)**
+* Status: [Accepted as Sandbox Maturity](https://forums.swift.org/t/april-4th-2019/22704)
 * Implementation: [tomerd/swift-server-metrics-api-proposal](https://github.com/tomerd/swift-server-metrics-api-proposal/)
 * Pitch: [Server/Pitches/Metrics](https://forums.swift.org/t/metrics/19353)
 * Review: [Initial Discussion](https://forums.swift.org/t/discussion-server-metrics-api/19600/9), [Feedback Review](https://forums.swift.org/t/feedback-server-metrics-api/21353)
