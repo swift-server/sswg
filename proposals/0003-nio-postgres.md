@@ -4,8 +4,8 @@
 * Author(s): [Tanner Nelson](https://github.com/tanner0101)
 * Review Manager: TBD
 * Status: **Implemented**
-* Pitch: [SwiftNIO based PostgreSQL client](https://forums.swift.org/t/pitch-swiftnio-based-postgresql-client/18020)
 * Implementation: [vapor/nio-postgres](https://github.com/vapor/nio-postgres)
+* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-swiftnio-based-postgresql-client/18020), [Discussion](https://forums.swift.org/t/discussion-niopostgres-a-nio-based-postgresql-driver/22178), Review (TBD)
 
 ## Introduction
 
