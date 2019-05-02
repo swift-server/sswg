@@ -1,7 +1,7 @@
 # NIOPostgres: A NIO-based PostgreSQL Driver
 
 * Proposal: [SSWG-0003](https://github.com/swift-server/sswg/tree/master/proposals/SSWG-0003.md)
-* Authors: [Tanner Nelson](https://github.com/tanner0101)
+* Author(s): [Tanner Nelson](https://github.com/tanner0101)
 * Review Manager: TBD
 * Status: **Implemented**
 * Pitch: [SwiftNIO based PostgreSQL client](https://forums.swift.org/t/pitch-swiftnio-based-postgresql-client/18020)
@@ -17,10 +17,12 @@ Most Swift implementations of Postgres clients are based on the [libpq](https://
 
 ## Dependencies
 
-This package has two dependencies:
+This package has four dependencies:
 
 - `swift-nio` from `2.0.0`
 - `swift-nio-ssl` from `2.0.0`
+- `swift-log` from `1.0.0`
+- `swift-metrics` from `1.0.0`
 
 This package has no additional system dependencies.
 
@@ -41,11 +43,14 @@ defer { try! elg.syncShutdownGracefully() }
 
 // create a new connection
 let address = try SocketAddress(ipAddress: "127.0.0.1", port: 5432)
-let conn = try PostgresConnection.connect(to: address, on: elg.eventLoop).wait()
+let conn = try PostgresConnection.connect(
+    to: address, 
+    // optionally configure TLS
+    tlsConfiguration: .forClient(certificateVerification: .none), 
+    serverHostname: "127.0.0.1"
+    on: elg.eventLoop
+).wait()
 defer { try! conn.close().wait() }
-
-// optionally configure TLS
-try conn.requestTLS(using: .forClient(certificateVerification: .none), serverHostname: "127.0.0.1")
 
 // authenticate the connection using credentials
 try conn.authenticate(username: "username", database: "database", password: "password").wait()
@@ -157,16 +162,15 @@ Here is a full list of types supported currently:
 
 ### PostgresRow
 
-Both `simpleQuery` and `query` return an array of `PostgresRow`. Each row can be thought of as a dictionary with column names as the key and data as the value. While the actual storage implementation is private, `PostgresRow` gives the following methods for accessing column data:
+Both `simpleQuery` and `query` return an array of `PostgresRow`. Each row can be thought of as a dictionary with column names as the key and data as the value. While the actual storage implementation is private, `PostgresRow` gives the following method for accessing column data:
 
 ```swift
 struct PostgresRow {
 	func column(_ column: String) -> PostgresData?
-	func column(_ column: String, tableOID: UInt32) -> PostgresData?
 }
 ```
 
-If no column with that name is contained by the row, `nil` is returned. Additionally, if no `tableOID` is supplied, matching columns from _any_ table will be returned on a first match basis. 
+If no column with that name is contained by the row, `nil` is returned. Matching columns from _any_ table will be returned on a first match basis. 
 
 ### PostgresError
 
@@ -191,7 +195,7 @@ do {
     _ = try conn.simpleQuery("SELECT &").wait()
 } catch let error as PostgresError {
 	switch error.code {
-	case .syntax_error: ...
+	case .syntaxError: ...
 	default: ...
 	}
 }
@@ -204,7 +208,7 @@ While `PostgresConnection` is the main type to use for connecting, authorizing, 
 ```swift
 protocol PostgresClient {
     var eventLoop: EventLoop { get }
-    func send(_ request: PostgresRequestHandler) -> EventLoopFuture<Void>
+    func send(_ request: PostgresRequest) -> EventLoopFuture<Void>
 }
 ```
 
@@ -235,18 +239,18 @@ Because this controller relies on `PostgresClient`, any of the following could b
 - Pool of `PostgresConnection`s
 - Dummy conformer for testing
 
-#### PostgresRequestHandler
+#### PostgresRequest
 
-Postgres' wire protocol uses a request / response pattern, but unlike HTTP or Redis, one request can yield one _or more_ responses. Because of this, a `PostgresRequestHandler` is used instead of `PostgresRequest` / `PostgresResponse`. 
+Postgres' wire protocol uses a request / response pattern, but unlike HTTP or Redis, one request can yield one _or more_ responses. `PostgresRequest` conformers handle this with the following protocol.
 
 ```swift
-protocol PostgresRequestHandler {
+protocol PostgresRequest {
     func respond(to message: PostgresMessage) throws -> [PostgresMessage]?
     func start() throws -> [PostgresMessage]
 }
 ```
 
-`PostgresRequestHandler` is responsible for sending zero or more initial messages and handling the server's responses. When the request is complete, `nil` is returned by `respond`, causing the client's send future to complete.
+`PostgresRequest` is responsible for sending zero or more initial messages and handling the server's responses. When the request is complete, `nil` is returned by `respond`, causing the client's send future to complete.
 
 ### CMD5
 
@@ -257,9 +261,7 @@ MD5 hashing is required for PostgreSQL's authentication flow. This module follow
 Here are some things that are still a work in progress:
 
 - **Prepared Statement API**: Postgres allows for parameterized queries to be re-used multiple times with different inputs. An API for doing this in NIO Postgres would be useful.
-- **PostgresRequestHandler edge cases**: Finer grain input / output from this protocol would be useful in assisting with protocol edge cases. For example, sometimes a Postgres error message can signal request completion depending on state. 
-- **PostgresRow column lookup**: The exact algorithm used for looking up `PostgresData` for a given column name should be determined by performance testing.
-- **Warnings**: There are several `#warning` messages indicating small, remaining todos, like fixing some force trys and unwraps. All warnings will be removed before tagging pre-release versions.
+- **PostgresRequest edge cases**: Finer grain input / output from this protocol would be useful in assisting with protocol edge cases. For example, sometimes a Postgres error message can signal request completion depending on state. 
 
 ### How to use
 
