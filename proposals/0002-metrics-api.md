@@ -2,18 +2,19 @@
 
 * Proposal: [SSWG-0002](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0002.md)
 * Authors: [Tomer Doron](https://github.com/tomerd)
-* Sponsors: Apple
+* Sponsor(s): Apple
 * Review Manager: [Tanner Nelson](https://github.com/tanner0101)
-* Status: [Accepted as Sandbox Maturity](https://forums.swift.org/t/april-4th-2019/22704)
+* Status: **Accepted as Sandbox Maturity**
 * Implementation: [tomerd/swift-server-metrics-api-proposal](https://github.com/tomerd/swift-server-metrics-api-proposal/)
-* Pitch: [Server/Pitches/Metrics](https://forums.swift.org/t/metrics/19353)
-* Review: [Initial Discussion](https://forums.swift.org/t/discussion-server-metrics-api/19600/9), [Feedback Review](https://forums.swift.org/t/feedback-server-metrics-api/21353)
+* Forum Threads: [Pitch](https://forums.swift.org/t/metrics/19353), [Discussion](https://forums.swift.org/t/discussion-server-metrics-api/19600/), [Review](https://forums.swift.org/t/feedback-server-metrics-api/21353)
+* Decision Notes: [Rationale](https://forums.swift.org/t/april-4th-2019/22704)
 
 ## Package Description
 
 |  |  |
 |--|--|
 | **Package Name** | `swift-metrics` |
+| **Module Name** | `Metrics` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html) |
 | **Dependencies** | *none* |

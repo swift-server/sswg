@@ -2,12 +2,12 @@
 
 * Proposal: [SSWG-0001](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0001.md)
 * Authors: [Johannes Weiss](https://github.com/weissi), [Tomer Doron](https://github.com/tomerd)
-* Sponsors: Apple
+* Sponsor(s): Apple
 * Review Manager: [Swift Server Working Group](https://github.com/swift-server/sswg)
-* Status: [Accepted as Sandbox Maturity](https://forums.swift.org/t/february-7th-2019/20249)
+* Status: **Accepted as Sandbox Maturity**
 * Implementation: [weissi/swift-server-logging-api-proposal](https://github.com/weissi/swift-server-logging-api-proposal)
-* Pitch: [Server/Pitches/Logging](https://forums.swift.org/t/logging/16027)
-* Review: [Initial Discussion](https://forums.swift.org/t/discussion-server-logging-api/18834), [Feedback Review](https://forums.swift.org/t/feedback-server-logging-api-with-revisions/19375)
+* Forum Threads: [Pitch](https://forums.swift.org/t/logging/16027), [Discussion](https://forums.swift.org/t/discussion-server-logging-api/18834), [Review](https://forums.swift.org/t/discussion-server-logging-api/19375)
+* Decision Notes: [Rationale](https://forums.swift.org/t/february-7th-2019/20249)
 
 ## Package Description
 A flexible API package that aims to become the standard logging API which Swift packages can use to log. The formatting and delivery/persistence of the log messages is handled by other packages and configurable by the individual applications without requiring users of the API package to change.
@@ -15,6 +15,7 @@ A flexible API package that aims to become the standard logging API which Swift 
 |  |  |
 |--|--|
 | **Package Name** | `swift-log` |
+| **Module Name** | `Logging` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html) |
 | **Dependencies** | *none* |

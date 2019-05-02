@@ -2,27 +2,28 @@
 
 * Proposal: [SSWG-NNNN](NNNN-filename.md)
 * Authors: [Author 1](https://github.com/swiftdev), [Author 2](https://github.com/swiftdev)
-* Sponsors: TBD
+* Sponsor(s): TBD
 * Review Manager: TBD
 * Status: **Awaiting implementation**
-* Pitch: [Thread name](https://forums.swift.org/)
+* Implementation: [repo name](https://github.com/repo-url)
+* Forum Threads: [Pitch](https://forums.swift.org/), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
 
 *During the review process, add the following fields as needed:*
 
-* Implementation: [repo name](https://github.com/repo-url)
 * Decision Notes: [Rationale](https://forums.swift.org/), [Additional Commentary](https://forums.swift.org/)
-* Previous Revision: [1](https://github.com/swift-server/sswg/blob/...commit-ID.../proposals/NNNN-filename.md)
-* Previous Proposal: [SSWG-XXXX](XXXX-filename.md)
+* Previous Revision(s): [1](https://github.com/swift-server/sswg/blob/...commit-ID.../proposals/NNNN-filename.md)
+* Previous Proposal(s): [SSWG-XXXX](XXXX-filename.md)
 
 ## Package Description
 A quick 1-2 sentence description of the solution's package, like you might see in a package catalog.
 
 |  |  |
 |--|--|
-| **Package name** | `your proposed package name` |
+| **Package Name** | `your proposed package name, eg. swift-package` |
+| **Module Name** | `your formatted module name, eg. SwiftPackage` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [TBD](https://choosealicense.com/) |
-| **Dependencies** | List your dependencies, with links |
+| **Dependencies** | List your dependencies (and their versions), with links |
 
 ## Introduction
 
