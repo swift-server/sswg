@@ -2,7 +2,7 @@
 
 * Proposal: SSWG-0006
 * Authors: [Kyle Browning](https://github.com/kylebrowning)
-* Sponsors: TBD
+* Sponsors: Vapor
 * Review Manager: TBD
 * Status: **Implemented**
 * Pitch: [Server/Pitches/APNS Implementation](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193)
@@ -41,27 +41,28 @@ All of the currently maintained libraries either have framework specific depende
 
 ### What it does do
 
-- Provides an API for handling connection to Apples HTTP2 APNS server
+- Provides an API for handling connection to Apples HTTP2 APNS server.
 - Provides proper error messages that APNS might respond with.
-- Uses custom/non dependency implementations of JSON Web Token specific to APNS (using [rfc7519](https://tools.ietf.org/html/rfc7519)
-- Imports OpenSSL for SHA256 and ES256
-- Provides an interface for signing your Push Notifications
-- Signs your token request
+- Uses custom/non dependency implementations of JSON Web Token specific to APNS (using [rfc7519](https://tools.ietf.org/html/rfc7519).
+- Imports OpenSSL for SHA256 and ES256.
+- Provides an interface for signing your Push Notifications.
+- Signs your token request.
 - Sends push notifications to a specific device.
 - [Adheres to guidelines Apple Provides.](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)
 
 ### What it won't do.
-- Store/register device tokens
-- Build an HTTP2 generic client
-- Google Cloud Message
+- Store/register device tokens.
+- Build an HTTP2 generic client.
+- Google Cloud Message.
 - Refresh your token no more than once every 20 minutes and no less than once every 60 minutes. (up to connection handler)
 
 ### Future considerations and dependencies
 - BoringSSL
 - Common connection handler options
-- Swift-Log
-- Swift-Metric
-- Swift-JWT?
+- swift-log
+- swift-metrics
+- swift-jwt?
+- swift-http2-client?
 
 ### APNSConfiguration
 
@@ -69,12 +70,12 @@ All of the currently maintained libraries either have framework specific depende
 
 ```swift
 public struct APNSConfiguration {
-    public let keyIdentifier: String
-    public let teamIdentifier: String
-    public let signingMode: SigningMode
-    public let topic: String
-    public let environment: APNSEnvironment
-    public let tlsConfiguration: TLSConfiguration
+    public var keyIdentifier: String
+    public var teamIdentifier: String
+    public var signingMode: SigningMode
+    public var topic: String
+    public var environment: APNSEnvironment
+    public var tlsConfiguration: TLSConfiguration
 
     public var url: URL {
         switch environment {
@@ -101,7 +102,7 @@ let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
 
 ```swift
 public struct SigningMode {
-    public let signer: APNSSigner
+    public var signer: APNSSigner
     init(signer: APNSSigner) {
         self.signer = signer
     }
@@ -117,6 +118,13 @@ extension SigningMode {
     public static func custom(signer: APNSSigner) -> SigningMode {
         return .init(signer: signer)
     }
+}
+```
+### APNSSigner
+[`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNSJWT/Signer.swift) provides a protocol to be used with the signing mode `custom`. This gives developers the ability to sign their digests with whatever package they see fit.
+```swift
+public protocol APNSSigner {
+    func sign(digest: Data) throws -> Data
 }
 ```
 #### Example Custom SigningMode that uses AWS for private keystorage
@@ -149,7 +157,7 @@ let apns = try APNSConnection.connect(configuration: apnsConfig, on: group.next(
 
 ### Alert
 
-[`Alert`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSRequest.swift) is the actual meta data of the push notification alert someone wishes to send. More details on the specifcs of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
+[`Alert`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSRequest.swift) is the actual meta data of the push notification alert someone wishes to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
 
 
 #### Example `Alert`
@@ -159,7 +167,7 @@ let alert = Alert(title: "Hey There", subtitle: "Full moon sighting", body: "The
 
 ### APSPayload
 
-[`APSPayload`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSRequest.swift) is the meta data of the push notification. Things like the alert, badge count. More details on the specifcs of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
+[`APSPayload`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSRequest.swift) is the meta data of the push notification. Things like the alert, badge count. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
 
 
 #### Example `APSPayload`
@@ -189,7 +197,7 @@ try group.syncShutdownGracefully()
 
 ### Custom Notification Data
 
-Apple provides engineers with the ability to add custom payload data to each notification. In order to faciliate this we have the `APNSNotification`.
+Apple provides engineers with the ability to add custom payload data to each notification. In order to facilitate this we have the `APNSNotification`.
 
 #### Example
 ```swift
@@ -216,6 +224,8 @@ This package meets the following criteria according to the [SSWG Incubation Proc
 - Ecosystem (SwiftNIO)
 - Code Style is up to date
 - Errors implemented
+- Tests being used
+- documentation
 - [Apache 2 license](https://github.com/kylebrowning/swift-nio-apns/blob/master/LICENSE)
 - [Swift Code of Conduct](https://github.com/kylebrowning/swift-nio-apns/blob/master/CODE_OF_CONDUCT.md)
 - [Contributing Guide](https://github.com/kylebrowning/swift-nio-apns/blob/master/CONTRIBUTING.md)
@@ -235,4 +245,5 @@ N/A
 | **[David Hart](https://forums.swift.org/u/hartbit)** | Custom Notifications, best practices and Apples naming conventions |
 | **[IanPartridge](https://forums.swift.org/u/IanPartridge)** | JWT, crypto usages, overall feedback |
 | **[Nathan Harris](https://forums.swift.org/u/mordil/summary)** | General questions on Incubation process and templates |
+| **[Laurent](https://github.com/lgaches)** | All the tests |
 |**[Everyone who participated in the pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193)**| The feedback thread was so lively, thank you!|
