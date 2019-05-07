@@ -2,11 +2,11 @@
 
 * Proposal: SSWG-0006
 * Authors: [Kyle Browning](https://github.com/kylebrowning)
-* Sponsors: Vapor
+* Sponsor: Vapor
 * Review Manager: TBD
 * Status: **Implemented**
-* Pitch: [Server/Pitches/APNS Implementation](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193)
 * Implementation: [kylebrowning/swift-nio-http2-apns](https://github.com/kylebrowning/swift-nio-http2-apns)
+* Forum Threads: [Pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193), [Discussion](https://forums.swift.org/t/discussion-nioapns-nio-based-apple-push-notification-service/23384)
 
 ## Package Description
 Apple push notification service implementation built on Swift NIO.
@@ -14,6 +14,7 @@ Apple push notification service implementation built on Swift NIO.
 |  |  |
 |--|--|
 | **Package name** | `nio-apns` |
+| **Module Name** | `NIOAPNS` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html) |
 | **Dependencies** | [SwiftNIO](https://github.com/apple/swift-nio) 2.x, [SwiftNIOSSL](https://github.com/apple/swift-nio-ssl.git) 2.x, [SwiftNIOHTTP2](https://github.com/apple/swift-nio-http2.git) 1.x|
