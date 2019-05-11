@@ -92,7 +92,7 @@ public struct APNSConfiguration {
 ```swift
 let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
                                    teamIdentifier: "ABBM6U9RM5",
-                                   signingMode: .file(path: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
+                                   signingMode: .file("/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
                                    topic: "com.grasscove.Fern",
                                    environment: .sandbox)
 ```
@@ -102,24 +102,25 @@ let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
 [`SigningMode`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNSJWT/SigningMode.swift) provides a method by which engineers can choose how their certificates are signed. Since security is important keeping we extracted this logic into three options. `file`, `data`, or `custom`.
 
 ```swift
-public struct SigningMode {
-    public var signer: APNSSigner
-    init(signer: APNSSigner) {
-        self.signer = signer
-    }
+public enum SigningMode {
+    case file(String)
+    case data(Data)
+    case custom(APNSSigner)
 }
 
 extension SigningMode {
-    public static func file(path: String) throws -> SigningMode {
-        return .init(signer: try FileSigner(url: URL(fileURLWithPath: path)))
-    }
-    public static func data(data: Data) throws -> SigningMode {
-        return .init(signer: try DataSigner(data: data))
-    }
-    public static func custom(signer: APNSSigner) -> SigningMode {
-        return .init(signer: signer)
+    public func sign(digest: Data) throws -> Data {
+        switch self {
+        case .file(let filePath):
+            return try FileSigner(url: URL(fileURLWithPath: filePath)).sign(digest: digest)
+        case .data(let data):
+            return try DataSigner(data: data).sign(digest: digest)
+        case .custom(let signer):
+            return try signer.sign(digest: digest)
+        }
     }
 }
+
 ```
 ### APNSSigner
 [`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNSJWT/Signer.swift) provides a protocol to be used with the signing mode `custom`. This gives developers the ability to sign their digests with whatever package they see fit.
@@ -141,7 +142,7 @@ public class CustomSigner: APNSSigner {
 let customSigner = CustomSigner()
 let apnsConfig = APNSConfig(keyId: "9UC9ZLQ8YW",
                       teamId: "ABBM6U9RM5",
-                      signingMode: .custom(signer: customSigner),
+                      signingMode: .custom(customSigner),
                       topic: "com.grasscove.Fern",
                       environment: .sandbox)
 ```
@@ -174,7 +175,7 @@ let alert = Alert(title: "Hey There", subtitle: "Full moon sighting", body: "The
 #### Example `APSPayload`
 ```swift
 let alert = ...
-let aps = APSPayload(alert: alert, badge: 1, sound: "cow.wav")
+let aps = APSPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
 ```
 
 ## Putting it all together
@@ -183,13 +184,13 @@ let aps = APSPayload(alert: alert, badge: 1, sound: "cow.wav")
 let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
 let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
                                    teamIdentifier: "ABBM6U9RM5",
-                                   signingMode: .file(path: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
+                                   signingMode: .file("/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
                                    topic: "com.grasscove.Fern",
                                    environment: .sandbox)
 
 let apns = try APNSConnection.connect(configuration: apnsConfig, on: group.next()).wait()
 let alert = Alert(title: "Hey There", subtitle: "Full moon sighting", body: "There was a full moon last night did you see it")
-let aps = APSPayload(alert: alert, badge: 1, sound: "cow.wav")
+let aps = APSPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
 let notification = BasicNotification(aps: aps)
 let res = try apns.send(notification, to: "de1d666223de85db0186f654852cc960551125ee841ca044fdf5ef6a4756a77e").wait()
 try apns.close().wait()
