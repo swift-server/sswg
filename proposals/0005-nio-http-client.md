@@ -99,7 +99,7 @@ let future = client.execute(request: request)
 ```
 
 ### Response
-`HTTPClient`'s methods return an `EventLoopFuture<HTTPClient.Reponse`. This struct is defined as follows:
+`HTTPClient`'s methods return an `EventLoopFuture<HTTPClient.Reponse>`. This struct is defined as follows:
 ```swift
 extension HTTPClient {
     struct Response {
