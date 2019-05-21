@@ -73,9 +73,9 @@ All of the currently maintained libraries either have framework specific depende
 public struct APNSConfiguration {
     public var keyIdentifier: String
     public var teamIdentifier: String
-    public var signingMode: SigningMode
+    public var signer: APNSSigner
     public var topic: String
-    public var environment: APNSEnvironment
+    public var environment: Environment
     public var tlsConfiguration: TLSConfiguration
 
     public var url: URL {
@@ -86,65 +86,32 @@ public struct APNSConfiguration {
             return URL(string: "https://api.development.push.apple.com")!
         }
     }
-}
 ```
 #### Example `APNSConfiguration`
 ```swift
+let signer = ...
 let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
                                    teamIdentifier: "ABBM6U9RM5",
-                                   signingMode: .file("/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
+                                   signer: signer),
                                    topic: "com.grasscove.Fern",
                                    environment: .sandbox)
 ```
 
-### SigningMode
+### Signer
 
-[`SigningMode`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNSJWT/SigningMode.swift) provides a method by which engineers can choose how their certificates are signed. Since security is important keeping we extracted this logic into three options. `file`, `data`, or `custom`.
+[`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSSigner.swift) provides a structure to sign the payloads with. This should be loaded into memory at the configuration level. It requires the data to be in a ByteBuffer format.
 
 ```swift
-public enum SigningMode {
-    case file(String)
-    case data(Data)
-    case custom(APNSSigner)
+let url = URL(fileURLWithPath: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8")
+let data: Data
+do {
+    data = try Data(contentsOf: url)
+} catch {
+    throw APNSError.SigningError.certificateFileDoesNotExist
 }
-
-extension SigningMode {
-    public func sign(digest: Data) throws -> Data {
-        switch self {
-        case .file(let filePath):
-            return try FileSigner(url: URL(fileURLWithPath: filePath)).sign(digest: digest)
-        case .data(let data):
-            return try DataSigner(data: data).sign(digest: digest)
-        case .custom(let signer):
-            return try signer.sign(digest: digest)
-        }
-    }
-}
-
-```
-### APNSSigner
-[`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNSJWT/Signer.swift) provides a protocol to be used with the signing mode `custom`. This gives developers the ability to sign their digests with whatever package they see fit.
-```swift
-public protocol APNSSigner {
-    func sign(digest: Data) throws -> Data
-}
-```
-#### Example Custom SigningMode that uses AWS for private keystorage
-```swift
-public class CustomSigner: APNSSigner {
-   public func sign(digest: Data) throws -> Data {
-     return try AWSKeyStore.sign(digest: digest)
-   }
-   public func verify(digest: Data, signature: Data) -> Bool {
-      // verification
-   }
-}
-let customSigner = CustomSigner()
-let apnsConfig = APNSConfig(keyId: "9UC9ZLQ8YW",
-                      teamId: "ABBM6U9RM5",
-                      signingMode: .custom(customSigner),
-                      topic: "com.grasscove.Fern",
-                      environment: .sandbox)
+var byteBuffer = ByteBufferAllocator().buffer(capacity: data.count)
+byteBuffer.writeBytes(data)
+let signer = try! APNSSigner.init(buffer: byteBuffer)
 ```
 ### APNSConnection
 
@@ -182,11 +149,22 @@ let aps = APSPayload(alert: alert, badge: 1, sound: .normal("cow.wav"))
 
 ```swift
 let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
-                                   teamIdentifier: "ABBM6U9RM5",
-                                   signingMode: .file("/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8"),
-                                   topic: "com.grasscove.Fern",
-                                   environment: .sandbox)
+let url = URL(fileURLWithPath: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8")
+let data: Data
+do {
+    data = try Data(contentsOf: url)
+} catch {
+    throw APNSError.SigningError.certificateFileDoesNotExist
+}
+var byteBuffer = ByteBufferAllocator().buffer(capacity: data.count)
+byteBuffer.writeBytes(data)
+let signer = try! APNSSigner.init(buffer: byteBuffer)
+
+let apnsConfig = APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
+                                       teamIdentifier: "ABBM6U9RM5",
+                                       signer: signer,
+                                       topic: "com.grasscove.Fern",
+                                       environment: .sandbox)
 
 let apns = try APNSConnection.connect(configuration: apnsConfig, on: group.next()).wait()
 let alert = Alert(title: "Hey There", subtitle: "Full moon sighting", body: "There was a full moon last night did you see it")
