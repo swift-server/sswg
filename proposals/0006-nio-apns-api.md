@@ -5,7 +5,7 @@
 * Sponsor: Vapor
 * Review Manager: TBD
 * Status: **Implemented**
-* Implementation: [kylebrowning/swift-nio-http2-apns](https://github.com/kylebrowning/swift-nio-http2-apns)
+* Implementation: [kylebrowning/swift-nio-http2-apns](https://github.com/kylebrowning/swift-nio-apns)
 * Forum Threads: [Pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193), [Discussion](https://forums.swift.org/t/discussion-nioapns-nio-based-apple-push-notification-service/23384)
 
 ## Package Description
@@ -99,19 +99,10 @@ let apnsConfig = try APNSConfiguration(keyIdentifier: "9UC9ZLQ8YW",
 
 ### Signer
 
-[`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSSigner.swift) provides a structure to sign the payloads with. This should be loaded into memory at the configuration level. It requires the data to be in a ByteBuffer format.
+[`APNSSigner`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSSigner.swift) provides a structure to sign the payloads with. This should be loaded into memory at the configuration level. It requires the data to be in a ByteBuffer format. We've provided a convenience initializer for users to do this from filePath. This should only be done once, and not on an EventLoop.
 
 ```swift
-let url = URL(fileURLWithPath: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8")
-let data: Data
-do {
-    data = try Data(contentsOf: url)
-} catch {
-    throw APNSError.SigningError.certificateFileDoesNotExist
-}
-var byteBuffer = ByteBufferAllocator().buffer(capacity: data.count)
-byteBuffer.writeBytes(data)
-let signer = try! APNSSigner.init(buffer: byteBuffer)
+let signer = try! APNSSigner(filePath: "/Users/kylebrowning/Downloads/AuthKey_9UC9ZLQ8YW.p8")
 ```
 ### APNSConnection
 
