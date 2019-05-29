@@ -6,7 +6,7 @@
 * Review Manager: TBD
 * Status: **Implemented**
 * Implementation: [kylebrowning/swift-nio-http2-apns](https://github.com/kylebrowning/swift-nio-apns)
-* Forum Threads: [Pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193), [Discussion](https://forums.swift.org/t/discussion-nioapns-nio-based-apple-push-notification-service/23384)
+* Forum Threads: [Pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193), [Discussion](https://forums.swift.org/t/discussion-nioapns-nio-based-apple-push-notification-service/23384), [Feedback](https://forums.swift.org/t/feedback-nioapns-nio-based-apple-push-notification-service/24393)
 
 ## Package Description
 Apple push notification service implementation built on Swift NIO.
