@@ -19,7 +19,7 @@ Non-blocking Swift driver for Redis built on SwiftNIO.
 | **License** | [Apache 2](https://www.apache.org/licenses/LICENSE-2.0.html) |
 | **Dependencies** | [SwiftNIO](https://github.com/apple/swift-nio) 2.x, [SwiftLog](https://github.com/apple/swift-log) 1.x, [SwiftMetrics](https://github.com/apple/swift-metrics) 1.x |
 
-## Introduc
+## Introduction
 
 **RedisNIO** is a module providing general implementations for connecting to a Redis instance and executing commands against it using Redis' proprietary [**Re**dis **S**eralization **P**rotocol (RESP)](https://redis.io/topics/protocol).
 
@@ -222,42 +222,7 @@ open class RedisCommandHandler: ChannelDuplexHandler {
 
 ### Connections
 
-Regardless how a user might configure their `Channel`, they can create a `RedisConnection` to pass around as they see fit for sending commands to Redis.
-
-As a convenience, a factory method is provided under `Redis`.
-
-```swift
-extension Redis {
-    /// Makes a new connection to a Redis instance.
-    ///
-    /// As soon as the connection has been opened on the host, an "AUTH" command will be sent to
-    /// Redis to authorize use of additional commands on this new connection.
-    ///
-    /// See [https://redis.io/commands/auth](https://redis.io/commands/auth)
-    ///
-    /// Example:
-    ///
-    ///     let elg = MultiThreadedEventLoopGroup(numberOfThreads: 3)
-    ///     let connection = Redis.makeConnection(
-    ///         to: .init(ipAddress: "127.0.0.1", port: 6379),
-    ///         using: elg,
-    ///         password: "my_pass"
-    ///     )
-    ///
-    /// - Parameters:
-    ///     - socket: The `SocketAddress` information of the Redis instance to connect to.
-    ///     - group: The `EventLoopGroup` to build the connection on. Default is a single threaded `EventLoopGroup`.
-    ///     - password: The optional password to authorize the client with.
-    ///     - logger: The `Logger` instance to log with.
-    /// - Returns: A `RedisConnection` instance representing this new connection.
-    public static func makeConnection(
-        to socket: SocketAddress,
-        using group: EventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1),
-        password: String? = nil,
-        logger: Logger = Logger(label: "RedisNIO.RedisConnection")
-    ) -> EventLoopFuture<RedisConnection>
-}
-```
+Regardless of which way a user might choose to source their Redis `ClientBootstrap`, they can create a `RedisConnection` to pass around as they see fit for sending commands to Redis.
 
 #### RedisConnection
 
@@ -300,6 +265,41 @@ public final class RedisConnection {
 }
 ```
 
+As a convenience, a factory method is provided under the `Redis` namespace enum.
+
+```swift
+extension Redis {
+    /// Makes a new connection to a Redis instance.
+    ///
+    /// As soon as the connection has been opened on the host, an "AUTH" command will be sent to
+    /// Redis to authorize use of additional commands on this new connection.
+    ///
+    /// See [https://redis.io/commands/auth](https://redis.io/commands/auth)
+    ///
+    /// Example:
+    ///
+    ///     let elg = MultiThreadedEventLoopGroup(numberOfThreads: 3)
+    ///     let connection = Redis.makeConnection(
+    ///         to: .init(ipAddress: "127.0.0.1", port: 6379),
+    ///         using: elg,
+    ///         password: "my_pass"
+    ///     )
+    ///
+    /// - Parameters:
+    ///     - socket: The `SocketAddress` information of the Redis instance to connect to.
+    ///     - group: The `EventLoopGroup` to build the connection on. Default is a single threaded `EventLoopGroup`.
+    ///     - password: The optional password to authorize the client with.
+    ///     - logger: The `Logger` instance to log with.
+    /// - Returns: A `RedisConnection` instance representing this new connection.
+    public static func makeConnection(
+        to socket: SocketAddress,
+        using group: EventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1),
+        password: String? = nil,
+        logger: Logger = Logger(label: "RedisNIO.RedisConnection")
+    ) -> EventLoopFuture<RedisConnection>
+}
+```
+
 #### RedisClient
 
 While `RedisConnection` is the designed _concrete_ common currency - the goal is to not enforce it as the sole implementation of Redis connections.
@@ -326,7 +326,7 @@ public protocol RedisClient {
 }
 ```
 
-### Package Example
+### Module Usage Example
 
 ```swift
 import RedisNIO
@@ -365,7 +365,7 @@ They are defined under a `RedisMetrics` struct, and are labeled with the `RedisM
 
 ## Maturity Justification
 
-Until now, packages through the SSWG process have been accepted as **Sandbox** maturity - so it's appropriate to justify why **RedisNIO** might be considered mature enough for _Incubating_.
+Until now, packages through the SSWG process have been accepted as _Sandbox_ maturity - so it's appropriate to justify why **RedisNIO** might be considered mature enough for _Incubating_.
 
 This package supports:
 - Logging through **SwiftLog**
