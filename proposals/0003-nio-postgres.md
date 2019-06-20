@@ -1,11 +1,16 @@
 # NIOPostgres: A NIO-based PostgreSQL Driver
 
+> **Note**: Since this proposal was published, `NIOPostgres` has been renamed to `PostgresNIO`.
+> 
+> For more context behind this change, see the following threads: [[1]](https://forums.swift.org/t/namespacing-of-packages-modules-especially-regarding-swiftnio/24726), [[2]](https://forums.swift.org/t/sswg-minimum-requirements-to-require-no-existing-clashes/24932)
+
 * Proposal: [SSWG-0003](https://github.com/swift-server/sswg/tree/master/proposals/SSWG-0003.md)
 * Author(s): [Tanner Nelson](https://github.com/tanner0101)
 * Review Manager: TBD
-* Status: **Implemented**
+* Status: **Accepted as Sandbox Maturity**
 * Implementation: [vapor/nio-postgres](https://github.com/vapor/nio-postgres)
-* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-swiftnio-based-postgresql-client/18020), [Discussion](https://forums.swift.org/t/discussion-niopostgres-a-nio-based-postgresql-driver/22178), Review (TBD)
+* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-swiftnio-based-postgresql-client/18020), [Discussion](https://forums.swift.org/t/discussion-niopostgres-a-nio-based-postgresql-driver/22178), [Review](https://forums.swift.org/t/feedback-niopostgres-a-nio-based-postgresql-driver/24398)
+* Decision Notes: [Rationale](https://forums.swift.org/t/may-16th-2019/25036)
 
 ## Introduction
 
