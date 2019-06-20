@@ -115,6 +115,21 @@ let apnsConfig = ...
 let apns = try APNSConnection.connect(configuration: apnsConfig, on: group.next()).wait()
 ```
 
+### APNSConnection.send
+[`APNSConnection.send`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSConnection.swift) is a method with a few extra parameters for your convenience. Use a custom `JSONEncoder`, set an expiration date, a priority, or a collapseIdentifier.
+
+#### Example `APNSConnection.send`
+```swift
+let apnsConfig = ...
+let apns = ...
+do {
+    let expiry = Date().addingTimeInterval(5)
+    try apns.send(notification, to: "b27a07be2092c7fbb02ab5f62f3135c615e18acc0ddf39a30ffde34d41665276", with: JSONEncoder(), expiration: expiry, priority: 10, collapseIdentifier: "huro2").wait()
+} catch {
+    print(error)
+}
+```
+
 ### Alert
 
 [`Alert`](https://github.com/kylebrowning/swift-nio-http2-apns/blob/master/Sources/NIOAPNS/APNSRequest.swift) is the actual meta data of the push notification alert someone wishes to send. More details on the specifics of each property are provided [here](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html). They follow a 1-1 naming scheme listed in Apple's documentation
@@ -201,8 +216,6 @@ This package meets the following criteria according to the [SSWG Incubation Proc
 - [Swift Code of Conduct](https://github.com/kylebrowning/swift-nio-apns/blob/master/CODE_OF_CONDUCT.md)
 - [Contributing Guide](https://github.com/kylebrowning/swift-nio-apns/blob/master/CONTRIBUTING.md)
 - [CircleCI builds](https://circleci.com/gh/kylebrowning/swift-nio-apns/tree/master)
-
-Vapor, and I, are in the processes of providing a (framework agnostic) higher-level library: [`APNSkit`](https://github.com/vapor/apns-kit). This is the initial work on connection pooling and things we thought would be hard to get right in the initial incubation periods before submitting..
 
 ## Alternatives Considered
 
