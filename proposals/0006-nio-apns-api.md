@@ -1,12 +1,17 @@
 # NIO-based Apple Push Notification Service
 
+> **Note**: Since this proposal was published, the module `NIOAPNS` has been renamed to `APNSwift`. The renamed GitHub repo is found at https://github.com/kylebrowning/APNSwift
+> 
+> For more context behind this change, see the following threads: [[1]](https://forums.swift.org/t/namespacing-of-packages-modules-especially-regarding-swiftnio/24726), [[2]](https://forums.swift.org/t/sswg-minimum-requirements-to-require-no-existing-clashes/24932), [[3]](https://forums.swift.org/t/nioapns-naming-brainstorm/26520)
+
 * Proposal: SSWG-0006
 * Authors: [Kyle Browning](https://github.com/kylebrowning)
 * Sponsor: Vapor
 * Review Manager: TBD
-* Status: **Implemented**
+* Status: **Accepted as Sandbox Maturity**
 * Implementation: [kylebrowning/swift-nio-http2-apns](https://github.com/kylebrowning/swift-nio-apns)
 * Forum Threads: [Pitch](https://forums.swift.org/t/apple-push-notification-service-implementation-pitch/20193), [Discussion](https://forums.swift.org/t/discussion-nioapns-nio-based-apple-push-notification-service/23384), [Feedback](https://forums.swift.org/t/feedback-nioapns-nio-based-apple-push-notification-service/24393)
+* Decision Notes: [Rationale](https://forums.swift.org/t/june-27th-2019/26580)
 
 ## Package Description
 Apple push notification service implementation built on Swift NIO.
