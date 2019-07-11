@@ -1,10 +1,16 @@
 # SSWG HTTP Client Library
 
+> **Note**: Since this proposal was published, the module `NIOHTTPClient` has been renamed to `AsyncHTTPClient`. The renamed GitHub repo is found at https://github.com/swift-server/async-http-client/
+> 
+> For more context behind this change, see the following threads: [[1]](https://forums.swift.org/t/namespacing-of-packages-modules-especially-regarding-swiftnio/24726), [[2]](https://forums.swift.org/t/sswg-minimum-requirements-to-require-no-existing-clashes/24932), [[3]](https://forums.swift.org/t/feedback-nio-based-http-client/26149/27)
+
 * Proposal: SSWG-0005
 * Authors: [Artem Redkin](https://github.com/artemredkin), [Tomer Doron](https://github.com/tomerd), [Tanner Nelson](https://github.com/tanner0101), [Ian Partridge](https://github.com/ianpartridge/)
 * Sponsors: Swift Server Working Group
-* Status: [Implemented ](https://github.com/swift-server/swift-nio-http-client)
-* Pitch: [Generic HTTP Client Library](/t/generic-http-client-library-pitch/23341)
+* Status: **Accepted as Sandbox Maturity**
+* Implementation: [swift-server/async-http-client](https://github.com/swift-server/async-http-client/)
+* Forum Threads: [Pitch](https://forums.swift.org/t/generic-http-client-library-pitch/23341), [Discussion](https://forums.swift.org/t/discussion-nio-based-http-client/24195/), [Review](https://forums.swift.org/t/feedback-nio-based-http-client/26149)
+* Decision Notes: [Rationale](https://forums.swift.org/t/june-27th-2019/26580)
 
 ## Introduction
 Number of projects implemented their own HTTP client libraries, like:
