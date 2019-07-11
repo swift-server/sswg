@@ -1,12 +1,19 @@
 # RedisNIO: A NIO-based Redis Driver
 
+> **Note**: Since this proposal was published, the module `RedisNIO` has been renamed to `RediStack`.
+>
+> The renamed GitLab repo is found at https://gitlab.com/mordil/swift-redi-stack. The GitHub Mirror is found at https://github.com/kylebrowning/APNSwift
+> 
+> For more context behind this change, see the following threads: [[1]](https://forums.swift.org/t/namespacing-of-packages-modules-especially-regarding-swiftnio/24726), [[2]](https://forums.swift.org/t/sswg-minimum-requirements-to-require-no-existing-clashes/24932), [[3]](https://forums.swift.org/t/redisnio-name-brainstorm/26521/)
+
 * Proposal: [SSWG-0004](https://github.com/swift-server/sswg/blob/master/proposals/SSWG-0004.md)
 * Authors: [Nathan Harris](https://github.com/Mordil)
 * Sponsor(s): Vapor
-* Status: **Active Review (June 10...26, 2019)**
+* Status: **Accepted as Sandbox Maturity**
 * Implementation: https://gitlab.com/mordil/swift-redis-nio-client ([GitHub Mirror](https://github.com/mordil/swift-redis-nio-client))
 * Forum Threads: [Pitch](https://forums.swift.org/t/swiftnio-redis-client), [Discussion](https://forums.swift.org/t/discussion-nioredis-nio-based-redis-driver/22455/)
 * Revisions: [[1]](https://github.com/swift-server/sswg/blob/f3bdea501b7c32d4cee64c989525dcafed247971/proposals/0004-nio-redis.md)
+* Decision Notes: [Rationale](https://forums.swift.org/t/june-27th-2019/26580)
 
 ## Package Description
 Non-blocking Swift driver for Redis built on SwiftNIO.
