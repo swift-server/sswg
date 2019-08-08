@@ -2,7 +2,7 @@
 
 > **Note**: Since this proposal was published, the module `RedisNIO` has been renamed to `RediStack`.
 >
-> The renamed GitLab repo is found at https://gitlab.com/mordil/swift-redi-stack. The GitHub Mirror is found at https://github.com/kylebrowning/APNSwift
+> The renamed GitLab repo is found at https://gitlab.com/mordil/swift-redi-stack. The GitHub Mirror is found at https://github.com/mordil/swift-redi-stack
 > 
 > For more context behind this change, see the following threads: [[1]](https://forums.swift.org/t/namespacing-of-packages-modules-especially-regarding-swiftnio/24726), [[2]](https://forums.swift.org/t/sswg-minimum-requirements-to-require-no-existing-clashes/24932), [[3]](https://forums.swift.org/t/redisnio-name-brainstorm/26521/)
 
