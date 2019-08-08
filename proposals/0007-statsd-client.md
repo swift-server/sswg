@@ -70,7 +70,7 @@ as mentioned above, usage of the client is designed to be done primarily via the
 
 ### protocol
 
-the client implements the `stated` protocol as following:
+the client implements the `statsd` protocol as following:
 
 |||
 | --- | --- |
