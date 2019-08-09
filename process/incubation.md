@@ -1,6 +1,6 @@
 # Swift Server Work Group Incubation Process
 
-version 1.0
+version 1.1
 
 ## Overview
 
@@ -66,9 +66,13 @@ To be accepted at Incubating level, a project must meet the Sandbox level requir
 
 To be accepted at Graduated level, a project must meet the Incubating level criteria plus:
 
-* Adopt all [SSWG best practices](#best-practices), as detailed below.
+* Adopt all [SSWG graduation requirements](#graduation-requirements), as detailed below.
 * Have committers from at least two organizations.
 * Receive a supermajority vote from the SSWG to move to Graduation stage.
+
+## Process Diagram
+
+![process diagram](incubation.png)
 
 ### Ecosystem Index
 
@@ -109,12 +113,13 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
   * Must be a team of 2+ developers
   * Must be from a team that has more than one public repository (or similar indication of experience)
   * SSWG should have access / authorization to graduated repositories in case of emergency
+  * Adopt the [SSWG Security Best Practices](#security-best-practices))  
 * Licensing
   * Apache 2
 
-## Best Practices
+## Graduation Requirements
 
-* Address security findings, including in dependencies, within 30d
+* [Minimal Requirements](#minimal-requirements)
 * Support new GA versions of Swift within 30d
 * CI setup for two latest Swift.org recommnded versions of Swift
 * CI setup for two latest versions of Swift.org recommnded Linux distributions
@@ -126,9 +131,13 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * Include list of adopters for at least the primary repo ideally laid out in an ADOPTERS.md files or logos on the project website
 * Optionally, have a [Developer Certificate of Origin](https://developercertificate.org) or a [Contributor License Agreement](https://en.wikipedia.org/wiki/Contributor_License_Agreement)
 
-## Process Diagram
+## Security Best Practices
 
-![process diagram](incubation.png)
+Project authors that discover, or been adviced of volnerabilities in their libraries, must report them to the SSWG within 10d. Graduated libraries are expected to address volnerabilities within 30d.
+
+The SSWG will publicly share a list of volnerabilities and fixes on it's public website [TBD] to inform the Swift Server user community.
+
+Project authors are also encouraged to make use of their source control system security features (for example: Github's "Security Advisories" and Gitlab's "Confidential Issues") to manage the volnerabilities and inform their users.
 
 ## Change Management
 
