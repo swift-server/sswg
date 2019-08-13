@@ -1,6 +1,6 @@
 # Swift Server Work Group Incubation Process
 
-version 1.1
+version 1.2
 
 ## Overview
 
@@ -109,6 +109,9 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
   * Follow Swift Code style guidelines
   * Uses force unwraps and force tries only as preconditions, ie. conditions that the programmer regards as impossible or programmer error. All force tries/unwraps should come with a comment stating the reasons
   * Prefer native Swift over C wrapping, where appropriate
+  * Does not use `*Unsafe*` unless interfacing with C
+    * Exceptions to uses of `*Unsafe*` constructs are acceptable when appropriately documented why they are absolutely necessary.
+    * When `*Unsafe*` is used in this manner, its is expected to be accompanied by enhancement request tickets for the root cause in Swift, SwiftNIO, or a different offending library.
 * Longevity
   * Must be a team of 2+ developers
   * Must be from a team that has more than one public repository (or similar indication of experience)
