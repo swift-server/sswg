@@ -133,11 +133,11 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 
 ## Security Best Practices
 
-Project authors that discover, or been adviced of volnerabilities in their libraries, must report them to the SSWG within 10d. Graduated libraries are expected to address volnerabilities within 30d.
+Project authors that discover, or been advised of vulnerabilities in their libraries, must report them to the SSWG within 10d. Graduated libraries are expected to address vulnerabilities within 30d.
 
-The SSWG will publicly share a list of volnerabilities and fixes on it's public website [TBD] to inform the Swift Server user community.
+The SSWG will publicly share a list of vulnerabilities and fixes on its public website [TBD] to inform the Swift Server user community.
 
-Project authors are also encouraged to make use of their source control system security features (for example: Github's "Security Advisories" and Gitlab's "Confidential Issues") to manage the volnerabilities and inform their users.
+Project authors are also encouraged to make use of their source control system security features (for example: Github's "Security Advisories" and Gitlab's "Confidential Issues") to manage the vulnerabilities and inform their users.
 
 ## Change Management
 
