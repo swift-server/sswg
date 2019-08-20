@@ -133,7 +133,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 
 ## Security Best Practices
 
-Project authors that discover, or been advised of vulnerabilities in their libraries, must report them to the SSWG within 10d. Graduated libraries are expected to address vulnerabilities within 30d. Reports should be sent to the SSWG using [Swift forums](https://forums.swift.org/c/server/security-updates). 
+Project authors that discover, or been advised of vulnerabilities in their projects, must report them to the SSWG within 10d. Graduated projects are expected to address vulnerabilities within 30d. Reports should be sent to the SSWG using [Swift forums](https://forums.swift.org/c/server/security-updates). 
 
 The SSWG will publicly share a list of vulnerabilities and fixes on [Swift forums](https://forums.swift.org/c/server/security-updates) to inform the Swift Server user community. Members are encouraged to subscribe to notifications and adopt fixes as soon as possible.
 
