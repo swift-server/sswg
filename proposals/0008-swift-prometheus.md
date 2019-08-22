@@ -12,10 +12,10 @@ Prometheus client side implementation.
 |  |  |
 |--|--|
 | **Package Name** | `SwiftPrometheus` |
-| **Module Name** | `Prometheus` & `PrometheusMetrics` |
+| **Module Name** | `Prometheus` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [Apache 2.0](https://github.com/MrLotU/SwiftPrometheus/blob/master/LICENSE) |
-| **Dependencies** | swift-nio 1.0.0..<3.0.0 (1.x.x & 2.x.x) - swift-metrics > 1.0.0 |
+| **Dependencies** | swift-nio 1.x.x or 2.x.x<sup>[1](#footnote_1)</sup> - swift-metrics > 1.0.0 |
 
 ## Introduction
 
@@ -44,6 +44,7 @@ Below section will lay out the public API of this package. For the internal APIs
 #### Without swift-metrics
 To get started, initialise an instance of `PrometheusClient`
 ```swift
+import Prometheus
 let myProm = PrometheusClient()
 ```
 Once done, you can use the `create*` APIs to create any of the above described metric types.
@@ -148,3 +149,6 @@ The implementation has the full feature set required for production use and meet
 Other than using a different metrics backend than Prometheus, there are not many alternatives to consider. One thing I'd like to point out though:
 
 This library has support for the destroying of metrics in the way set forth by the `swift-metrics` package. However, as described in the Prometheus documentation, once a metric is created with a specific type, so for example a `Counter` named `my_counter` and that counter is destroyed, it's not allowed to, at a later time, re-create a metric named `my_counter` with a DIFFERENT type. (Creating another counter is fine). To keep track of this, `PrometheusClient` will hold a dictionary of metric names & types. (`[String: MetricType]`). This means that even if you destroy your metrics, your memory footprint will (gradually) increase. All of this is process bound and will reset on a process restart.
+
+
+<a name="footnote_1">1</a>: For NIO 2 use SwiftPrometheus 1.x.x, for NIO 1 use SwiftPrometheus 0.x.x
