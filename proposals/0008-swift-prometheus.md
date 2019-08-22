@@ -150,5 +150,6 @@ Other than using a different metrics backend than Prometheus, there are not many
 
 This library has support for the destroying of metrics in the way set forth by the `swift-metrics` package. However, as described in the Prometheus documentation, once a metric is created with a specific type, so for example a `Counter` named `my_counter` and that counter is destroyed, it's not allowed to, at a later time, re-create a metric named `my_counter` with a DIFFERENT type. (Creating another counter is fine). To keep track of this, `PrometheusClient` will hold a dictionary of metric names & types. (`[String: MetricType]`). This means that even if you destroy your metrics, your memory footprint will (gradually) increase. All of this is process bound and will reset on a process restart.
 
+---
 
-<a name="footnote_1">1</a>: For NIO 2 use SwiftPrometheus 1.x.x, for NIO 1 use SwiftPrometheus 0.x.x
+<sup><a name="footnote_1">1</a></sup> For NIO 2 use SwiftPrometheus 1.x.x, for NIO 1 use SwiftPrometheus 0.x.x
