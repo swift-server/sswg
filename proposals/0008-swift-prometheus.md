@@ -3,7 +3,7 @@
 * Proposal: SSWG-0008
 * Authors: [Jari Koopman / LotU](https://github.com/MrLotU)
 * Review Manager: TBD
-* Status:  [Implemented ](https://github.com/MrLotU/SwiftPrometheus/tree/MetricsLib)
+* Status:  [Implemented ](https://github.com/MrLotU/SwiftPrometheus/)
 * Pitch: [Pitches/Prometheus](https://forums.swift.org/t/client-side-prometheus-implementation/18098/)
 
 ## Package Description
@@ -142,7 +142,7 @@ This will either return the `PrometheusClient` used with `.bootstrap()` or throw
 
 ## Maturity Justification
 
-The implementation has the full feature set required for production use and meets the minimum requirements set forth by the SSWG (except for the fact that I'm a 1 man army creating this library)
+The implementation has the full feature set required for production use and meets the minimum requirements set forth by the SSWG.
 
 ## Alternatives considered
 
