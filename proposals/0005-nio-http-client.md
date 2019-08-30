@@ -75,10 +75,16 @@ In case `EventLoopGroup` was provided to the client instance, there is no need t
 In case helper methods do not provide required functionality (for example, if user needs to set headers, or use specific HTTP method), clients of the library can use `HTTPClient.Request`:
 ```swift
 extension HTTPClient {
-     enum Body {
-        case byteBuffer(ByteBuffer)
-        case data(Data)
-        case string(String)
+    typealias ChunkProvider = (@escaping (IOData) -> EventLoopFuture<Void>) -> EventLoopFuture<Void>
+
+    struct Body {
+        var length: Int?
+        var provider: HTTPClient.ChunkProvider
+
+        static func byteBuffer(_ buffer: ByteBuffer) -> Body
+        static func stream(length: Int? = nil, _ provider: @escaping HTTPClient.ChunkProvider) -> Body
+        static func data(_ data: Data) -> Body
+        static func string(_ string: String) -> Body
     }
 
     struct Request {
@@ -141,7 +147,8 @@ public protocol HTTPClientResponseDelegate: class {
     func didReceiveHead(task: HTTPClient.Task<Response>, _ head: HTTPResponseHead)
 
     // this method will be called multiple times with chunks of the HTTP response body (if there is a body)
-    func didReceivePart(task: HTTPClient.Task<Response>, _ buffer: ByteBuffer)
+    // returning event EventLoopFuture could be used for backpressure handling, all reads will be stopped untill this future is resolved
+    func didReceivePart(task: HTTPClient.Task<Response>, _ buffer: ByteBuffer) -> EventLoopFuture<Void>?
 
     // this method will be called if an error occurs during request processing
     func didReceiveError(task: HTTPClient.Task<Response>, _ error: Error)
@@ -163,8 +170,9 @@ class CountingDelegate: HTTPClientResponseDelegate {
     func didReceiveHead(_ head: HTTPResponseHead) {
     }
 
-    func didReceivePart(_ buffer: ByteBuffer) {
+    func didReceivePart(_ buffer: ByteBuffer) -> EventLoopFuture<Void>? {
         count += buffer.readableBytes
+        return nil
     }
 
     func didFinishRequest() throws -> Int {
