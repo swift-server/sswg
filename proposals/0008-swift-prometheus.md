@@ -19,18 +19,18 @@ Prometheus client side implementation.
 
 ## Introduction
 
-_For a background on metrics see the metrics proposal [discussion](https://forums.swift.org/t/discussion-server-metrics-api/19600) and [feedback](https://forums.swift.org/t/feedback-server-metrics-api/21353) thread._
+_For a background on [`swift-metrics`](https://github.com/apple/swift-metrics) see the metrics [proposal discussion](https://forums.swift.org/t/discussion-server-metrics-api/19600) and [feedback](https://forums.swift.org/t/feedback-server-metrics-api/21353) threads._
 
-Prometheus is one of the most widely used libraries for metrics in the serverside world. SwiftPrometheus is a client side implementation in Swift, with the ability to use it both connected to & separately from swift-metrics.
+[Prometheus](https://prometheus.io) is a service that scrapes metrics from other services, and stores them in a time series database to be queried and alerted upon. SwiftPrometheus is a client-side library to allow packages to export metrics in the [Prometheus format](https://openmetrics.io) in Swift, with the ability to use it both connected to & separately from swift-metrics.
 
 ## Motivation
 
-With Prometheus being one of the most widely used metric reporting tools, it's a buildstone that can not be left out in a serverside ecosystem. This package is created for everyone to use & build upon for their metric reporting.
+With Prometheus being one of the most widely used metric reporting tools, as well as a [graduated project of the Cloud Native Computing Foundation](https://www.cncf.io/announcement/2018/08/09/prometheus-graduates/), it's a cornerstone that can not be left out in a serverside ecosystem. This package is created for everyone to use & build upon for their metric reporting.
 
 ## Detailed design
 
 SwiftPrometheus works around one base class `PrometheusClient` and some metric types around it. The prometheus metric types are:
-(from the prometheus docs)
+(from the [prometheus docs](https://www.prometheus.io/docs/concepts/metric_types/))
 * Counter - A  *counter*  is a cumulative metric that represents a single [monotonically increasing counter](https://en.wikipedia.org/wiki/Monotonic_function) whose value can only increase or be reset to zero on restart.
 * Gauge - A  *gauge*  is a metric that represents a single numerical value that can arbitrarily go up and down.
 * Histogram - A  *histogram*  samples observations (usually things like request durations or response sizes) and counts them in configurable buckets. It also provides a sum of all observed values.
