@@ -32,7 +32,7 @@ With Prometheus being one of the most widely used metric reporting tools, as wel
 `SwiftPrometheus` is a [Prometheus](https://prometheus.io) client implementation, conforming to the `SwiftMetrics` API. It centers around the `PrometheusClient` class, and provides various metric types.
 
 Swift _libraries_ should prefer depend and use the generic `SwiftMetrics` API, in order to not force end users down the path of using a specific backend. Swift _applications_ though should bootstrap the `PrometheusClient` and use the `SwiftMetrics` API _when practical_, yet are free to use the `PrometheusClient` directly as well – as an application does not need to concern itself with its consumers being "locked into" a specific backend.
-(from the [prometheus docs](https://www.prometheus.io/docs/concepts/metric_types/))
+The prometheus metric types are (from the [prometheus docs](https://www.prometheus.io/docs/concepts/metric_types/)):
 * Counter - A  *counter*  is a cumulative metric that represents a single [monotonically increasing counter](https://en.wikipedia.org/wiki/Monotonic_function) whose value can only increase or be reset to zero on restart.
 * Gauge - A  *gauge*  is a metric that represents a single numerical value that can arbitrarily go up and down.
 * Histogram - A  *histogram*  samples observations (usually things like request durations or response sizes) and counts them in configurable buckets. It also provides a sum of all observed values.
