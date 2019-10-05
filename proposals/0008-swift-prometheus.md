@@ -39,9 +39,36 @@ SwiftPrometheus works around one base class `PrometheusClient` and some metric t
 SwiftPrometheus provides fully featured implementations for all of them, including a thin wrapper around them for integration with `swift-metrics`.
 
 ### API Layout
-Below section will lay out the public API of this package. For the internal APIs I would suggest you to read through the code on GitHub :smile:. This section is split up into two parts, using this library standalone, or using it integrated with the `swift-metrics` package. 
+Below section will lay out the public API of this package. For the internal APIs I would suggest you to read through the code on GitHub :smile:. This section is split up into two parts, using it integrated with the `swift-metrics` package or using this library standalone.
+
+#### With swift-metrics
+For use with swift-metrics, bootstrap the MetricsSystem with an instance of `PrometheusClient`:
+```swift
+let myProm = PrometheusClient()
+MetricsSystem.bootstrap(myProm)
+```
+After that, you can use the metric types used by swift-metrics for your metrics. The mapping is as follows:
+| swift-metrics | SwiftPrometheus |
+|--|--|
+| Counter | Counter |
+| Gauge | Gauge |
+| Recorder (agg) | Histogram |
+| Timer | Summary |
+
+---
+
+To get a hold of your `PrometheusClient` either to:
+a) use custom prometheus behaviour; or
+b) get your metrics output
+there is a utility function on `MetricsSystem`
+```swift
+let myProm = try MetricsSystem.prometheus()
+```
+This will either return the `PrometheusClient` used with `.bootstrap()` or throw an error if `MetricsSystem` was not bootstrapped with `PrometheusClient`
+*Note: There currently is no support for retrieving `PrometheusClient` when being used with `MultiplexMetricsHandler`* 
 
 #### Without swift-metrics
+
 To get started, initialise an instance of `PrometheusClient`
 ```swift
 import Prometheus
@@ -113,32 +140,6 @@ router.get("/metrics") { req -> String in
     return myProm.collect()
 }
 ```
-
-#### With swift-metrics
-For use with swift-metrics, most of the steps described above work the same. To bootstrap the MetricsSystem you create a client and feed it to `MetricsSystem`:
-```swift
-let myProm = PrometheusClient()
-MetricsSystem.bootstrap(myProm)
-```
-After that, you can use the metric types used by swift-metrics for your metrics. The mapping is as follows:
-| swift-metrics | SwiftPrometheus |
-|--|--|
-| Counter | Counter |
-| Gauge | Gauge |
-| Recorder (agg) | Histogram |
-| Timer | Summary |
-
----
-
-To get a hold of your `PrometheusClient` either to:
-a) use custom prometheus behaviour; or
-b) get your metrics output
-there is a utility function on `MetricsSystem`
-```swift
-let myProm = try MetricsSystem.prometheus()
-```
-This will either return the `PrometheusClient` used with `.bootstrap()` or throw an error if `MetricsSystem` was not bootstrapped with `PrometheusClient`
-*Note: There currently is no support for retrieving `PrometheusClient` when being used with `MultiplexMetricsHandler`* 
 
 ## Maturity Justification
 
