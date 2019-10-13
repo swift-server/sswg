@@ -31,8 +31,8 @@ With Prometheus being one of the most widely used metric reporting tools, as wel
 
 `SwiftPrometheus` is a [Prometheus](https://prometheus.io) client implementation, conforming to the `SwiftMetrics` API. It centers around the `PrometheusClient` class, and provides various metric types.
 
-Swift _libraries_ should prefer depend and use the generic `SwiftMetrics` API, in order to not force end users down the path of using a specific backend. Swift _applications_ though should bootstrap the `PrometheusClient` and use the `SwiftMetrics` API _when practical_, yet are free to use the `PrometheusClient` directly as well – as an application does not need to concern itself with its consumers being "locked into" a specific backend.
-The prometheus metric types are (from the [prometheus docs](https://www.prometheus.io/docs/concepts/metric_types/)):
+Swift _libraries_ should depend upon and use the generic `SwiftMetrics` API, in order to not force end-users down the path of using a specific backend. Swift _applications_ though should bootstrap the `PrometheusClient` and use the `SwiftMetrics` API _when practical_, yet are free to use the `PrometheusClient` directly as well – as an application does not need to concern itself with its consumers being "locked into" a specific backend.
+The [Prometheus metric types](https://www.prometheus.io/docs/concepts/metric_types/) are:
 * Counter - A  *counter*  is a cumulative metric that represents a single [monotonically increasing counter](https://en.wikipedia.org/wiki/Monotonic_function) whose value can only increase or be reset to zero on restart.
 * Gauge - A  *gauge*  is a metric that represents a single numerical value that can arbitrarily go up and down.
 * Histogram - A  *histogram*  samples observations (usually things like request durations or response sizes) and counts them in configurable buckets. It also provides a sum of all observed values.
@@ -41,7 +41,7 @@ The prometheus metric types are (from the [prometheus docs](https://www.promethe
 SwiftPrometheus provides fully featured implementations for all of them, including a thin wrapper around them for integration with `swift-metrics`.
 
 ### API Layout
-Below section will lay out the public API of this package. For the internal APIs I would suggest you to read through the code on GitHub :smile:. This section is split up into two parts, using it integrated with the `swift-metrics` package or using this library standalone.
+The following section describes the public API of this package and is split into two parts. The first describes the suggested pattern of integrating directly with the `swift-metrics` package. The second delves into the increased flexibility granted by directly working with Prometheus metric types, at the cost of increased lock-in.
 
 #### With swift-metrics
 For use with swift-metrics, bootstrap the MetricsSystem with an instance of `PrometheusClient`:
@@ -67,7 +67,7 @@ there is a utility function on `MetricsSystem`
 let myProm = try MetricsSystem.prometheus()
 ```
 This will either return the `PrometheusClient` used with `.bootstrap()` or throw an error if `MetricsSystem` was not bootstrapped with `PrometheusClient`
-*Note: There currently is no support for retrieving `PrometheusClient` when being used with `MultiplexMetricsHandler`* 
+*Note: There currently is no support for retrieving a `PrometheusClient` when using `MultiplexMetricsHandler`* 
 
 #### Without swift-metrics
 
