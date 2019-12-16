@@ -10,8 +10,6 @@ Analogous to the Core Team for Swift, the work group is responsible for providin
 
 The current Swift Server work group consists of the following people:
 
-* Chris Bailey ([@chris_bailey](https://forums.swift.org/u/chris_bailey), IBM Kitura)
-* Ian Partridge ([@ianpartridge](https://forums.swift.org/u/ianpartridge), IBM Kitura)
 * Logan Wright ([@loganwright](https://github.com/loganwright), Vapor)
 * Tanner Nelson ([@tanner0101](https://forums.swift.org/u/tanner0101), Vapor)
 * Johannes Weiss ([@johannesweiss](https://forums.swift.org/u/johannesweiss), Apple)
