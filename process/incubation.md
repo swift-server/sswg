@@ -1,6 +1,6 @@
 # Swift Server Work Group Incubation Process
 
-version 1.2
+version 1.2.1
 
 ## Overview
 
@@ -58,7 +58,7 @@ Early adopters should treat early stage projects with extra care. While Sandbox 
 To be accepted at Incubating level, a project must meet the Sandbox level requirements plus:
 
 * Document that it is being used successfully in production by at least three independent end users which, in the SSWG judgement, are of adequate quality and scope.
-* Have a healthy number of committers.
+* Have a healthy number of committers. In this context, a committer is an individual who was given write access to the codebase, and has been actively reviewing and managing contributions from the rest of the project's community. 
 * Demonstrate a substantial ongoing flow of commits and merged contributions.
 * Receive a supermajority vote from the SSWG to move to Incubation stage.
 
@@ -67,7 +67,7 @@ To be accepted at Incubating level, a project must meet the Sandbox level requir
 To be accepted at Graduated level, a project must meet the Incubating level criteria plus:
 
 * Adopt all [SSWG graduation requirements](#graduation-requirements), as detailed below.
-* Have committers from at least two organizations.
+* Have committers, as defined above, from at least two organizations.
 * Receive a supermajority vote from the SSWG to move to Graduation stage.
 
 ## Process Diagram
