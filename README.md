@@ -57,7 +57,7 @@ See [Swift Server Ecosystem Index](https://swift.org/server/#projects)
 
 ## Meeting Time
 
-The SSWG meets on the 1st and 3rd Thursday of every month at 9:30AM PT (USA Pacific)
+The SSWG meets on the 1st and 3rd Wednsday of every month at 9:00AM PT (USA Pacific)
 
 ## Meeting Notes
 
