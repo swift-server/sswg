@@ -18,7 +18,7 @@ Incubation is made of the following stages: **Pitch**, **Proposal**, **Developme
 
 ### Pitch
 
-Pitches are an introduction to an idea for a new library or tool. They can also introduce ideas for new features or additions to existing tools. Pitches are used to collect feedback from the community and help define the exact scope of a project prior to writing code. They should also demonstrate how they align with the SSWG's goals to improve Swift on the server. Pitches are submitted by creating a new thread in the Swift Server forum area.
+Pitches are an introduction to an idea for a new library or tool. They can also introduce ideas for new features or changes to existing tools. Pitches are used to collect feedback from the community and help define the exact scope of a project prior to writing code. They should demonstrate how they align with the SSWG's goals to improve Swift on the server. Pitches are submitted by creating a new thread in the Swift Server forum area.
 
 ### Proposal
 
