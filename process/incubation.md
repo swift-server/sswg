@@ -18,7 +18,7 @@ Incubation is made of the following stages: **Pitch**, **Proposal**, **Developme
 
 ### Pitch
 
-Pitches are written proposals of new libraries or tools including ideas for new features in existing libraries or tools. They are used to collect feedback from the community and help define the exact scope of a project prior to writing code. Pitches are submitted by creating a new thread in the Swift Server forum area.
+Pitches are an introduction to an idea for a new library or tool. They can also introduce ideas for new features or additions to existing tools. Pitches are used to collect feedback from the community and help define the exact scope of a project prior to writing code. They should also demonstrate how they align with the SSWG's goals to improve Swift on the server. Pitches are submitted by creating a new thread in the Swift Server forum area.
 
 ### Proposal
 
@@ -91,6 +91,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 ## Minimal Requirements
 
 * General
+  * Has relevance to Swift on the server specifically
   * Publicly accessible source managed by an SCM such as github.com or similar
   * Adopt the [Swift Code of Conduct](https://swift.org/community/#code-of-conduct)
 * Ecosystem
