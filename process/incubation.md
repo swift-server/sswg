@@ -91,7 +91,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 ## Minimal Requirements
 
 * General
-  * Has relevance to Swift on the server specifically
+  * Has relevance to Swift on Server specifically
   * Publicly accessible source managed by an SCM such as github.com or similar
   * Adopt the [Swift Code of Conduct](https://swift.org/community/#code-of-conduct)
 * Ecosystem
