@@ -16,8 +16,8 @@ MongoDB driver for Swift.
 | **Package Name** | `mongo-swift-driver` |
 | **Module Name** | `MongoSwift` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
-| **License** | [Apache 2.0]([https://choosealicense.com/licenses/apache-2.0/](https://choosealicense.com/licenses/apache-2.0/)) |
-| **Dependencies** | [libmongoc 1.15.3]([https://github.com/mongodb/mongo-c-driver](https://github.com/mongodb/mongo-c-driver)) (vendored), [SwiftNIO 2]([https://github.com/apple/swift-nio](https://github.com/apple/swift-nio)), [Nimble 8]([https://github.com/quick/nimble](https://github.com/quick/nimble)) (for tests) |
+| **License** | [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/) |
+| **Dependencies** | [libmongoc 1.15.3](https://github.com/mongodb/mongo-c-driver) (vendored), [SwiftNIO 2](https://github.com/apple/swift-nio), [Nimble 8](https://github.com/quick/nimble) (for tests) |
 
 ## Introduction
 
