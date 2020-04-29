@@ -17,7 +17,7 @@ MongoDB driver for Swift.
 | **Module Name** | `MongoSwift` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/) |
-| **Dependencies** | [libmongoc 1.15.3](https://github.com/mongodb/mongo-c-driver) (vendored), [SwiftNIO 2](https://github.com/apple/swift-nio), [Nimble 8](https://github.com/quick/nimble) (for tests) |
+| **Dependencies** | [libmongoc 1.16](https://github.com/mongodb/mongo-c-driver) (vendored), [SwiftNIO 2](https://github.com/apple/swift-nio), [Nimble 8](https://github.com/quick/nimble) (for tests) |
 
 ## Introduction
 
@@ -38,14 +38,14 @@ Child `MongoDatabase`s and `MongoCollection`s are retrieved from `MongoClient`s,
 
 MongoDB stores data in a format called [BSON](https://bsonspec.org), i.e. binary JSON. To support working with this format, the driver also contains a BSON library. This includes a `Document` type corresponding to a MongoDB document, as well as  a `BSONEncoder` and `BSONDecoder` to support conversion back and forth between `Codable` Swift types and `Document`s.
 
-The driver works with MongoDB 3.6+ and Swift 5.0+. It is [tested](https://evergreen.mongodb.com/waterfall/mongo-swift-driver) against all supported MongoDB and Swift versions on both macOS 10.14 and Ubuntu 18.04, as well as a variety of MongoDB topologies (standalone server, replica set, sharded cluster, TLS and authentication on/off).
+The driver works with MongoDB 3.6+ and Swift 5.1+. It is [tested](https://evergreen.mongodb.com/waterfall/mongo-swift-driver) against all supported MongoDB and Swift versions on macOS 10.14, Ubuntu 16.04, and Ubuntu 18.04, as well as a variety of MongoDB topologies (standalone server, replica set, sharded cluster, TLS and authentication on/off).
 
 This library has been primarily developed by the three authors of this proposal. Kaitlin and Matt began developing it about two years ago, and Patrick has been working on the project for about a year. The library was initially developed with a synchronous API to support use of the mobile/embedded version of MongoDB on iOS, but over time its focus and primary intended use case has shifted toward server-side Swift usage.
 
 We've recently tagged a release candidate for an upcoming 1.0 release, which we plan to release once we've received and incorporated feedback from the community. The long term-plan following 1.0 is to:
-1) Catch up on MongoDB features introduced in recent server versions. While the driver works with all versions of MongoDB 3.6+, it lacks APIs for some newer features such as transactions.
+1) Catch up on MongoDB features introduced in recent server versions. While the driver works with all versions of MongoDB 3.6+, it lacks APIs for some newer features.
 2) Decouple the BSON library from the driver, pulling it out into a separate package and repository.
-2) Rewrite the BSON library and driver internals in pure Swift, culminating in a 2.0 release.
+3) Rewrite the BSON library and driver internals in pure Swift, culminating in a 2.0 release.
 
 ## Detailed design
 
@@ -98,15 +98,18 @@ public class MongoClient {
     ) throws
 
     /**
-     * Shuts this `MongoClient` down, closing all connections to the server and cleaning up internal state.
+     * Closes this `MongoClient`, closing all connections to the server and cleaning up internal state.
      *
-     * Call this method exactly once when you are finished using the client. You must ensure that all operations
-     * using the client have completed before calling this.
-     * 
-     * The returned future must be fulfilled before the `EventLoopGroup` provided to this client's constructor
-     * is shut down.
+     * Call this method exactly once when you are finished using the client. You must ensure that all operations using
+     * the client have completed before calling this.
+     *
+     * The returned future will not be fulfilled until all cursors and change streams created from this client have been
+     * been killed, and all sessions created from this client have been ended.
+     *
+     * The returned future must be fulfilled before the `EventLoopGroup` provided to this client's constructor is shut
+     * down.
      */
-    public func shutdown() -> EventLoopFuture<Void>
+    public func close() -> EventLoopFuture<Void>
 
     /**
      * Shuts this `MongoClient` down in a blocking fashion, closing all connections to the server and cleaning up
@@ -114,10 +117,12 @@ public class MongoClient {
      *
      * Call this method exactly once when you are finished using the client. You must ensure that all operations
      * using the client have completed before calling this.
+     * using the client have completed before calling this. This method will block until all cursors and change streams
+     * created from this client have been killed, and all sessions created from this client have been ended.
      *
      * This method must complete before the `EventLoopGroup` provided to this client's constructor is shut down.
      */
-    public func syncShutdown()
+    public func syncClose() throws
 
     /**
      * Gets a `MongoDatabase` instance for the given database name. If an option is not specified in the optional
@@ -455,7 +460,7 @@ struct Cat: Codable {
 let elg = MultiThreadedEventLoopGroup(numberOfThreads: 4)
 let client = try MongoClient("mongodb://localhost:27017", using: elg)
 defer {
-    client.syncShutdown()
+    try? client.syncClose()
     try? elg.syncShutdownGracefully()
 }
 
@@ -496,11 +501,11 @@ insert.whenFailure { error in
 
 // after insert create a cursor over the collection to read back the documents
 let result = insert.flatMap { _ in
-	cats.find()
+    cats.find()
 }.flatMap { cursor in
-	cursor.forEach { cat in
-		print(cat) // prints out a `Cat` struct
-	}
+    cursor.forEach { cat in
+        print(cat) // prints out a `Cat` struct
+    }
 }
 ```
 
