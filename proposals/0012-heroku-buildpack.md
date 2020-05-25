@@ -1,60 +1,46 @@
 # Solution name
 
-* Proposal: [SSWG-NNNN](NNNN-filename.md)
-* Authors: [Author 1](https://github.com/swiftdev), [Author 2](https://github.com/swiftdev)
+* Proposal: SSWG-0012
+* Authors: [KyleF](https://github.com/kylef), [VZSG](https://github.com/vzsg)
 * Sponsor(s): TBD
-* Review Manager: TBD
-* Status: **Awaiting implementation**
-* Implementation: [repo name](https://github.com/repo-url)
-* Forum Threads: [Pitch](https://forums.swift.org/), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
-
-*During the review process, add the following fields as needed:*
-
-* Decision Notes: [Rationale](https://forums.swift.org/), [Additional Commentary](https://forums.swift.org/)
-* Previous Revision(s): [1](https://github.com/swift-server/sswg/blob/...commit-ID.../proposals/NNNN-filename.md)
-* Previous Proposal(s): [SSWG-XXXX](XXXX-filename.md)
+* Review Manager: [Logan Wright](https://github.com/loganwright)
+* Status: **Implemented**
+* Implementation: [Heroku Buildpack](https://github.com/vapor-community/heroku-buildpack)
 
 ## Package Description
-A quick 1-2 sentence description of the solution's package, like you might see in a package catalog.
+
+This package is a buildpack that is used to host swift server projects on the [herokou](http://heroku.com/) platform. It includes things like swift versioning and general setup to accomodate swift.
 
 |  |  |
 |--|--|
-| **Package Name** | `your proposed package name, eg. swift-package` |
-| **Module Name** | `your formatted module name, eg. SwiftPackage` |
-| **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
-| **License** | [TBD](https://choosealicense.com/) |
-| **Dependencies** | List your dependencies (and their versions), with links |
+| **Package Name** | `n/a` |
+| **Module Name** | `n/a` |
+| **Proposed Maturity Level** | [Incubating](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
+| **License** | [BSD3](https://github.com/vapor-community/heroku-buildpack/blob/master/LICENSE) |
+| **Dependencies** | [] |
 
 ## Introduction
 
-A short explanation as to what is hoping to be accomplished with the proposed package. Try to keep it to a
-single-paragraph "elevator pitch" so the reader understands what
-problem this proposal is addressing.
+Provide easy integration between swift server applications and heroku.
 
 ## Motivation
 
-Describe the reasoning for this package to be proposed to the Swift Server Working Group to be recommended for use across the Swift Server ecosystem.
-
-If there are missing capabilities or flexibility with existing packages, outline them with clear examples.
+Although many people hosting on heroku are moving to Docker containers, and this might be recommended for more enterprise level projects, there are still many users still looking for the ease and familiarity of buildpacks. In the swift ecosystem this makes hosting quite easy and lowers barriers to adoption/deployment.
 
 ## Proposed solution
 
-Describe your solution to the problem. Provide examples and describe
-how they work. Show how your solution is better than current
-workarounds: is it cleaner, safer, or more efficient?
+Integrate with heroku's buildpack system. For more integrated languages, heroku seems to provide their own buildpacks. For now we will need to provide our own.
 
 ## Detailed design
 
-Describe the design of the solution in detail. If it's a new API, show the full API and its documentation
-comments detailing what it does. The detail in this section should be
-sufficient for someone who is *not* one of the authors to be able to
-reasonably re-implement the feature.
+Already implemennted
 
 ## Maturity Justification
 
-Explain why this solution should be accepted at the proposed maturity level.
+This package is already being used across the swift ecosystem to host many projects, it has been available and maintained in various forms since the beginning of swift linux compatibility, it has 20 committers from various affiliations, demonstrates regular updates associated with new swift releases, and generally satisfies the requirements of the sswg.
 
 ## Alternatives considered
 
-Describe alternative approaches to addressing the same problem, and
-why you chose this approach instead.
+There are other buildpacks available, but they seem less maintained or generic. While this package is hosted in the vapor-community org, it supports swift more generally and can even easily host a bare swift-nio server.
+
+This buildpack is a fork originating with another author/organization.. we have [permission from the original author](https://github.com/kylef/heroku-buildpack-swift/issues/45) to continue with the fork in its current location and treat that as the head of the project.
