@@ -2,7 +2,6 @@
 
 * Proposal: [SSWG-NNNN](NNNN-filename.md)
 * Authors: [Author 1](https://github.com/swiftdev), [Author 2](https://github.com/swiftdev)
-* Sponsor(s): TBD
 * Review Manager: TBD
 * Status: **Awaiting implementation**
 * Implementation: [repo name](https://github.com/repo-url)
