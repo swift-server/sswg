@@ -1,6 +1,6 @@
 # Swift Server Work Group Incubation Process
 
-version 1.2.2
+version 1.3.0
 
 ## Overview
 
@@ -22,12 +22,14 @@ Pitches are an introduction to an idea for a new library or tool. They can also 
 
 ### Proposal
 
-For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG. The scope of the proposed code needs to closely align with the endorsed Pitch and it is subject to review based on the SSWG graduation criteria defined below. Proposal are submitted by creating a new thread in the Swift Server forum area with a link to the code repository in question.  Proposals submitted to the SSWG must provide the following information:
+For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG. The scope of the proposed code needs to closely align with the endorsed Pitch and it is subject to review based on the SSWG graduation criteria defined below. 
+
+Proposal are submitted to the SSWG by creating a PR in the [proposal area](https://github.com/swift-server/sswg/tree/master/proposals). Proposals follow [a template](https://github.com/swift-server/sswg/blob/master/proposals/0000-template.md) and include the following information:
+
 * Name (must be unique within SSWG)
 * Description (what it does, why it is valuable, origin, and history)
 * Statement on alignment with SSWG mission
 * Preferred initial maturity level (see SSWG Graduation Criteria)
-* Sponsor (where applicable)
 * Initial committers (how long working on project)
 * Link to source (GitHub by default)
 * External dependencies (including licenses)
@@ -39,7 +41,26 @@ For a pitch to be moved into the Proposal stage, it must be endorsed by at least
 * Social media accounts (optional)
 * Community size and any existing sponsorship
 
+Once a propsal PR is submitted, the SSWG will assign a review manager during it's bi-weekely meeting. The review manager responsibilities include:
+
+* Review the PR 
+  * Vaidate structure and language.
+  * Make sure the implementation is in place.
+* Update the PR
+  * Assign a number.
+  * Assign a review manager.
+  * Set status to "Active Review + Date range for review"
+* Secure approval from the PR author to merge changes above and merge them.
+* Publisha a form post in the [server proposals area](https://forums.swift.org/c/server/proposals) soliciting feedback from the community.
+* Watch the forum thread for conduct or off-topic issues, and make sure author is engaged.
+* Once the review period is over, summarize the key takeaways to the SSWG in writing.
+
 The SSWG votes on pending proposals on a bi-weekly cadence, with the goal of voting on at least two proposals per month.
+
+After the vote, the review manager will:
+* Annoucnce the vote results in the review thread.
+* Update the propsal's status based on the vote result.
+* Close ithe review thread.
 
 ### Graduation Criteria
 
