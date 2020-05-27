@@ -24,7 +24,7 @@ Pitches are an introduction to an idea for a new library or tool. They can also 
 
 For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG. The scope of the proposed code needs to closely align with the endorsed Pitch and it is subject to review based on the SSWG graduation criteria defined below. 
 
-Proposal are submitted to the SSWG by creating a PR in the [proposal area](https://github.com/swift-server/sswg/tree/master/proposals). Proposals follow [a template](https://github.com/swift-server/sswg/blob/master/proposals/0000-template.md) and include the following information:
+Proposals are submitted to the SSWG by creating a PR that adds the proposal document to the [proposal directory](https://github.com/swift-server/sswg/tree/master/proposals). Proposals follow [a template](https://github.com/swift-server/sswg/blob/master/proposals/0000-template.md) and include the following information:
 
 * Name (must be unique within SSWG)
 * Description (what it does, why it is valuable, origin, and history)
