@@ -58,9 +58,9 @@ Once a propsal PR is submitted, the SSWG will assign a review manager during it'
 The SSWG votes on pending proposals on a bi-weekly cadence, with the goal of voting on at least two proposals per month.
 
 After the vote, the review manager will:
-* Annoucnce the vote results in the review thread.
-* Update the propsal's status based on the vote result.
-* Close ithe review thread.
+1. Announce the vote results in the review thread.
+1. Update the Proposal's status based on the vote result.
+1. Close the review thread.
 
 ### Graduation Criteria
 
