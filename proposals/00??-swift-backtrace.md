@@ -74,7 +74,7 @@ as the Swift runtime will offer this functionality.
 
 ### Printing
 
-The library currently prints directly to `srderr`.
+The library currently prints directly to `stderr`.
 This works in most cases, but we should consider an extension with 
 [swift-log](https://github.com/apple/swift-log) to hook the printing into the 
 Application's logging system.
@@ -85,8 +85,8 @@ This package is already being used across the Swift server ecosystem in many pro
 
 ## Alternatives considered
 
-The obvious and correct solution to backtraces on Linux is to add support 
-for the in the Swift runtime. 
+The obvious correct solution to backtraces on Linux is to add support 
+for them in the Swift runtime. 
 Since the changes required to support that are non-trivial and may take a awhile to ship, 
 this package provides a stop-gap solution.
 
