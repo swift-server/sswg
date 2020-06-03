@@ -8,7 +8,8 @@
 
 ## Package Description
 
-Swift Backtrace provides support for automatically printing crash backtraces of Swift programs on Linux.
+Swift AWS Lambda Runtime was designed to make building Lambda functions in Swift simple and safe. 
+The library is an implementation of the [AWS Lambda Runtime API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html)
 
 |  |  |
 |--|--|
