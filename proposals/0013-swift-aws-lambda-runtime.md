@@ -1,9 +1,9 @@
 # Solution name
 
-* Proposal: SSWG-00??
+* Proposal: SSWG-0013
 * Authors: [tomerd](https://github.com/tomerd), [fabianfett](https://github.com/fabianfett)
-* Review Manager: TBD
-* Status: TBD
+* Review Manager: [Johannes Weiss](https://github.com/weissi)
+* Status: Active Review, 11 Jun 2020 ..< 25 Jun 2020
 * Implementation: [Swift AWS Lambda Runtime](https://github.com/swift-server/swift-aws-lambda-runtime)
 
 ## Package Description
