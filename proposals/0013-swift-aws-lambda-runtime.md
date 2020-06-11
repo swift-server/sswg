@@ -1,4 +1,4 @@
-# Solution name
+# Swift AWS Lambda Runtime
 
 * Proposal: SSWG-0013
 * Authors: [tomerd](https://github.com/tomerd), [fabianfett](https://github.com/fabianfett)
