@@ -1,4 +1,4 @@
-# Solution name
+# Swift Backtrace
 
 * Proposal: SSWG-0014
 * Authors: [Tomer Doron](https://github.com/tomerd)
