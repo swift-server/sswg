@@ -1,9 +1,9 @@
 # Solution name
 
-* Proposal: SSWG-00??
+* Proposal: SSWG-0014
 * Authors: [tomerd](https://github.com/tomerd)
-* Review Manager: TBD
-* Status: TBD
+* Review Manager: [Tanner Nelson](https://github.com/tanner0101)
+* Status: Active Review, 15 Jun 2020 ..< 30 Jun 2020
 * Implementation: [Swift Backtrace](https://github.com/swift-server/swift-backtrace)
 
 ## Package Description
