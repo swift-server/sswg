@@ -1,9 +1,9 @@
 # Swift Service Lifecycle
 
-* Proposal: SSWG-00XX
+* Proposal: SSWG-0015
 * Authors: [Tomer Doron](https://github.com/tomerd)
-* Review Manager: TBD
-* Status: TBD
+* Review Manager: [Peter Adams](https://github.com/PeterAdams-A)
+* Status: Active Review 7 Aug 2020 ..< 22 Aug 2020
 * Implementation: [Swift Service Lifecycle](https://github.com/swift-server/swift-service-lifecycle)
 
 ## Package Description
