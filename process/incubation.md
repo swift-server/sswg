@@ -114,8 +114,8 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * General
   * Has relevance to Swift on Server specifically
   * Publicly accessible source managed by an SCM such as github.com or similar
+    * Prefer to use `main` as the default branch name, in line with [Swift itself](https://forums.swift.org/t/moving-default-branch-to-main/38515) and all SSWG-owned repos
   * Adopt the [Swift Code of Conduct](https://swift.org/community/#code-of-conduct)
-  * Prefer to use `main` as the default branch name, in line with [Swift itself](https://forums.swift.org/t/moving-default-branch-to-main/38515) and all SSWG-owned repos
 * Ecosystem
   * Uses SwiftPM
   * Integrated with critical SSWG ecosystem building blocks, e.g., Logging and Metrics APIs, SwiftNIO for IO
