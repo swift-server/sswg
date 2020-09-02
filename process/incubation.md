@@ -1,6 +1,6 @@
 # Swift Server Work Group Incubation Process
 
-version 1.3.0
+version 1.4.0
 
 ## Overview
 
@@ -114,6 +114,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * General
   * Has relevance to Swift on Server specifically
   * Publicly accessible source managed by an SCM such as github.com or similar
+    * Prefer to use `main` as the default branch name, in line with [Swift's guidelines](https://forums.swift.org/t/moving-default-branch-to-main/38515)
   * Adopt the [Swift Code of Conduct](https://swift.org/community/#code-of-conduct)
 * Ecosystem
   * Uses SwiftPM
@@ -124,7 +125,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
   * Blocking code should be wrapped in NonBlockingIOPool (like Vapor's SQLite package)
 * Testing, CI and Release
   * Have unit tests for Linux
-  * CI setup, including testing PRs and the master branch
+  * CI setup, including testing PRs and the main branch
   * Follow semantic versioning
 * Conventions and Style
   * Error handling
