@@ -51,7 +51,7 @@ Once a propsal PR is submitted, the SSWG will assign a review manager during it'
   * Assign a review manager.
   * Set status to "Active Review + Date range for review"
 * Secure approval from the PR author to merge changes above and merge them.
-* Publisha a form post in the [server proposals area](https://forums.swift.org/c/server/proposals) soliciting feedback from the community.
+* Publish a forum post in the [server proposals area](https://forums.swift.org/c/server/proposals) soliciting feedback from the community.
 * Watch the forum thread for conduct or off-topic issues, and make sure author is engaged.
 * Once the review period is over, summarize the key takeaways to the SSWG in writing.
 
