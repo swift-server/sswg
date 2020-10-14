@@ -51,7 +51,7 @@ Proposals are submitted to the SSWG by creating a PR that adds the proposal docu
 * Social media accounts (optional)
 * Community size and any existing sponsorship (optional)
 
-Once a proposal PR is submitted, the SSWG will assign a review manager during it's bi-weekely meeting.
+Once a proposal PR is submitted, the SSWG will assign a review manager during it's bi-weekly meeting.
 The review manager responsibilities include:
 
 * Review the PR
@@ -125,7 +125,7 @@ It is recommended for projects that have been accepted to any of the maturity le
 [![sswg:incubating|104x20](https://img.shields.io/badge/sswg-incubating-blue.svg)](https://github.com/swift-server/sswg/blob/master/process/incubation.md#incubating-level)
 [![sswg:graduated|104x20](https://img.shields.io/badge/sswg-graduated-green.svg)](https://github.com/swift-server/sswg/blob/master/process/incubation.md#graduated-level)
 
-The SSWG will meet every 6 month to review all projects, and it reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements.
+The SSWG will meet every 6 months to review all projects, and it reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements.
 For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
 
 Changes to the Swift Server Ecosystem index page will be announced by the SSWG using the Swift Server forums.
@@ -149,10 +149,10 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
   * CI setup, including testing PRs and the main branch
   * Follow semantic versioning, with at least one published pre-release (e.g. 0.1.0, 1.0.0-beta.1) or release (e.g. 1.0.0)
 * Licensing
-  * Apache 2, MIT or BSD (Apache 2 recommended)
+  * Apache 2, MIT, or BSD (Apache 2 recommended)
 * Conventions and Style
   * Adopt [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-  * Follow [SSWG Technical Best Practices](#technical-best-practices)) when applicable.
+  * Follow [SSWG Technical Best Practices](#technical-best-practices) when applicable.
   * Prefer to adopt code formatting tools and integrate them into the CI
 
 ## Graduation Requirements
@@ -187,7 +187,7 @@ Project authors are also encouraged to make use of their source control system s
 * Concurrency / IO
   * Packages should be non-blocking (w/ async API) unless not possible (blocking C libs, etc)
   * There should be as little (preferably no) wrapping of NIO as possible. Exposing NIO types directly will go a long way for making packages compatible.
-  * Blocking code should be wrapped in NonBlockingIOPool (like Vapor's SQLite package)  
+  * Blocking code should be wrapped in [NIOThreadPool](https://apple.github.io/swift-nio/docs/current/NIO/Classes/NIOThreadPool.html) (like Vapor's SQLite package)  
 * Uses force unwraps and force tries only as preconditions, ie. conditions that the programmer regards as impossible or programmer error. All force tries/unwraps should come with a comment stating the reasons
 * Does not use `*Unsafe*` unless interfacing with C
   * Exceptions to uses of `*Unsafe*` constructs are acceptable when appropriately documented why they are absolutely necessary.
