@@ -10,13 +10,15 @@ Analogous to the Core Team for Swift, the work group is responsible for providin
 
 The current Swift Server work group consists of the following people:
 
-* Logan Wright ([@loganwright](https://github.com/loganwright), Vapor)
-* Tanner Nelson ([@tanner0101](https://forums.swift.org/u/tanner0101), Vapor)
-* Johannes Weiss ([@johannesweiss](https://forums.swift.org/u/johannesweiss), Apple)
-* Tom Doron ([@tomerd](https://forums.swift.org/u/tomerd), Apple)
+* Gwynne Raskind ([@gwynne](https://github.com/gwynne), Vapor)
+* Johannes Weiss ([@weissi](https://github.com/weissi), Apple)
 * Kaitlin Mahar ([@kmahar](https://github.com/kmahar), MongoDB)
+* Konrad Malawski ([@ktoso](https://github.com/ktoso), Apple)
 * Simon Pilkington ([@tachyonics](https://github.com/tachyonics), Amazon)
+* Tim Condon ([@0xTim](https://github.com/0xTim), Vapor)
 * Todd Varland ([@toddvarland](https://github.com/toddvarland), Amazon)
+
+With Tom Doron ([@tomerd](https://github.com/tomerd), Apple) representing the Swift core team.
 
 ## Communication
 
