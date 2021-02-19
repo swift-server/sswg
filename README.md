@@ -60,6 +60,10 @@ See [Incubation Process](process/incubation.md)
 
 See [Swift Server Ecosystem Index](https://swift.org/server/#projects)
 
+## Security
+
+Please refer to our [Security](security/README.md) page for matters related to security of any software affiliated with the SSWG or listed on the SSWG's package index.
+
 ## Meeting Time
 
 The SSWG meets on the 1st and 3rd Wednsday of every month at 9:00AM PT (USA Pacific)
