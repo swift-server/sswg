@@ -143,7 +143,7 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * Longevity
   * Must be from a team that has more than one public repository (or similar indication of experience)
   * SSWG should have access / authorization to graduated repositories in case of emergency
-  * Adopt the [SSWG Security Best Practices](#security-best-practices))    
+  * Adopt the [SSWG Security Best Practices](../security/README.md))
 * Testing, CI and Release
   * Have unit tests for Linux
   * CI setup, including testing PRs and the main branch
@@ -171,15 +171,9 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * Include list of adopters for at least the primary repo ideally laid out in an ADOPTERS.md files or logos on the project website
 * Optionally, have a [Developer Certificate of Origin](https://developercertificate.org) or a [Contributor License Agreement](https://en.wikipedia.org/wiki/Contributor_License_Agreement)
 
-## Security Best Practices
+## Security
 
-Project authors that discover, or have been advised of vulnerabilities in their projects must report them to the SSWG within 10d. Graduated projects are expected to address vulnerabilities within 30d. Reports should be sent to the SSWG using [Swift forums](https://forums.swift.org/c/server/security-updates).
-
-Failure to report or address vulnerabilities may result in the SSWG publishing a security advisory, and could lead to retracting the project's status and listing it under the non-recommended projects list. In some cases, the SSWG may choose to find a technical contributor that can help resolve the security issues to minimize the impact. SSWG actions will be decided on a case by case basis and require a supermajority vote.
-
-The SSWG will publicly share a list of vulnerabilities and fixes on [Swift forums](https://forums.swift.org/c/server/security-updates) to inform the Swift Server user community. Members are encouraged to subscribe to notifications and adopt fixes as soon as possible.
-
-Project authors are also encouraged to make use of their source control system security features (for example: Github's "Security Advisories" and Gitlab's "Confidential Issues") to manage the vulnerabilities and inform their users.
+Please follow the guidance laid out in the [Security](../security/README.md) document.
 
 ## Technical Best Practices
 
