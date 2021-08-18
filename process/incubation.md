@@ -34,7 +34,7 @@ Pitches are submitted by creating a new thread in the Swift Server forum area.
 For a pitch to be moved into the Proposal stage, it must be endorsed by at least two members of the SSWG.
 The scope of the proposed code needs to closely align with the endorsed Pitch and it is subject to review based on the SSWG graduation criteria defined below.
 
-Proposals are submitted to the SSWG by creating a PR that adds the proposal document to the [proposal directory](https://github.com/swift-server/sswg/tree/master/proposals). Proposals follow [a template](https://github.com/swift-server/sswg/blob/master/proposals/0000-template.md) and include the following information:
+Proposals are submitted to the SSWG by creating a PR that adds the proposal document to the [proposal directory](https://github.com/swift-server/sswg/tree/main/proposals). Proposals follow [a template](https://github.com/swift-server/sswg/blob/main/proposals/0000-template.md) and include the following information:
 
 * Name (must be unique within SSWG)
 * Description (what it does, why it is valuable, origin, and history)
@@ -121,9 +121,9 @@ The SSWG reserves the right to define a singular solution for critical building 
 
 It is recommended for projects that have been accepted to any of the maturity levels to list the maturity level in their project's README with the appropriate badge as defined:
 
-[![sswg:sandbox|94x20](https://img.shields.io/badge/sswg-sandbox-lightgrey.svg)](https://github.com/swift-server/sswg/blob/master/process/incubation.md#sandbox-level)
-[![sswg:incubating|104x20](https://img.shields.io/badge/sswg-incubating-blue.svg)](https://github.com/swift-server/sswg/blob/master/process/incubation.md#incubating-level)
-[![sswg:graduated|104x20](https://img.shields.io/badge/sswg-graduated-green.svg)](https://github.com/swift-server/sswg/blob/master/process/incubation.md#graduated-level)
+[![sswg:sandbox|94x20](https://img.shields.io/badge/sswg-sandbox-lightgrey.svg)](https://github.com/swift-server/sswg/blob/main/process/incubation.md#sandbox-level)
+[![sswg:incubating|104x20](https://img.shields.io/badge/sswg-incubating-blue.svg)](https://github.com/swift-server/sswg/blob/main/process/incubation.md#incubating-level)
+[![sswg:graduated|104x20](https://img.shields.io/badge/sswg-graduated-green.svg)](https://github.com/swift-server/sswg/blob/main/process/incubation.md#graduated-level)
 
 The SSWG will meet every 6 months to review all projects, and it reserves the right to demote, archive, or remove projects that no longer fulfill minimal requirements.
 For example, a Graduated project that no longer receives regular updates or fails to address security concerns in timely fashion. Similarly, the SSWG reserves the right to remove or archive Pitches and Proposals that no longer receive updates.
@@ -201,5 +201,5 @@ Updates resulting in a version bump require a supermajority vote from the SSWG. 
 ## Resources and References
 
 * https://github.com/apple/swift-evolution
-* https://github.com/cncf/toc/tree/master/process
+* https://github.com/cncf/toc/tree/main/process
 * https://incubator.apache.org
