@@ -20,7 +20,7 @@ A quick 1-2 sentence description of the solution's package, like you might see i
 |--|--|
 | **Package Name** | `your proposed package name, eg. swift-package` |
 | **Module Name** | `your formatted module name, eg. SwiftPackage` |
-| **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
+| **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
 | **License** | [TBD](https://choosealicense.com/) |
 | **Dependencies** | List your dependencies (and their versions), with links |
 
