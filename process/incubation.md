@@ -97,7 +97,7 @@ As such, users must exercise their own judgment.
 To be accepted at Incubating level, a project must meet the Sandbox level requirements plus:
 
 * Document that it is being used successfully in production by at least two independent end users which, in the SSWG judgement, are of adequate quality and scope.
-* Must have 2+ committers. In this context, a committer is an individual who was given write access to the codebase, and has been actively reviewing and managing contributions from the rest of the project's community.
+* Must have 2+ maintainers and/or committers. In this context, a committer is an individual who was given write access to the codebase and actively writes code to add new features and fix any bugs and security issues. A maintainer is an individual who has write access to the codebase and actively reviews and manages contributions from the rest of the project's community. In all cases, code should be reviewed by at least one other individual before being released.
 * Demonstrate an ongoing flow of commits and merged contributions, or issues addressed in timely manner, or similar indication of activity.
 * Receive a supermajority vote from the SSWG to move to Incubation stage.
 
@@ -106,7 +106,7 @@ To be accepted at Incubating level, a project must meet the Sandbox level requir
 To be accepted at Graduated level, a project must meet the [SSWG graduation requirements](#graduation-requirements) detailed below, plus:
 
 * Document that it is being used successfully in production by at least three independent end users which, in the SSWG judgement, are of adequate quality and scope.
-* Have committers, as defined above, from at least two organizations.
+* Have committers and maintainers, as defined above, from at least two organizations.
 * Receive a supermajority vote from the SSWG to move to Graduation stage.
 
 ## Process Diagram
