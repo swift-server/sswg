@@ -4,8 +4,8 @@
 * Authors: [Siemen Sikkema](https://github.com/siemensikkema), [Tim Condon](https://github.com/0xTim)
 * Review Manager: TBD
 * Status: **Awaiting implementation**
-* Implementation: [repo name](https://github.com/vapor/multipart-kit)
-* Forum Threads: [Pitch](https://forums.swift.org/t/multipartkit), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
+* Implementation: [MultipartKit](https://github.com/vapor/multipart-kit)
+* Forum Threads: [Pitch](https://forums.swift.org/t/multipartkit)
 
 <!--
 *During the review process, add the following fields as needed:*
@@ -24,7 +24,7 @@ Multipart parser and serializer with `Codable` support for Multipart Form Data.
 | **Package Name** | `multipart-kit` |
 | **Module Name** | `MultipartKit` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
-| **License** | [TBD](https://choosealicense.com/licenses/mit/) |
+| **License** | [MIT](https://choosealicense.com/licenses/mit/) |
 | **Dependencies** | [SwiftNIO >= 2.2.0](https://github.com/apple/swift-nio) |
 
 ## Introduction
