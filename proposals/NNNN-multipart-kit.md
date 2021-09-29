@@ -39,22 +39,70 @@ There exists currently no standard package for multipart in the Swift server eco
 
 ## Proposed solution
 
-Describe your solution to the problem. Provide examples and describe
-how they work. Show how your solution is better than current
-workarounds: is it cleaner, safer, or more efficient?
+We propose that the existing MultipartKit implementation be promoted to an officially supported package as is.
 
 ## Detailed design
 
-Describe the design of the solution in detail. If it's a new API, show the full API and its documentation
-comments detailing what it does. The detail in this section should be
-sufficient for someone who is *not* one of the authors to be able to
-reasonably re-implement the feature.
+### Form Data
+
+The high level Form Data API revolves around `FormDataEncoder` and `FormDataDecoder`. 
+
+Encoding some encodable value `foo` as multipart using a boundary value of `abc123` can be achieved as follows:
+
+```swift
+let encoded = try FormDataEncoder().encode(foo, boundary: "abc123")
+```
+
+Similarly to decode this value into the type `Foo` we can do:
+
+```swift
+let foo = try FormDataDecoder().decode(Foo.self, from: encoded, boundary: "abc123")
+```
+
+### Nesting and Collections
+
+Nested data and collections can be represented using an angle bracket notation convention for the part names as follows:
+
+- `root[branch]`: a value named `branch` nested inside `root`
+- `root[branch][leaf]`: like the above but with `leaf` nested inside `branch`
+- `array[0]`: first value of `array`
+- `array[1][leaf]`: a value named `leaf` nested inside the second value of `array`
+
+### Low level parsing of Multipart data
+
+MultipartKit comes with a callback-based `MultipartParser` that forms the basis for the Form Data coders.
+
+```swift
+let parser = MultipartParser(boundary: "abc123")
+```
+
+Set up the callbacks in order to process the parsed data:
+
+```swift
+parser.onHeader = { (field: String, value: String) in
+    // gets called after each multipart header that is parsed
+}
+parser.onBody = { (buffer: ByteBuffer) in
+    // gets called when (a part of) a multipart body is parsed
+}
+parser.onPartComplete = {
+    // gets called when a part is fully parsed
+    // the body along with any collected headers for the current part can now be considered complete
+}
+```
+
+Feed data into the parser:
+```swift
+let data: ByteBuffer = ...
+parser.execute(data)
+```
+
+In case the data is arriving in chunks. The `execute` method can be called once for each chunk.
 
 ## Maturity Justification
 
-Explain why this solution should be accepted at the proposed maturity level.
+Although it has been used in production successfully alongside Vapor it would be good to see it used and tested in the wider Swift on the Server ecosystem.
 
 ## Alternatives considered
 
-Describe alternative approaches to addressing the same problem, and
-why you chose this approach instead.
+None
