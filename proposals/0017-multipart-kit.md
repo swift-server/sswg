@@ -5,7 +5,7 @@
 * Review Manager: [Kaitlin Mahar](https://github.com/kmahar)
 * Status: **Implemented**
 * Implementation: [MultipartKit](https://github.com/vapor/multipart-kit)
-* Forum Threads: [Pitch](https://forums.swift.org/t/multipartkit)
+* Forum Threads: [Pitch](https://forums.swift.org/t/multipartkit), [Proposal](https://forums.swift.org/t/sswg-0017-multipartkit/52586)
 
 <!--
 *During the review process, add the following fields as needed:*
