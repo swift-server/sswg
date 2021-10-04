@@ -1,9 +1,9 @@
 # MultipartKit
 
-* Proposal: [SSWG-NNNN](NNNN-multipart-kit.md)
+* Proposal: [SSWG-0017](0017-multipart-kit.md)
 * Authors: [Siemen Sikkema](https://github.com/siemensikkema), [Tim Condon](https://github.com/0xTim)
-* Review Manager: TBD
-* Status: **Awaiting implementation**
+* Review Manager: [Kaitlin Mahar](https://github.com/kmahar)
+* Status: **Implemented**
 * Implementation: [MultipartKit](https://github.com/vapor/multipart-kit)
 * Forum Threads: [Pitch](https://forums.swift.org/t/multipartkit)
 
