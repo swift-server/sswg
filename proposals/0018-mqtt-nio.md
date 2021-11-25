@@ -40,7 +40,7 @@ Most functionality MQTTNIO has is accessed through one object `MQTTClient`. This
 
 ### Connection
 
-To connect to an MQTT server you need to create a `MQTTClient` and then call `connect`. The `configuration` parameter in `MQTTClient.init` allows you to define what kind of connection you would like (SSL, Websocket etc).
+To connect to an MQTT server you need to create a `MQTTClient` and then call `connect`. The `configuration` parameter in `MQTTClient.init` allows you to define what kind of connection you would like (TLS, Websocket etc).
 
 ```swift
 // connect to mosquitto test server
@@ -63,7 +63,7 @@ try await client.shutdown()
 
 ### Sending messages
 
-`MQTTClient` has functions to send all the standard MQTT messages, except the ACK messages which are dealt with internally. Where it is expected the server will respond with an ACK the function will wait for the ACK before returning.
+`MQTTClient` has functions to send all the standard MQTT messages, except the ACK messages which are dealt with internally. Where it is expected the server will respond with an ACK the function will wait for that ACK before returning.
 
 ### Publish
 
@@ -79,7 +79,7 @@ Publish messages can be sent with three different levels of QoS: `.atMostOnce`, 
 
 ### Subscribe and Listen
 
-You can send a `SUBSCRIBE` message to the server and listen for `PUBLISH` messages from the server. 
+You can send a `SUBSCRIBE` message to the server and listen for `PUBLISH` messages from the server. A listener will respond to all `PUBLISH` messages sent back from the server. If you have multiple subscriptions you will need to check the topic name to verify you have the correct message.
 
 ```swift
 let subscription = MQTTSubscribeInfo(topicFilter: "MyTopic", qos: .exactlyOnce)
@@ -91,9 +91,11 @@ let suback = try await client.subscribe(to: [subscription])
 client.addPublishListener("My Listener") { result in
     switch result {
     case .success(let publish):
-        var buffer = publish.payload
-        let string = buffer.readString(length: buffer.readableBytes)
-        print(string)
+        if publish.topicName == "MyTopic" {
+            var buffer = publish.payload
+            let string = buffer.readString(length: buffer.readableBytes)
+            print(string)
+        }
     case .failure(let error):
         print("Error while receiving PUBLISH event")
     }
@@ -123,7 +125,7 @@ let puback = try await client.v5.publish(
     properties: [.contentType("application/json")]
 )
 ``` 
-Whoever subscribes to the "JSONTest" topic with a v5.0 client will also receive the .contentType property along with the payload.
+Whoever subscribes to the "JSONTest" topic with a v5.0 client will also receive the `contentType` property along with the payload.
 
 ## Maturity Justification
 
