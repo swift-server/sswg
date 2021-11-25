@@ -7,12 +7,12 @@
 * Implementation: [mqtt-nio](https://github.com/adam-fowler/mqtt-nio)
 * Forum Threads: [Pitch](https://forums.swift.org/t/mqttnio/53238/)
 
-*During the review process, add the following fields as needed:*
+<!-- *During the review process, add the following fields as needed:*
 
 * Decision Notes: [Rationale](https://forums.swift.org/), [Additional Commentary](https://forums.swift.org/)
 * Previous Revision(s): [1](https://github.com/swift-server/sswg/blob/...commit-ID.../proposals/NNNN-filename.md)
 * Previous Proposal(s): [SSWG-XXXX](XXXX-filename.md)
-
+-->
 ## Package Description
 MQTTNIO is a MQTT client built on top of SwiftNIO, that provides full support for both v3.1.1 and v5 of the MQTT protocol.
 
