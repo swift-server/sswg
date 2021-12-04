@@ -115,7 +115,7 @@ let client = MQTTClient(
     configuration: .init(version: .v5_0)
 )
 ```
-You can use the standard `MQTTClient` APIs with a v5 client but to access v5 features, including MQTT properties and v5 return codes use `MQTTClient.v5`. This includes versions of the `connect`, `publish`, `subscribe`, `unsubscribe` and `disconnect` functions. For example here is a `publish` call adding the `contentType` property.
+You can use the standard `MQTTClient` APIs with a v5 client but to access v5 features, including MQTT properties and v5 return codes use `MQTTClient.v5`. This includes versions of the `connect`, `publish`, `subscribe`, `unsubscribe` and `disconnect` functions. Below you will see a `publish` call adding the `contentType` property.
 
 ```swift
 let puback = try await client.v5.publish(
@@ -124,7 +124,7 @@ let puback = try await client.v5.publish(
     qos: .atLeastOnce, 
     properties: [.contentType("application/json")]
 )
-``` 
+```
 Whoever subscribes to the "JSONTest" topic with a v5.0 client will also receive the `contentType` property along with the payload.
 
 ## Maturity Justification
