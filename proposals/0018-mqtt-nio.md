@@ -133,4 +133,4 @@ Sandbox. The package has one author. It is fairly new, v1.0.0 was released a yea
 
 ## Alternatives considered
 
-There are two other major Swift MQTT client implementations [CocoaMQTT](https://github.com/emqx/CocoaMQTT) and  [SwiftMQTT](https://github.com/aciidb0mb3r/SwiftMQTT). Neither of these are built on top of Swift NIO or support v5 of the protocol.
+There are two other major Swift MQTT client implementations [CocoaMQTT](https://github.com/emqx/CocoaMQTT) and  [SwiftMQTT](https://github.com/aciidb0mb3r/SwiftMQTT). Neither of these are built on top of Swift NIO and SwiftMQTT only supports v3.1.1 of the MQTT protocol.
