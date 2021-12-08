@@ -13,7 +13,7 @@
 
 ## Motiviation
 
-Most Swift implementations of MySQL clients are based on the [libmysqlclient](https://dev.mysql.com/doc/c-api/8.0/en/) C library which handles transport internally. Building a library directly on top of MySQL's wire protocol using SwiftNIO should yield a more reliable, maintainable, and performant interface for MySQL databases.
+Most Swift implementations of MySQL clients are based on the [libmysqlclient](https://dev.mysql.com/doc/c-api/8.0/en/) C library which handles transport internally. Building a library directly on top of MySQL's wire protocol using SwiftNIO should yield a more reliable, maintainable, and performant interface for MySQL databases. MySQLNIO also supports both MySQL 5.7 and MySQL 8.x - as well as several versions of MariaDB and Percona Server - out of the box. Conversely, `libmysqlclient` requires you to install the correct version of the client to match your version of the server to be compatible. For example, the 5.7 client cannot connect to a default-configured 8.0 server, and the 8.0 version is unreliable when used with a 5.7 server.
 
 ## Dependencies
 
