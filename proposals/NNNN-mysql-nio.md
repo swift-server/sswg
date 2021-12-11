@@ -5,7 +5,7 @@
 * Review Manager: TBD
 * Status: **Implemented**
 * Implementation: [vapor/mysql-nio](https://github.com/vapor/mysql-nio)
-* Forum Threads: Pitch (Pending), Discussion (Pending)
+* Forum Threads: [Pitch](https://forums.swift.org/t/mysqlnio/46663), Discussion (Pending)
 
 ## Introduction
 
