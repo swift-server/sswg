@@ -5,7 +5,7 @@
 * Review Manager: [Tim Condon](https://github.com/0xTim)
 * Status: **Implemented**
 * Implementation: [mqtt-nio](https://github.com/adam-fowler/mqtt-nio)
-* Forum Threads: [Pitch](https://forums.swift.org/t/mqttnio/53238/)
+* Forum Threads: [Pitch](https://forums.swift.org/t/mqttnio/53238/), [Proposal](https://forums.swift.org/t/sswg-0018-mqttnio-proposal/54004)
 
 <!-- *During the review process, add the following fields as needed:*
 
