@@ -2,7 +2,7 @@
 
 * Proposal: [SSWG-0018](0018-mqtt-nio.md)
 * Author: [Adam Fowler](https://github.com/adam-fowler)
-* Review Manager: TBD
+* Review Manager: [Tim Condon](https://github.com/0xTim)
 * Status: **Implemented**
 * Implementation: [mqtt-nio](https://github.com/adam-fowler/mqtt-nio)
 * Forum Threads: [Pitch](https://forums.swift.org/t/mqttnio/53238/)
