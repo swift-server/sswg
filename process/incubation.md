@@ -98,7 +98,7 @@ To be accepted at Incubating level, a project must meet the Sandbox level requir
 
 * Document that it is being used successfully in production by at least two independent end users which, in the SSWG judgement, are of adequate quality and scope.
 * Must have 2+ maintainers and/or committers. In this context, a committer is an individual who was given write access to the codebase and actively writes code to add new features and fix any bugs and security issues. A maintainer is an individual who has write access to the codebase and actively reviews and manages contributions from the rest of the project's community. In all cases, code should be reviewed by at least one other individual before being released.
-* In addition, packages must have more than one person with admin access. This is to avoid any issues of packages 'going dark'. For packages hosted on GitHub and GitLab, the packages must live in an organization with at least two administrators. If you don't want to create an organization for the package, you can host them in the [Swift Server Community](https://github.com/swift-server-community) organization.
+* Packages must have more than one person with admin access. This is to avoid any issues of packages 'going dark'. For packages hosted on GitHub and GitLab, the packages must live in an organization with at least two administrators. If you don't want to create an organization for the package, you can host them in the [Swift Server Community](https://github.com/swift-server-community) organization.
 * Demonstrate an ongoing flow of commits and merged contributions, or issues addressed in timely manner, or similar indication of activity.
 * Receive a supermajority vote from the SSWG to move to Incubation stage.
 
