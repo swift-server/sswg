@@ -30,7 +30,7 @@ These libraries are a Swift port of the [JavaScript reference GraphQL implementa
 
 ## Motivation
 
-With GraphQL's growing popularity, the server-side Swift community should have a robust backend implementation to reduce the overhead of adding GraphQL APIs to webserver projects. This overhead is significant; the type system and resolution patterns of GraphQL require a 
+With GraphQL's growing popularity, the server-side Swift community should have a robust backend implementation to reduce the overhead of adding GraphQL APIs to webserver projects. This overhead is significant; the GraphQL spec defines a rich type system, message formatting requirements, and multiple resolution patterns that require a substantial amount of logic. 
 
 A single implementation would be ideal to maximize the benefits of increased attention and community engagement, including faster bug reports and fixes, improved performance, and quicker feature adoption.
 
@@ -123,7 +123,7 @@ Minimum Requirements:
 * Conventions and Style
   * Adopt [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
   * Follow [SSWG Technical Best Practices](#technical-best-practices) when applicable.
-  * Prefer to adopt code formatting tools and integrate them into the CI: **No code formatting tools are integrated currently**
+  * Prefer to adopt code formatting tools and integrate them into the CI: **Satisfied**
 
 Incubating Requirements:
 
