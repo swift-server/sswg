@@ -1,4 +1,4 @@
-# Solution name
+# GraphQL & Graphiti
 
 * Proposal: [SSWG-0019](0019-graphql.md)
 * Authors: [Jay Herron](https://github.com/NeedleInAJayStack)
