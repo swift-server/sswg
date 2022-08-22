@@ -2,10 +2,14 @@
 
 * Proposal: [SSWG-0019](0019-graphql.md)
 * Authors: [Jay Herron](https://github.com/NeedleInAJayStack)
-* Review Manager: TBD
+* Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
 * Status: **Implemented**
-* Implementation: [GraphQL](https://github.com/GraphQLSwift/GraphQL) and [Graphiti](https://github.com/GraphQLSwift/Graphiti)
-* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-graphql/59554)
+* Implementation: 
+    * [GraphQL](https://github.com/GraphQLSwift/GraphQL)
+    * [Graphiti](https://github.com/GraphQLSwift/Graphiti)
+* Forum Threads: 
+    *  [Pitch](https://forums.swift.org/t/pitch-graphql/59554)
+    *  [Review](https://forums.swift.org/t/sswg-0019-graphql-graphiti/59799)
 
 ## Package Description
 These libraries are a Swift port of the [JavaScript reference GraphQL implementation](https://github.com/graphql/graphql-js), written on top of Swift NIO. They provides full server-side instrumentation for defining GraphQL schemas, resolving queries, and encoding/decoding GraphQL messages.
