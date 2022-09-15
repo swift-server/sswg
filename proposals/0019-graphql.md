@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0019](0019-graphql.md)
 * Authors: [Jay Herron](https://github.com/NeedleInAJayStack)
 * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
-* Status: **Implemented**
+* Status: **Accepted**, https://forums.swift.org/t/sswg-0019-graphql-graphiti/59799/12
 * Implementation: 
     * [GraphQL](https://github.com/GraphQLSwift/GraphQL)
     * [Graphiti](https://github.com/GraphQLSwift/Graphiti)
