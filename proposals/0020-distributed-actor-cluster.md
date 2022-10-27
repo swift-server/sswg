@@ -34,7 +34,7 @@ Clusters are a fundamental building block of server-side distributed systems, su
 
 ## Motivation
 
-Distributed actors are introduced as nominal types in Swift 5.7. Similarly to actors, they can be declared using the `distributed actor` pair of keywords. By themselves, they cannot really do anything – all the distributed actions such actor performs are actually handled an `ActorSystem` associated with given actor type. 
+Distributed actors are introduced as nominal types in Swift 5.7. Similar to actors, they can be declared using the `distributed actor` pair of keywords. By themselves, they cannot really do anything – all the distributed actions such actor performs are actually handled by an `ActorSystem` associated with given actor type. 
 
 Specifically, an actor must declare what type of actor system it is going to be used with, like this:
 
@@ -86,7 +86,7 @@ let other = Cluster.Endpoint(host: "127.0.0.1", port: 8228)
 system.cluster.join(endpoint: other)
 ```
 
-The `join(endpoint:)` method returns immediately, however it is possible to `try await joined(endpoint:within:)` to suspend until the other node has been joined (or we failed doing so within the timeout).
+The `join(endpoint:)` method returns immediately, however it is possible to use `try await joined(endpoint:within:)` to suspend until the other node has been joined (or we failed doing so within the timeout).
 
 Alternatively we can configure an actor system to automatically discover and join nodes by configuring a [`swift-service-discovery` node-based discovery mechanism](https://apple.github.io/swift-distributed-actors/1.0.0-beta.2/documentation/distributedactors/clustering#Automatic-Node-Discovery), like this:
 
@@ -111,7 +111,7 @@ distributed actor Worker {
     
     init(actorSystem: ActorSystem) async {
         self.actorSystem = actorSystem
-        await system.receptionist.checkIn(worker, with: .workers) 
+        await actorSystem.receptionist.checkIn(worker, with: .workers) 
     }
     
     distributed func work() -> String { "Completed some work!" }
