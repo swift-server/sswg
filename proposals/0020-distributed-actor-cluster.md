@@ -26,7 +26,7 @@ This package contains a feature rich implementation of an actor system cluster, 
 
 Distributed actors are an extension of the "local only" actor model offered by Swift with its `actor` keyword.
 
-Distributed actors used by `distributed actor` keywords (and importing the `Distributed` module, provided by Swift), and enable the declaring of `distributed func` methods inside such actor. Such methods may then be invoked remotely, from other peers in a distributed actor system.
+Distributed actors used the `distributed actor` keywords (after importing the `Distributed` module, provided by Swift), and enable the declaring of `distributed func` methods inside such actor. Such methods may then be invoked remotely, from other peers in a distributed actor system.
 
 The distributed actor *language feature* does not include any specific *runtime*, and only defines the language and semantic rules surrounding distributed actors. This library provides a feature-rich clustering server-side focused implementation of such runtime (i.e. a `DistributedActorSystem` implementation) for distributed actors.
 
