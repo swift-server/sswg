@@ -124,7 +124,7 @@ extension DistributedReception.Key {
 }
 ```
 
-And have all workers that are initialized on any node that has joined the cluster by using the [receptionist listing](https://apple.github.io/swift-distributed-actors/1.0.0-beta.2/documentation/distributedactors/receptionist#Receptionist-Listings):
+Such distributed actors are then created using normal initialization on nodes within the cluster. Each such node can then use the [receptionist listing](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/receptionist#Receptionist-Listings) API to obtain all workers from all other nodes, like this:
 
 ```swift
 for await worker in await actorSystem.receptionist.listing(of: .workers) {
