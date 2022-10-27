@@ -88,7 +88,7 @@ system.cluster.join(endpoint: other)
 
 The `join(endpoint:)` method returns immediately, however it is possible to use `try await joined(endpoint:within:)` to suspend until the other node has been joined (or we failed doing so within the timeout).
 
-Alternatively we can configure an actor system to automatically discover and join nodes by configuring a [`swift-service-discovery` node-based discovery mechanism](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/clustering#Automatic-Node-Discovery), like this:
+Alternatively we can configure an actor system to automatically discover and join nodes by configuring a [`swift-service-discovery` node-based discovery mechanism](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/clustering#Automatic-Node-Discovery), like this:
 
 ```swift
 import ServiceDiscovery
@@ -103,7 +103,7 @@ ClusterSystem("DiscoverNodes") { settings in
 }
 ```
 
-Once a cluster has been formed, distributed actors use the [Receptionist](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/receptionist) to discover check-in and discover distributed actors from other nodes. For example, we can write a distributed worker actor like this:
+Once a cluster has been formed, distributed actors use the [Receptionist](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/receptionist) to discover check-in and discover distributed actors from other nodes. For example, we can write a distributed worker actor like this:
 
 ```swift
 distributed actor Worker {
@@ -124,7 +124,7 @@ extension DistributedReception.Key {
 }
 ```
 
-Such distributed actors are then created using normal initialization on nodes within the cluster. Each such node can then use the [receptionist listing](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/receptionist#Receptionist-Listings) API to obtain all workers from all other nodes, like this:
+Such distributed actors are then created using normal initialization on nodes within the cluster. Each such node can then use the [receptionist listing](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/receptionist#Receptionist-Listings) API to obtain all workers from all other nodes, like this:
 
 ```swift
 for await worker in await actorSystem.receptionist.listing(of: .workers) {
@@ -134,7 +134,7 @@ for await worker in await actorSystem.receptionist.listing(of: .workers) {
 }
 ```
 
-While this allows nodes to discover distributed actors on other processes, it does not deal with their termination. For example, if a remote node crashes, remote calls to any actor located on this node will fail. In order to notice such crash, or just plain actor termination (i.e. the remote `worker` having deinitialized) one can use the [`LifecycleWatch`](https://apple.github.io/swift-distributed-actors/1.0.0-beta.2/documentation/distributedactors/lifecycle) functionality of the cluster:
+While this allows nodes to discover distributed actors on other processes, it does not deal with their termination. For example, if a remote node crashes, remote calls to any actor located on this node will fail. In order to notice such crash, or just plain actor termination (i.e. the remote `worker` having deinitialized) one can use the [`LifecycleWatch`](https://apple.github.io/swift-distributed-actors/1.0.0-beta.2/documentation/distributedcluster/lifecycle) functionality of the cluster:
 
 ```swift
 distributed actor Boss: LifecycleWatch { 
@@ -153,7 +153,7 @@ distributed actor Boss: LifecycleWatch {
 
 The mechanisms underlying lifecycle watch are powered by the advanced distributed failure detection mechanisms implemented in [swift-cluster-membership](https://github.com/apple/swift-cluster-membership), and allow for reliable failure detection in a distributed system. The same mechanism also works if the workers were local actors, and just happened to deinitialize. A remote actor that deinitializes also signals to all of its watchers that it has terminated. This way, applications can program against actor “lifecycle” rather than having to worry about where and how a distributed actor was running.
 
-This concludes a quick overview of the primary features of the cluster. The cluster also offers low-level [cluster events](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/cluster/event), as well as high level abstractions such as “[Cluster Singletons](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/clustersingleton)“ which are explored in depth in the library’s [reference documentation](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedactors/introduction).
+This concludes a quick overview of the primary features of the cluster. The cluster also offers low-level [cluster events](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/cluster/event), as well as high level abstractions such as “[Cluster Singletons](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/clustersingleton)“ which are explored in depth in the library’s [reference documentation](https://apple.github.io/swift-distributed-actors/1.0.0-beta.3/documentation/distributedcluster/introduction).
 
 ## Maturity Justification
 
