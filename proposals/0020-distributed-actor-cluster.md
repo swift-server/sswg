@@ -2,10 +2,12 @@
 
 * Proposal: [SSWG-0020](0020-distributed-actors-cluster.md)
 * Authors: [Konrad ‘ktoso’ Malawski](https://github.com/ktoso)
-* Review Manager: TBD
+* Review Manager: [Kaitlin Mahar](https://github.com/kmahar)
 * Status: **Implemented**
 * Implementation: [swift-distributed-actors](https://github.com/apple/swift-distributed-actors)
-* Forum Threads: **TODO**
+* Forum Threads: 
+    * [Pitch thread](https://forums.swift.org/t/pitch-swift-distributed-actors-cluster/61061) 
+    * [Review thread](https://forums.swift.org/t/sswg-0020-distributed-actors-cluster/61164)
 
 ## Package Description
 
