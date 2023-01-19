@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0020](0020-distributed-actors-cluster.md)
 * Authors: [Konrad ‘ktoso’ Malawski](https://github.com/ktoso)
 * Review Manager: [Kaitlin Mahar](https://github.com/kmahar)
-* Status: **Implemented**
+* Status: Accepted at Sandbox maturity level
 * Implementation: [swift-distributed-actors](https://github.com/apple/swift-distributed-actors)
 * Forum Threads: 
     * [Pitch thread](https://forums.swift.org/t/pitch-swift-distributed-actors-cluster/61061) 
