@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0021](0021-swift-cassandra-client.md)
 * Authors: [Yim Lee](https://github.com/yim-lee)
 * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
-* Status: **Implemented**
+* Status: **Accepted**
 * Implementation: [swift-cassandra-client](https://github.com/apple/swift-cassandra-client)
 * Forum Threads: 
     * [Pitch thread](https://forums.swift.org/t/pitch-swift-cassandra-client/62509) 
