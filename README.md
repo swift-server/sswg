@@ -11,7 +11,7 @@ Analogous to the Core Team for Swift, the work group is responsible for providin
 The current Swift Server work group consists of the following people:
 
 * Adam Fowler ([@adam-fowler](https://github.com/adam-fowler))
-* Fabian Fett ([@fabianfett](https://github.com/fabianfett), Apple)
+* Franz Busch ([@FranzBusch](https://github.com/FranzBusch), Apple)
 * Gwynne Raskind ([@gwynne](https://github.com/gwynne), Vapor)
 * Kaitlin Mahar ([@kmahar](https://github.com/kmahar), MongoDB)
 * Konrad Malawski ([@ktoso](https://github.com/ktoso), Apple)
