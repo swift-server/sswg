@@ -8,19 +8,7 @@ The Swift Server work group is a steering team that promotes the use of Swift fo
 
 Analogous to the Core Team for Swift, the work group is responsible for providing overall technical direction and establishing the standards by which libraries and tools are proposed, developed and eventually recommended.
 
-The current Swift Server work group consists of the following people:
-
-* Adam Fowler ([@adam-fowler](https://github.com/adam-fowler))
-* Franz Busch ([@FranzBusch](https://github.com/FranzBusch), Apple)
-* Gwynne Raskind ([@gwynne](https://github.com/gwynne), Vapor)
-* Kaitlin Mahar ([@kmahar](https://github.com/kmahar), MongoDB)
-* Konrad Malawski ([@ktoso](https://github.com/ktoso), Apple)
-* Patrick Freed ([@patrickfreed](https://github.com/patrickfreed), MongoDB)
-* Simon Pilkington ([@tachyonics](https://github.com/tachyonics), Amazon)
-* Tim Condon ([@0xTim](https://github.com/0xTim), Vapor)
-* Jimmy McDermott ([@jdmcd](https://github/com/jdmcd), Transeo)
-
-With Tom Doron ([@tomerd](https://github.com/tomerd), Apple) representing the Swift core team.
+The current list of Swift Server work group members can be [found on the Swift website](https://www.swift.org/sswg/).
 
 ## Communication
 
