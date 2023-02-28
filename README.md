@@ -44,7 +44,7 @@ In various situations the SSWG shall hold a vote. These votes can happen on the 
 
 ## Incubation Process
 
-See [Incubation Process](process/incubation.md)
+See [Incubation Process](https://swift.org/sswg/incubation-process.html)
 
 ## Projects
 
@@ -52,7 +52,7 @@ See [Swift Server Ecosystem Index](https://swift.org/server/#projects)
 
 ## Security
 
-Please refer to our [Security](security/README.md) page for matters related to security of any software affiliated with the SSWG or listed on the SSWG's package index.
+Please refer to our [Security](https://swift.org/sswg/security/) page for matters related to security of any software affiliated with the SSWG or listed on the SSWG's package index.
 
 ## Meeting Time
 
