@@ -26,17 +26,17 @@ We've been using it in Vapor's [Penny](https://github.com/vapor/penny-bot) bot f
 ## Motivation
 
 The Server-Side Swift community lacks a maintained and robust package to communicate with Discord.   
-This is important because Discord is gaining more and more popularity amongst communities and has already replaced Slack as the go-to place Open Source communities. A lot of successful projects and languages such as `Rust`, `Python`, `Vue` have chosen Discord as the place for their community.
+This is important because Discord is gaining more and more popularity amongst communities and has already replaced Slack as the go-to place for Open Source communities. A lot of successful projects and languages such as `Rust`, `Python`, `Vue` have chosen Discord as the place for their community.
 
 ## Proposed solution
 
-`DiscordBM` provides an elegant, robust, type-safe, swifty and [insert positive word here] way to communicate with Discord's bot APIs. This can be useful to bridge the gap between the Swift community and Discord bots.
+DiscordBM provides an elegant, robust, type-safe, swifty and [insert positive word here] way to communicate with Discord's bot APIs. This can be useful to bridge the gap between the Swift community and Discord bots.
 
 ## Detailed design
 
 DiscordBM is a big library (38K+ lines based on Github contribution stats) so it would be very difficult for me as a writer and you as readers, if I were to explain the library design in full. Regardless I'll try my best to go into implementation details without making the proposal way too long and boring.
 
-DiscordBM not only comes with the core and necessary means to communicate with Discord, but also has a bunch of convenience or useful stuff that users might otherwise need to make themselves. I'll try to explain the core implementation in detail, and briefly mention the rest.
+DiscordBM not only comes with the core and necessary means to communicate with Discord, but also has a bunch of convenience or useful stuff that users might otherwise need to implement themselves. I'll try to explain the core implementation in detail, and briefly mention the rest.
 
 ### Core Of DiscordBM
 
@@ -131,7 +131,7 @@ struct EntryPoint {
     }
 }
 ```
-`token` is a "secret" by which `GatewayManager` will authenticate with Discord. `appId`, `presence` and `intents` are 3 more Discord-related configuration options, and are not critical, so I'll skip explaining them to focus on what DiscordBM actually does, rather than explaining Discord's behaviors which are already well-documented on their documentation.   
+`token` is a "secret" by which `GatewayManager` will authenticate with Discord. `appId`, `presence` and `intents` are 3 more Discord-related configuration options, and are not critical for understanding the library, so I'll skip explaining them to focus on what DiscordBM actually does, rather than explaining Discord's behaviors which are already well-documented on their documentation.   
 
 Then, you would want to call `await bot.connect()`:
 
@@ -144,14 +144,14 @@ Then, you would want to call `await bot.connect()`:
 await bot.connect()
 ```
 
-What happens is, the `GatewayManager` will start making a connection to the Discord Gateway using Websockets. For Websockets, DiscordBM uses a customized version of Vapor's `websocket-kit` which supports zlib decompression. After the websocket connection is established, Discord will send a 'hello' message to DiscordBM, and then DiscordBM sends an "identify" payload to Discord which contains stuff like the `token`, `appId`, `presence` and the `intents`.
+What happens is, the `GatewayManager` will start making a connection to the Discord Gateway using Websockets. For Websockets, DiscordBM uses a customized version of Vapor's `websocket-kit` which supports zlib decompression. After the websocket connection is established, Discord will send a 'hello' message to DiscordBM, and then DiscordBM sends an 'identify' payload to Discord which contains stuff like the `token`, `appId`, `presence` and the `intents`.
 
 In case Discord doesn't accept the identification, it will close the websocket connection with a proper close code. DiscordBM will catch that close code, and translate it to one of Discord's websocket close codes. If the code is a code that allows reconnection, DiscordBM will attempt that. Otherwise it will send a log message with `critical` level to users with a user-friendly description of the code, and instructions on how to try to solve the problem:
 ```
 Will not reconnect because Discord does not allow it. Something is wrong. Your close code is '<CODE>', check Discord docs at https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes and see what it means. Report at https://github.com/MahdiBM/DiscordBM/issues if you think this is a library issue
 ```
 
-In the other case where Discord accepts the identification, it will send a 'ready' payload to the `GatewayManager`. After this the normal communication starts and Discord will send all the events related to the `intents` you passed to it. There are 70+ types of events. For more context, the events include a created/updated/deleted/bulk-deleted message, a create/updated/deleted channel, and many more. DiscordBM allows user access to these events using an `AsyncStream<Gateway.Event>` which users can acquire and use like so:
+In the other case where Discord accepts the identification, it will send a 'ready' payload to the `GatewayManager`. After this the normal communication starts and Discord will send all the events related to the `intents` you passed to it. For more context, there are 70+ types of events and they include a created/updated/deleted/bulk-deleted message, a create/updated/deleted channel, and many more. DiscordBM allows user access to these events using an `AsyncStream<Gateway.Event>` which users can acquire and use like so:
 
 ```swift
 ...
@@ -173,11 +173,12 @@ for await event in stream {
 }
 ```
 
-This is also in line with the latest structured concurrency advancements, and users won't need to block a thread or call functions such as `RunLoop.main.run()`. Generally speaking, DiscordBM has gone full-in on structured concurrency and makes extensive use actors too. The whole library is already in full compliance with `-strict-concurrency=complete`.   
+This is also in line with the latest structured concurrency advancements, and users won't need to block a thread or call functions such as `RunLoop.main.run()`. Generally speaking, DiscordBM has gone full-in on structured concurrency and makes extensive use of actors. The whole library is already in full compliance with `-strict-concurrency=complete`.   
 
-`GatewayManager` also needs to keep the Discord connection alive. This happens in two ways.
-1- The usual websocket ping-pongs.
-2- By reconnecting when Discord closes a Websocket connection.
+`GatewayManager` also needs to keep the Discord connection alive. This happens in two ways.   
+* 1- The usual websocket ping-pongs.
+* 2- By reconnecting when Discord closes a Websocket connection.   
+
 Connection closures are normal and initiated by Discord when they see fit. The closures, however, aren't noticeable to most users at all. What happens is that Discord sends a 'reconnect' event to `GatewayManager`, and immediately closes the websocket connection. When this happens, `GatewayManager` reads the close code, and based on what the close code means, will likely attempt a 'resume' (or if not allowed, will just attempt a totally new connection as if you did `await bot.connect()`). The resume happens in a similar way that the identification happens for new connections. The 'resume' payload that is sent contains some info of the past connection which `GatewayManager` tracks, such as a `session-id` and a `sequence-number`.
 
 
@@ -213,7 +214,7 @@ func createMessage(
     )
 }
 ```
-These functions are for convenience of users and all of them declare an `endpoint` and pass all the info to the actual functions that make the requests, such as the `DiscordClient.sendMultipart(request:payload:)` function. The `sendMultipart` function is also the same as the one that a `DiscordClient` requires types to implement, but in the end it converts the response to a `DiscordClientResponse<TypeOfResponse>` type:
+These functions are for convenience of users and all of them declare an `endpoint` and pass all the info to the actual functions that make the requests, such as the `DiscordClient.sendMultipart(request:payload:)` function. The `sendMultipart` function here is the same as the one that a `DiscordClient` requires types to implement, but in the end it converts the response to a `DiscordClientResponse<TypeOfResponse>` type:
 
 ```swift
 public extension DiscordClient {
@@ -245,7 +246,7 @@ public struct DiscordClientResponse<C>: Sendable where C: Codable {
     }
 }
 ```
-The `DiscordHTTPResponse` is a type containing an HTTP response:
+The `DiscordHTTPResponse` type contains an HTTP response:
 
 ```swift
 /// Represents a raw Discord HTTP response.
@@ -278,12 +279,12 @@ public struct DefaultDiscordClient: Sendable, DiscordClient {
 }
 ```
 * The `client` is how DiscordBM sends the HTTP requests.
-* The `token` is used in the authorization header only if required by the endpoint.
+* The `token` is used in the authorization header only if required by the endpoint.   
   The `Secret` type is to prevent the full `token` ending up in the logs when using string-interpolation. 
-* The `appId` is the app's identifier (a bot's user-id that is visible in Discord client-apps too).
+* The `appId` is the app's identifier (also a bot's user-id that is accessible in Discord client-apps too).   
   It can be passed to the type just so some REST API functions don't require it at call-sites.
-* And the `cache` is a storage for the cached responses. 
-  The `configuration` has options to customize how caching is done.
+* And the `cache` is a storage for the cached responses.    
+  The `configuration` has options to customize how caching is done.   
   `ClientCache` is an actor, and it's shared across all `DefaultDiscordClient`s that have the same `token`.
 
 The configuration options:
@@ -308,44 +309,45 @@ public struct ClientConfiguration: Sendable {
 }
 ```
 
-* The `cachingBehavior` can be customized for each endpoint with a different time-to-live. 
+* The `cachingBehavior` can be customized for each endpoint with a different time-to-live.    
   Whenever there is a successful response, the client will cache the response if allowed by this.
-* `requestTimeout` and `enableLoggingForRequests` are `HTTPClient`-related an are passed to each request.
-* `performValidations` specifies whether or not to perform client-side validations. 
-  This is what `ValidatablePayload` protocol is useful for, which adds a `validate()` func to payloads.
+* `requestTimeout` and `enableLoggingForRequests` are `HTTPClient`-related and are passed to each request.
+* `performValidations` specifies whether or not to perform client-side validations.     
+  This is what `ValidatablePayload` protocol is useful for, which adds a `validate()` func to payloads.    
   The validations only cover what is mentioned in Discord docs. They don't guarantee a valid payload.
-* And there is the `retryPolicy`, which specifies how to retry requests. 
+* And there is the `retryPolicy`, which specifies how to retry requests.    
   DiscordBM has some magically-nice behavior built around `retryPolicy`, as I'll explain next.
 
-`DefaultDiscordClient` takes help from another `HTTPRateLimiter` type to handle rate-limits.
-`HTTPRateLimiter` keeps track of bucket-info that are available in request headers. Before each request there is a call to `HTTPRateLimiter` that asks "can I do a request now?" and the rate-limiter, considering Discord docs' notes about how exactly Discord rate-limits work, decides to allow a request or not. For example if a bucket is exhausted, the `HTTPRateLimiter` will have no choice but to reject the request. 
-Well, that's true, but it's not exactly what happens in DiscordBM. If there is a request that is disallowed by the bucket info, `HTTPRateLimiter` instead tries to return the time amount the `DiscordClient` needs to wait before making the request. Then `DiscordClient` takes a look at the `retryPolicy`, and if the `retryPolicy` specifies that requests failed with the `429 Too Many Requests` header can be retried based on headers, `DiscordClient` will just wait the time, and make the request after! This is best of the both worlds: 1- Even if you make a lot of requests in a loop, `DiscordClient` not only won't fail, but also won't even let users notice anything suspicious. To users it will look like as if they don't even have a rate limit to worry about! On the other hand, `DiscordClient` didn't make a request that would have gotten a `429` back from Discord, so that's another win.
+`DefaultDiscordClient` takes help from another `HTTPRateLimiter` type to handle rate-limits.    
+`HTTPRateLimiter` keeps track of bucket-infos that are available in request headers. Before each request there is a call to `HTTPRateLimiter` that asks "can I do a request now?" and the rate-limiter, considering Discord docs' notes about how exactly Discord rate-limits work, decides to allow a request or not. For example if a bucket is exhausted, the `HTTPRateLimiter` will have no choice but to reject the request. 
+Well, that's true, but it's not exactly what happens in DiscordBM. If there is a request that is disallowed by the bucket info, `HTTPRateLimiter` instead tries to return the time amount the `DiscordClient` needs to wait before making the request. Then `DiscordClient` takes a look at the `retryPolicy`, and if the `retryPolicy` specifies that requests failed with the `429 Too Many Requests` header can be retried based on headers, `DiscordClient` will just wait the time, and make the request after! This is best of the both worlds:  
+* Even if you make a lot of requests in a loop, `DiscordClient` not only won't fail, but also won't even let users notice anything suspicious. To users it will look like as if they don't even have a rate limit to worry about!    
+* On the other hand, `DiscordClient` didn't make a request that would have gotten a `429` back from Discord, so that's another win.
 
 For all these core functionalities, DiscordBM comes with a lot of integration tests.
 This means:
 * `BotGatewayManager` has [extensive tests](https://github.com/MahdiBM/DiscordBM/blob/main/Tests/IntegrationTests/GatwayConnection.swift) to make sure it connects and stays connected.
-* Each of ~200 `DiscordClient` REST API functions [have a test](https://github.com/MahdiBM/DiscordBM/blob/main/Tests/IntegrationTests/DiscordClient.swift) that sends requests to Discord to make sure the functions do actually work.
-
-`CodeCov`, as of writing this proposal, rates DiscordBM at 74% test coverage. Although 74% is still good for such a package, the real test coverage is easily 90+ % if you remove some stuff that don't need tests at all, such as descriptions of `LocalizedError`s (there are a lot of them). 
+* Each of ~200 `DiscordClient` REST API functions [have a test](https://github.com/MahdiBM/DiscordBM/blob/main/Tests/IntegrationTests/DiscordClient.swift) that sends requests to Discord to make sure the functions do actually work. 
 
 ### Utilities Built Around The Core
 DiscordBM contains a bunch of other types that are very useful to users:
-* Discord Cache
+* `DiscordCache`
   * Caches the Discord Gateway events and keeps them in sync with Discord. 
-  * Why is it needed at all? Because Gateway events are sometimes compliments of each other, and don't repeat the old info that has already been sent. For example, assuming you have the `guilds` and `guildEmojisAndStickers` intents enabled, after the connection to the Gateway, Discord will send you a "Guild Create" event containing the info of the guilds that you are joined in. Later, when for example a new emoji is added to the guild, Discord will only send you the new emoji info in a "Guild Emojis Update" event instead of re-sending the whole guild again.
-  * Caching of Gateway events is tricky to implement correctly because not only there are a lot fo events, but also there are a lot of edge cases to be handled. 
+  * Why is it needed at all? Because Gateway events are sometimes compliments of each other, and don't repeat the old info that has already been sent. For example, assuming you have the `guilds` and `guildEmojisAndStickers` intents enabled, after the connection to the Gateway, Discord will send you "Guild Create" events containing the info of the guilds that you are joined in. Later, when for example a new emoji is added to the guild, Discord will only send you the new emoji info in a "Guild Emojis Update" event instead of re-sending the whole guild again.
+  * Caching of Gateway events is tricky to implement correctly because not only there are a lot of events, but also there are a lot of edge cases to be handled. 
   * Having this functionality built-in allows DiscordBM for integrations of it with other functionalities of DiscordBM. For example you can pass a `DiscordCache` to "React-To-Role" handlers and the handler will use the cache instead of doing API calls. DiscordBM can also do some best-effort permission checking of server members thanks to the `DiscordCache` which allows for real-time up-to-date access to a guild's info.
-* DiscordLogger
-  * Sends your logs to Discord, carefully handling the edge cases such as Discord rate limits (thanks to the `HTTPRateLimiter`), Discord message length limits, escaping all messages, etc...
-  * DiscordLogger logs both to stdout and Discord, since logging over the wire is much more flaky than logging to disk, and you can't send lengthy messages to Discord in full.
-  * It also comes with useful configuration options to customize what is sent to Discord, and what only ends up in the on-disk logs.
+* `DiscordLogger`
+  * Sends your logs to Discord, carefully handling edge cases such as Discord rate limits (thanks to the `HTTPRateLimiter`), Discord message length limits, escaping all messages, etc...
+  * The logs utilize Discord's APIs, and look nice in chats. They are not just raw text.   
+  * `DiscordLogger` logs both to stdout and Discord, since logging over the wire is much more flaky than logging to disk, and you can't send lengthy messages to Discord in full.
+  * It comes with a lot of useful configuration options, indluding to customize what is sent to Discord, and what only ends up in the on-disk logs.
   * This can possibly end up being its own package.  
-* React to role
+* `ReactToRoleHandler`
   * Assigns a role to members when they react to a message.
   * This too can possibly end up being its own package. It can very helpful to a few people, but just useless for others.
 
 ## Missing Features
-DiscordBM doesn't yet support Discord's Voice feature (e.g. joining a Discord server's voice channel and playing music). Discord's Voice seems follows their own "protocol" and DiscordBM will need to manually handle the UDP traffic etc... This feature can be added in a minor release without causing trouble. 
+DiscordBM doesn't yet support Discord's Voice feature (e.g. joining a Discord server's voice channel and playing music). Discord's Voice seems follows their own "standard" and DiscordBM will need to manually handle the UDP traffic etc... This feature can be added in a minor release without causing trouble. 
 
 ## Versioning
 DiscordBM will try to follow Semantic Versioning 2.0.0, with exceptions.     
@@ -354,11 +356,9 @@ This includes adding new cases to enums. If you want to try to avoid breaking ch
 
 ### Initial committers (how long working on project)
 The project has been public on Github for more than 8 months. Even before that it was being used as a private library in one of my projects, but ~80+ % of the development has happened after I made it public.      
-99.9+ % of the project is just written by me, but there has been 2 other contributors, one of them being Gwynne Raskind.   
+99.9+ % of the project is just written by me, but there have been 2 other contributors, one of them being Gwynne Raskind.   
 
-I am aware of how a project is supposed to make changes, and think it's a good thing to have a second contributor review your PRs before a merge and possibly catch some errors.   
-
-That why **I want to also ask for another maintainer for DiscordBM.** Anyone who's interested, please let me know in the Swift forums / Vapor's Discord server / Email / Twitter / Mastodon. The related links are available on my Github profile.
+I am aware of how a project is supposed to make changes, and think it's a good thing to have a second contributor review your PRs before a merge and possibly catch some errors. That's why **I want to also ask for another maintainer for DiscordBM.** Anyone who's interested, please let me know in the Swift forums / Vapor's Discord server / Email / Twitter / Mastodon. The related links are available on my Github profile.
 
 ## Maturity
 
