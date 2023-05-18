@@ -8,7 +8,7 @@
 * Forum Threads: [Pitch](https://forums.swift.org/t/pitch-discordbm-for-sswg-incubation-process/64833)
 
 ## Package Description
-A New Multiplatform Swift Discord Library For Making Bots.
+A New Multi-platform Swift Discord Library For Making Bots.
 
 |  |  |
 |--|--|
@@ -16,13 +16,12 @@ A New Multiplatform Swift Discord Library For Making Bots.
 | **Module Name** | DiscordBM |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/master/process/incubation.md#process-diagram) |
 | **License** | Apache-2.0 |
-| **Dependencies** | From Apple/SSWG: https://github.com/apple/swift-nio.git, https://github.com/apple/swift-log.git, https://github.com/apple/swift-atomics.git, https://github.com/apple/swift-nio-ssl.git, https://github.com/apple/swift-nio-transport-services.git, https://github.com/swift-server/async-http-client.git, From Vapor: https://github.com/vapor/multipart-kit.git (MIT License), Others: https://github.com/jpsim/Yams.git (MIT License), zlib https://github.com/madler/zlib (See License on Github)
+| **Dependencies** | From Apple/SSWG: [swift-nio](https://github.com/apple/swift-nio.git), [swift-log](https://github.com/apple/swift-log.git), [swift-atomics](https://github.com/apple/swift-atomics.git), [swift-nio-ssl](https://github.com/apple/swift-nio-ssl.git), [swift-nio-transport-services](https://github.com/apple/swift-nio-transport-services.git), [async-http-client](https://github.com/swift-server/async-http-client.git), From Vapor: [multipart-kit](https://github.com/vapor/multipart-kit.git) (MIT License), Others: [Yams](https://github.com/jpsim/Yams.git) (Only for code generation. MIT License), [zlib](https://github.com/madler/zlib) (See License on Github)
 
 ## Introduction
 DiscordBM is a new multi-platform Server-Side focused Swift library for interacting with the Discord API, for making bots.
 
 We've been using it in Vapor's [Penny](https://github.com/vapor/penny-bot) bot for the past 8+ months, and it's been serving the community very nicely.
-I also do use it in another medium-sized closed-source project of mine.
 
 ## Motivation
 
