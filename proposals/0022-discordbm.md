@@ -80,8 +80,10 @@ public protocol GatewayManager: AnyActor {
 }
 
 public protocol DiscordClient: Sendable {
-    /// Your app's id. If you don't provide it here, you will need to provide it at
-    /// all call-sites of `DiscordClient` functions that accept an `appId`.
+    /// Your app's id.
+    /// If you don't provide it here, DiscordBM will try to extract it from your token.
+    /// If there is no `appId` you will need to provide it at all call-sites of
+    /// `DiscordClient` functions that accept an `appId`.
     var appId: ApplicationSnowflake? { get }
 
     /// Send a request to Discord with no body.
@@ -117,7 +119,6 @@ struct EntryPoint {
             eventLoopGroup: httpClient.eventLoopGroup,
             httpClient: httpClient,
             token: YOUR_BOT_TOKEN,
-            appId: Snowflake(YOUR_APP_ID),
             presence: .init( /// Set up bot's initial presence
                 /// Will show up as "Playing Swift"
                 activities: [.init(name: "Swift", type: .game)], 
@@ -131,7 +132,7 @@ struct EntryPoint {
     }
 }
 ```
-`token` is a "secret" by which `GatewayManager` will authenticate with Discord. `appId`, `presence` and `intents` are 3 more Discord-related configuration options, and are not critical for understanding the library, so I'll skip explaining them to focus on what DiscordBM actually does, rather than explaining Discord's behaviors which are already well-documented on their documentation.   
+`token` is a "secret" by which `GatewayManager` will authenticate with Discord. `presence` and `intents` are 2 more Discord-related configuration options, and are not critical for understanding the library, so I'll skip explaining them to focus on what DiscordBM actually does, rather than explaining Discord's behaviors which are already well-documented on their documentation.   
 
 Then, you would want to call `await bot.connect()`:
 
@@ -144,7 +145,7 @@ Then, you would want to call `await bot.connect()`:
 await bot.connect()
 ```
 
-What happens is, the `GatewayManager` will start making a connection to the Discord Gateway using Websockets. For Websockets, DiscordBM uses a customized version of Vapor's `websocket-kit` which supports zlib decompression. After the websocket connection is established, Discord will send a 'hello' message to DiscordBM, and then DiscordBM sends an 'identify' payload to Discord which contains stuff like the `token`, `appId`, `presence` and the `intents`.
+What happens is, the `GatewayManager` will start making a connection to the Discord Gateway using Websockets. For Websockets, DiscordBM uses a customized version of Vapor's `websocket-kit` which supports zlib decompression. After the websocket connection is established, Discord will send a 'hello' message to DiscordBM, and then DiscordBM sends an 'identify' payload to Discord which contains stuff like the `token`, `presence` and the `intents`.
 
 In case Discord doesn't accept the identification, it will close the websocket connection with a proper close code. DiscordBM will catch that close code, and translate it to one of Discord's websocket close codes. If the code is a code that allows reconnection, DiscordBM will attempt that. Otherwise it will send a log message with `critical` level to users with a user-friendly description of the code, and instructions on how to try to solve the problem:
 ```
@@ -310,7 +311,7 @@ public struct ClientConfiguration: Sendable {
 ```
 
 * The `cachingBehavior` can be customized for each endpoint with a different time-to-live.    
-  Whenever there is a successful response, the client will cache the response if allowed by this.
+  Whenever there is a successful response, the discord-client will cache the response if allowed by this.
 * `requestTimeout` and `enableLoggingForRequests` are `HTTPClient`-related and are passed to each request.
 * `performValidations` specifies whether or not to perform client-side validations.     
   This is what `ValidatablePayload` protocol is useful for, which adds a `validate()` func to payloads.    
@@ -318,7 +319,7 @@ public struct ClientConfiguration: Sendable {
 * And there is the `retryPolicy`, which specifies how to retry requests.    
   DiscordBM has some magically-nice behavior built around `retryPolicy`, as I'll explain next.
 
-`DefaultDiscordClient` takes help from another `HTTPRateLimiter` type to handle rate-limits.    
+`DefaultDiscordClient` takes help from a `HTTPRateLimiter` actor to handle rate-limits.    
 `HTTPRateLimiter` keeps track of bucket-infos that are available in request headers. Before each request there is a call to `HTTPRateLimiter` that asks "can I do a request now?" and the rate-limiter, considering Discord docs' notes about how exactly Discord rate-limits work, decides to allow a request or not. For example if a bucket is exhausted, the `HTTPRateLimiter` will have no choice but to reject the request. 
 Well, that's true, but it's not exactly what happens in DiscordBM. If there is a request that is disallowed by the bucket info, `HTTPRateLimiter` instead tries to return the time amount the `DiscordClient` needs to wait before making the request. Then `DiscordClient` takes a look at the `retryPolicy`, and if the `retryPolicy` specifies that requests failed with the `429 Too Many Requests` header can be retried based on headers, `DiscordClient` will just wait the time, and make the request after! This is best of the both worlds:  
 * Even if you make a lot of requests in a loop, `DiscordClient` not only won't fail, but also won't even let users notice anything suspicious. To users it will look like as if they don't even have a rate limit to worry about!    
