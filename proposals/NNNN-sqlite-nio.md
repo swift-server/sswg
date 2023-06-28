@@ -5,7 +5,7 @@
 * Review Manager: TBD
 * Status: **Implemented**
 * Implementation: [vapor/sqlite-nio](https://github.com/vapor/sqlite-nio)
-* Forum Threads: Pitch (Pending), Discussion (Pending)
+* Forum Threads: [Pitch](https://forums.swift.org/t/sqlitenio/46664/25), Discussion (Pending)
 
 ## Introduction
 
