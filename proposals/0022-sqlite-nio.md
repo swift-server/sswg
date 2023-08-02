@@ -7,24 +7,25 @@
 * Implementation: [vapor/sqlite-nio](https://github.com/vapor/sqlite-nio)
 * Forum Threads: [Pitch](https://forums.swift.org/t/sqlitenio/46664/25), Discussion (Pending)
 
-## Introduction
+## Package Description
 
-`SQLiteNIO` is a client package which provides an asynchronous Swift API for SQLite based on NIO's `EventLoopFuture`. The underlying implementation is an embedded version of `libsqlite` built as a SwiftPM target and statically linked, with configuration flags chosen appropriately on a per-platform basis and vendor prefixes added to all APIs to avoid any collisions. The embedded source code is kept up to date with upstream releases (this is currently done by manually invoking a script when new releases are made; full automation is planned).
+`SQLiteNIO` is a client package which provides an asynchronous Swift API for SQLite based on NIO's `EventLoopFuture`.
+
+|||
+|--:|:--|
+| **Package Name** | sqlite-nio |
+| **Module Name** | SQLiteNIO |
+| **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
+| **License** | [MIT](https://choosealicense.com/licenses/mit/) |
+| **Dependencies** | [swift-nio](https://github.com/apple/swift-nio), [swift-log](https://github.com/apple/swift-log) |
 
 ## Motiviation
 
 SQLite is a C API which does not import into Swift in an easily managed form, especially in terms of marshalling data types and correctly handling the underlying API's multithreading requirements. However, SQLite - unlike most relational databases - is a complete database management library unto itself with no separate client or server components, reimplementing it in pure Swift would be, at best, a massive undertaking (and of questionable wisdom as well, especially considering the almost unheard-of _extremely_ high quality of SQLite's source code). As such, SQLiteNIO concerns itself solely with providing a more Swift-friendly, asynchronous interface to the C implementation. (Currently SQLiteNIO only supports `EventLoopFuture`-style asynchronous usage; providing a Concurrency-based alternative is planned in the near future.)
 
-## Dependencies
+The underlying SQLite implementation is an embedded version of `libsqlite`, specifically the `sqlite3.c` amalgamation, built as a SwiftPM target and statically linked, with configuration flags chosen appropriately on a per-platform basis and vendor prefixes added to all APIs to avoid any collisions. The embedded source code is kept up to date with upstream releases (this is currently done by manually invoking a script when new releases are made; full automation is planned).
 
-This package currently requires Swift 5.6 or later, and has two dependencies:
-
-- `swift-nio` from `2.54.0`
-- `swift-log` from `1.5.2`
-
-There are no additional system dependencies.
-
-## Proposed Solution
+## Usage
 
 This section goes into detail on a few distinct types from this module to give an idea of how they work together and what using the package looks like.
 
