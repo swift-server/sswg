@@ -12,7 +12,7 @@
 
 ServiceContext is a minimal (zero-dependency) context propagation container, intended to "carry" items for purposes of cross-cutting tools to be built on top of it.
 
-It is modeled after the concepts explained in W3C Baggage and the in the spirit of Tracing Plane's "Baggage Context" type, although by itself it does not define a specific serialization format.
+It is modeled after the concepts explained in W3C Baggage and in the spirit of Tracing Plane's "Baggage Context" type, although by itself, it does not define a specific serialization format.
 
 See https://github.com/apple/swift-distributed-tracing for actual instrument types and implementations which can be used to deploy various cross-cutting instruments all reusing the same baggage type. More information can be found in the SSWG meeting notes.
 
