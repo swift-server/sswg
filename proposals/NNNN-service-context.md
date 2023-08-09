@@ -164,7 +164,7 @@ Minimum Requirements:
   * Prefer to adopt code formatting tools and integrate them into the CI: **Satisfied**
 Incubating Requirements:
 * Document that it is being used successfully in production by at least two independent end users which, in the SSWG judgment, are of adequate quality and scope.
-  * **We are aware of 3+ production use-cases in large deployments, using [swift-otel](https://github.com/slashmo/swift-otel) as a backend.**
+  * **We are aware of 3+ production use-cases in large deployments using [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing).**
 * Must have 2+ maintainers and/or committers. 
   * **Actively maintained by Moritz ([@slashmo](https://github.com/slashmo) and Konrad ([@ktoso](https://github.com/ktoso))**
 * Packages must have more than one person with admin access. This is to avoid losing access to any packages. For packages hosted on GitHub and GitLab, the packages must live in an organization with at least two administrators. If you don't want to create an organization for the package, you can host them in the [Swift Server Community](https://github.com/swift-server-community) organization.
