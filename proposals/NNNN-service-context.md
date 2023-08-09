@@ -2,12 +2,11 @@
 
 * Proposal: [SSWG-NNNN](NNNN-service-context.md)
 * Authors: [Konrad 'ktoso' Malawski](https://github.com/ktoso) / [Moritz Lang](https://github.com/slashmo)
-* Review Manager: ???
+* Review Manager: TBD
 * Status: **Implemented**
 * Implementation: 
   * [swift-service-context](https://github.com/apple/swift-service-context)
-* Forum Threads:
-  * TODO
+* Forum Threads: TBD
 
 ## Package Description
 
