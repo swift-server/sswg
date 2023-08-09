@@ -121,7 +121,7 @@ For keys which are expected to be public API, used ty developers, it is recommen
 
 ```swift
 extension ServiceContext { 
-  public testValue: String? {
+  public var testValue: String? {
     set { 
       self[TestKey.self] = newValue
     }
