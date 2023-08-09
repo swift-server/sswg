@@ -5,7 +5,8 @@
 * Review Manager: TBD
 * Status: **Implemented**
 * Implementation: [apple/swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing)
-* Forum Threads: TBD
+* Forum Threads:
+  * [Pitch](https://forums.swift.org/t/pitch-swift-distributed-tracing/66679)
 
 ## Package Description
 
