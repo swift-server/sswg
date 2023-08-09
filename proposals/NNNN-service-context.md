@@ -30,7 +30,7 @@ Service context is a type-safe dictionary that is keyed using types and intended
 
 It declares a well-known Task Local key for the service context, and patterns how to add keys. 
 
-It is a core building block of [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing) which uses it to propagate trace information across swift concurrency tasks, though can be used independently as well.
+It is a core building block of [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing) which uses it to propagate trace information across swift concurrency tasks, though it can be used independently as well.
 
 ## Overview
 
