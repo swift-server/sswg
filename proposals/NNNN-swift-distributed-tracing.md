@@ -129,6 +129,33 @@ func handleRequest(_ request: Request) async throws -> Response {
 }
 ```
 
+### Child Spans
+
+A distributed tracing span may have one or more child spans. While Swift Distributed Tracing also allows for manually
+linking spans, creating a child span is easiest when using the
+task-local [`ServiceContext`](https://github.com/apple/swift-service-context) behind the scenes:
+
+```swift
+func handleRequest(_ request: Request) async throws -> Response {
+    try await withSpan(request.endpointPath, ofKind: .server) {
+        let user = try await fetchUser(byID: request.userID)
+        return try await respond(to: request)
+    }
+}
+
+func fetchUser(byID id: String) async throws -> User {
+    try await withSpan("fetchUser") { span in
+        span.attributes["user.id"] = id
+    }
+}
+```
+
+In this example, the `withSpan(operationName:context:body:)` call within `handleRequest(_:)` creates a span.
+When creating the span, the tracer implementation sets trace and span identifiers on the task-local
+[ServiceContext](https://github.com/apple/swift-service-context). `fetchUser(id:)` will then automatically "inherit"
+these identifiers, indicating to the tracer implementation that the "fetchUser" span should be a child of the request
+span.
+
 ### Low-level API
 
 When using Swift NIO `EventLoopFuture`s or similar patterns, we need to control the spans lifetime manually. This can be
