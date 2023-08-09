@@ -22,7 +22,7 @@ See https://github.com/apple/swift-distributed-tracing for actual instrument typ
 | **Module Name** | `ServiceContextModule` |
 | **Proposed Maturity Level** | [Incubating](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
 | **License** | [Apache v2](https://github.com/apple/swift-distributed-tracing/blob/main/LICENSE.txt) |
-| **Dependencies** | [swift-service-context](https://github.com/apple/swift-service-context) |
+| **Dependencies** | - |
 
 ## Introduction
 
