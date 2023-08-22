@@ -2,7 +2,7 @@
 
 - Proposal: [SSWG-NNNN](NNNN-discordbm.md)
 - Authors: [Mahdi Bahrami](https://github.com/MahdiBM)
-- Review Manager: TBD
+- Review Manager: [Joannis Orlandos](https://github.com/joannis)
 - Status: Implemented and Released
 - Implementation: [DiscordBM](https://github.com/DiscordBM/DiscordBM)
 - Forum Threads: [Pitch](https://forums.swift.org/t/pitch-discordbm-for-sswg-incubation-process/64833)
@@ -43,7 +43,7 @@ DiscordBM not only comes with the core and necessary means to communicate with D
 The 2 most important concepts in DiscordBM are the `GatewayManager` and the `DiscordClient` protocols.
 Everything else in the library revolves around these two. Both of the protocols are just abstractions to make DiscordBM easier to test for users. The main types that conform to those protocols are `BotGatewayManager` and `DefaultDiscordClient`.
 
-A `GatewayManager` is were most apps start using DiscordBM:
+A `GatewayManager` is where most apps start using DiscordBM:
 
 ```swift
 /// First, add these 2 as dependencies
