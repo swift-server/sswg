@@ -1,6 +1,6 @@
 # DiscordBM
 
-- Proposal: [SSWG-0022](0022-discordbm.md)
+- Proposal: [SSWG-NNNN](NNNN-discordbm.md)
 - Authors: [Mahdi Bahrami](https://github.com/MahdiBM)
 - Review Manager: TBD
 - Status: Implemented and Released
