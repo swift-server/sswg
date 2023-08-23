@@ -32,11 +32,11 @@ This is important because Discord is gaining more and more popularity amongst co
 
 ## Proposed solution
 
-DiscordBM provides an elegant, robust, type-safe, swifty and [insert positive word here] way to communicate with Discord's bot APIs. This can be useful to bridge the gap between the Swift community and Discord bots.
+DiscordBM provides an elegant, robust and type-safe way to communicate with Discord's bot APIs, therefore bridging the gap between the Swift community and Discord bots.
 
 ## Design
 
-DiscordBM not only comes with the core and necessary means to communicate with Discord, but also has a bunch of convenience or useful stuff that users might otherwise need to implement themselves. I'll try to explain the core implementation in detail, and briefly mention some of the rest.
+DiscordBM not only comes with the core and necessary means to communicate with Discord, but also has a bunch of convenience or useful stuff that users might otherwise need to implement themselves. This document first  explains the core implementation in detail, and then briefly mention some of the surrounding features.
 
 ### Core Of DiscordBM
 
@@ -112,7 +112,7 @@ This is also in line with the latest structured concurrency advancements, and us
 1. The usual websocket ping-pongs.
 2. By reconnecting when Discord closes a Websocket connection.
 
-Connection closures are normal and initiated by Discord when they see fit. The closures could happen 10+ times a day, but are mostly not distruptive. Upon a conneciton closure, DiscordBM will correctly resume the last connection, and Discord will send the events lost when there was no connection.
+Connection closures are normal and initiated by Discord when they see fit. The closures could happen 10+ times a day, but are mostly not distruptive. Upon a connection closure, DiscordBM will correctly resume the last connection, and Discord will send the events that were missed when there was no connection.
 
 After receiving an event, users can use the `DiscordClient` to communicate with Discord through the REST API. For example you can send a message back to the Discord channel that a message came from, like so:
 
@@ -200,7 +200,7 @@ public struct DefaultDiscordClient: Sendable, DiscordClient {
 ```
 
 - The `cache` is a storage for the cached responses.
-  The `configuration` has options to customize how caching is done.
+  The `configuration` has different options, such as customizing how caching or retrying is done.
   `ClientCache` is an actor, and it's shared across all `DefaultDiscordClient`s that have the same authorization token.
 
 The configuration options:
@@ -223,7 +223,7 @@ public struct ClientConfiguration: Sendable {
   This is what `ValidatablePayload` protocol is useful for, which adds a `validate()` func to payloads.
   The validations only cover what is mentioned in Discord docs. They don't guarantee a valid payload.
 - And there is the `retryPolicy`, which specifies how to retry requests.
-  DiscordBM has some magically-nice behavior built around `retryPolicy`, as I'll explain next.
+  DiscordBM has a sane default behavior built around `retryPolicy`, as follows:
 
 `DefaultDiscordClient` takes help from a `HTTPRateLimiter` actor to handle rate-limits.
 `HTTPRateLimiter` keeps track of bucket-infos that are available in request headers. Before each request there is a call to `HTTPRateLimiter` that asks "can I do a request now?" and the rate-limiter, considering Discord docs' notes about how exactly Discord rate-limits work, decides to allow a request or not.   
