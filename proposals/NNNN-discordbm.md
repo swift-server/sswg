@@ -239,7 +239,7 @@ This means:
 - `BotGatewayManager` has [extensive tests](https://github.com/DiscordBM/DiscordBM/blob/main/Tests/IntegrationTests/GatwayConnection.swift) to make sure it connects and stays connected.
 - Most of ~200 `DiscordClient` REST API functions [have a test](https://github.com/DiscordBM/DiscordBM/blob/main/Tests/IntegrationTests/DiscordClient.swift) that sends requests to Discord to make sure the functions do actually work in practice.
 
-If you want to more about the DiscordBM's public APIs, please refer to the GitHub [README](https://github.com/DiscordBM/DiscordBM#readme).
+If you want to learn more about the DiscordBM's public APIs, please refer to the GitHub [README](https://github.com/DiscordBM/DiscordBM#readme).
 
 ## Missing Features
 
