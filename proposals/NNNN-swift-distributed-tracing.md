@@ -159,7 +159,10 @@ span.
 
 ### Low-level API
 
-When using Swift NIO `EventLoopFuture`s or similar patterns, we need to control the spans lifetime manually. This can be
+When using Swift NIO `EventLoopFuture`s or similar patterns, we need to control the spans lifetime manually. 
+The service context will also need to be propagated manually by passing it to the context parameter of startSpan, 
+because event loop futures cannot automatically propagate task local values.
+This can be
 achieved using the lower-level `startSpan(operationName:context:)` API:
 
 ```swift
