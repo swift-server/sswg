@@ -92,7 +92,7 @@ func performOperation() -> String {
 
 ### Customizing the span
 
-A span can be further customized using `withSpan(operationName:context:body:)` as well:
+A span can be further customized using `withSpan(_:context:ofKind:function:file:line:operation:)` as well. In the example below we're adding a custom attribute (`"http.method"`) to the span, so when viewing it in a trace visualization backend we can have more detailed information about what kind of request this was:
 
 ```swift
 func handleRequest(_ request: Request) -> Response {
