@@ -2,7 +2,7 @@
 
 * Proposal: [SSWG-NNNN](NNNN-swift-openapi-generator.md)
 * Authors: [Honza Dvorsky](https://github.com/czechboy0)
-* Review Manager: TBD
+* Review Manager: [Joannis Orlandos](https://github.com/joannis)
 * Status: **Implemented**
 * Implementation: [apple/swift-openapi-generator](https://github.com/apple/swift-openapi-generator)
 * Forum Threads: [Pitch](https://forums.swift.org/t/pitch-sswg-incubation-swift-openapi-generator/66584), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
