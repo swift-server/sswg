@@ -227,7 +227,7 @@ public struct ClientConfiguration: Sendable {
 
 `DefaultDiscordClient` takes help from a `HTTPRateLimiter` actor to handle rate-limits.
 `HTTPRateLimiter` keeps track of bucket-infos that are available in request headers. Before each request there is a call to `HTTPRateLimiter` that asks "can I do a request now?" and the rate-limiter, considering Discord docs' notes about how exactly Discord rate-limits work, decides to allow a request or not.   
-For example if a bucket is exhausted, the `HTTPRateLimiter` will have no choice but to reject the request, Right?   
+For example if a bucket is exhausted, the `HTTPRateLimiter` will have no choice but to reject the request, right?   
 That's not exactly what happens in DiscordBM. If there is a request that is disallowed by the bucket info, `HTTPRateLimiter` instead tries to return the time amount the `DiscordClient` needs to wait before making the request. Then `DiscordClient` takes a look at the `retryPolicy`, and if the `retryPolicy` specifies that requests failed with the `429 Too Many Requests` header can be retried based on headers, `DiscordClient` will just wait the time, and make the request after! This is best of the both worlds:
 
 - Even if you make a lot of requests in a loop, `DiscordClient` not only won't fail, but also won't even let users notice anything. To users it will look like as if they don't even have a rate limit to worry about!
