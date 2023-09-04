@@ -14,7 +14,8 @@ ServiceContext is a minimal (zero-dependency) context propagation container, int
 
 It is modeled after the concepts explained in W3C Baggage and in the spirit of Tracing Plane's "Baggage Context" type, although by itself, it does not define a specific serialization format.
 
-See https://github.com/apple/swift-distributed-tracing for actual instrument types and implementations, which can be used to deploy various cross-cutting instruments, all reusing the same service context type. More information can be found in the SSWG meeting notes.
+See https://github.com/apple/swift-distributed-tracing for actual instrument types and implementations, which can be used to deploy various cross-cutting instruments, all reusing the same service context type. 
+Refer to distributed tracing [documentation](https://swiftpackageindex.com/apple/swift-distributed-tracing/main/documentation/tracing) to learn more about how it is used in practice.
 
 | | |
 |--|--|
@@ -57,12 +58,25 @@ var context = ServiceContext.current ?? ServiceContext.topLevel
 Once obtained, one can set values in by using defined keys, like this:
 
 ```swift
+/// Keys should be defined private and only exposed though accessors, as seen below.
 private enum FirstTestKey: ServiceContextKey {
   typealias Value = Int
 }
 
+/// Define convenience accessors, in order to keep the key type private.
+extension ServiceContext {
+    public var firstTest: String? {
+        set {
+            self[FirstTestKey.self] = newValue
+        }
+        get {
+            self[FirstTestKey.self]
+        }
+    }
+}
+
 var context = ServiceContext.topLevel
-context[FirstTestKey.self] = 42
+context.firstTest = 42
 ```
 
 Keys declared as types conforming to `ServiceContextKey` allow for future extension where we might want to configure specific keys using additional behavior, like for example defining the `static let nameOverride` of a key. It is also important that a Key type may be private to whomever declares it, allowing only such library to set these values. 
@@ -70,54 +84,57 @@ Keys declared as types conforming to `ServiceContextKey` allow for future extens
 Service context is used primarily as a task-local value read and modified like this:
 
 ```swift
-func exampleFunction() async -> Int {
+func exampleFunction() async -> String {
   guard let context = ServiceContext.current {
-    return 0
+    return "no-service-context"
   }
-  guard let value = context[FirstTestKey.self] {
-    return 0
+  guard let value = context.firstTest {
+    return "no test value"
   }
-  print("test = \(value)") // test = 42
+  print("test value = \(value)") // test value = test-value
   return value
 }
 
 // ----------------------------------------
 
 var context = ServiceContext.topLevel
-context[FirstTestKey.self] = 42
+context.firstTest = "test-value"
 
-let c = ServiceContext.withValue(context) {
+let ok = ServiceContext.withValue(context) {
     await exampleFunction()
+    assert(ServiceContext.current?.firstTest == Optional("test-value"))
+    return "ok" // withValue can return values
 }
-assert(c == 42)
+assert(ServiceContext.current?.firstTest == Optional.none) // value is not set outside withValue block
+assert(c == "ok")
 ```
 
 Swift's [task local values](https://developer.apple.com/documentation/swift/tasklocal) are used to automatically propagate the context value to any child tasks that may be created from this code, such that context is automatically propagated through to them, e.g. like this:
 
 ```swift
-func testMeMore() {
+func testMeMore() -> String {
   guard let context = ServiceContext.current {
-    return 0
+    return "no-service-context"
   }
-  guard let value = context[FirstTestKey.self] {
-    return 0
+  guard let value = context.firstTest {
+    return "no test value"
   }
   return value
 }
 
-func test() async -> Int {
+func test() async -> String {
   async let v = testMeMore() // read context from child task
   return await v
 }
 
 var context = ServiceContext.topLevel
-context[FirstTestKey.self] = 42
+context.firstTest = "test-value"
 ServiceContext.withValue(context) {
-    assert(test() == 42)
+    assert(test() == "test-value")
 }
 ```
 
-For keys which are expected to be public API, used ty developers, it is recommended to follow this pattern to declare an accessor on the context, rather than exposing the Key type directly:
+It is recommended to follow this pattern to declare an accessor on the context, rather than exposing the `Key` type directly. This also allows to add validation and change the Key type used to persist the value in the future, in addition to being also a nicer user-experience for developers.
 
 ```swift
 extension ServiceContext { 
