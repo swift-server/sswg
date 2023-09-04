@@ -1,6 +1,6 @@
 # DiscordBM
 
-- Proposal: [SSWG-NNNN](NNNN-discordbm.md)
+- Proposal: [SSWG-0023](0023-discordbm.md)
 - Authors: [Mahdi Bahrami](https://github.com/MahdiBM)
 - Review Manager: [Joannis Orlandos](https://github.com/joannis)
 - Status: Implemented and Released
