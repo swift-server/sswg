@@ -176,7 +176,7 @@ func handleRequest(_ request: Request, context: ServiceContext) -> EventLoopFutu
         case .success(let response):
             span.attributes["http.status_code"] = response.status.code
         case .failure(let error):
-            // If the response has failed, mark this span as failed by recording an error
+            // If the response has failed, add the error to the span by recording it.
             span.recordError(error)
         }
 
