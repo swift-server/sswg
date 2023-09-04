@@ -166,17 +166,21 @@ This can be
 achieved using the lower-level `startSpan(operationName:context:)` API:
 
 ```swift
-func handleRequest(_ request: Request) -> EventLoopFuture<Response> {
-    let tracer = InstrumentationSystem.tracer
-    let span = tracer.startSpan(request.endpointPath, ofKind: .server)
+func handleRequest(_ request: Request, context: ServiceContext) -> EventLoopFuture<Response> {
+    // Start the span manually with startSpan passing in the `context` explicitly 
+    let span = startSpan(request.endpointPath, context: context, ofKind: .server)
+
+    // Chain an "always" onto the response future since we must ALWAYS end() a span
     return response(to: request).always { result in
         switch result {
         case .success(let response):
             span.attributes["http.status_code"] = response.status.code
         case .failure(let error):
+            // If the response has failed, mark this span as failed by recording an error
             span.recordError(error)
         }
 
+        // ALWAYS end a span, as otherwise its resources held by the tracer for this span may leak
         span.end()
     }
 }
