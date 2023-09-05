@@ -1,12 +1,12 @@
 # Swift Service Context
 
-* Proposal: [SSWG-NNNN](NNNN-service-context.md)
+* Proposal: [SSWG-0024](0024-service-context.md)
 * Authors: [Konrad 'ktoso' Malawski](https://github.com/ktoso) / [Moritz Lang](https://github.com/slashmo)
-* Review Manager: TBD
+* Review Manager: Adam Fowler
 * Status: **Implemented**
 * Implementation: 
   * [swift-service-context](https://github.com/apple/swift-service-context)
-* Forum Threads: TBD
+* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-swift-service-context/66687)
 
 ## Package Description
 
