@@ -1,8 +1,8 @@
 # Swift Distributed Tracing
 
-* Proposal: [SSWG-NNNN](https://github.com/swift-server/sswg/blob/main/proposals/NNNN-tracing-api.md)
+* Proposal: [SSWG-0025](0025-swift-distributed-tracing.md)
 * Authors: [Moritz Lang](https://github.com/slashmo), [Konrad 'ktoso' Malawski](https://github.com/ktoso)
-* Review Manager: TBD
+* Review Manager: Adam Fowler
 * Status: **Implemented**
 * Implementation: [apple/swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing)
 * Forum Threads:
