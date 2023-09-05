@@ -114,7 +114,7 @@ struct SQLiteColumn {
 
 struct SQLiteRow {
     var columns: [SQLiteColumn]
-	func column(_ name: String) -> SQLiteData?
+    func column(_ name: String) -> SQLiteData?
 }
 ```
 
@@ -135,7 +135,6 @@ enum SQLiteError: Error {
         case permission // SQLITE_PERM
         // etc.
     }
-}
 }
 ```
 
