@@ -292,7 +292,7 @@ Minimum Requirements:
   * Apache 2, MIT, or BSD (Apache 2 recommended): **Satisfied: Apache 2**
 * Conventions and Style
   * Adopt [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-  * Follow [SSWG Technical Best Practices](#technical-best-practices) when applicable.
+  * Follow [SSWG Technical Best Practices](https://www.swift.org/sswg/incubation-process.html#technical-best-practices) when applicable.
   * Prefer to adopt code formatting tools and integrate them into the CI: **Satisfied**
 
 Incubating Requirements:
