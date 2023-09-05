@@ -6,7 +6,9 @@
 * Status: **Implemented**
 * Implementation: 
   * [swift-service-context](https://github.com/apple/swift-service-context)
-* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-swift-service-context/66687)
+* Forum Threads: 
+  * [Pitch](https://forums.swift.org/t/pitch-swift-service-context/66687)
+  * [Proposal](https://forums.swift.org/t/sswg-0024-service-context/67121)
 
 ## Package Description
 

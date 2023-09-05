@@ -5,8 +5,9 @@
 * Review Manager: Adam Fowler
 * Status: **Implemented**
 * Implementation: [apple/swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing)
-* Forum Threads:
+* Forum Threads: 
   * [Pitch](https://forums.swift.org/t/pitch-swift-distributed-tracing/66679)
+  * [Proposal](https://forums.swift.org/t/sswg-0025-swift-distributed-tracing/67122)
 
 ## Package Description
 
