@@ -7,12 +7,6 @@
 * Implementation: [apple/swift-openapi-generator](https://github.com/apple/swift-openapi-generator)
 * Forum Threads: [Pitch](https://forums.swift.org/t/pitch-sswg-incubation-swift-openapi-generator/66584), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
 
-*During the review process, add the following fields as needed:*
-
-* Decision Notes: [Rationale](https://forums.swift.org/), [Additional Commentary](https://forums.swift.org/)
-* Previous Revision(s): [1](https://github.com/swift-server/sswg/blob/...commit-ID.../proposals/NNNN-filename.md)
-* Previous Proposal(s): [SSWG-XXXX](XXXX-filename.md)
-
 ## Package Description
 
 [OpenAPI](https://openapis.org/) is an open specification for documenting HTTP APIs.
