@@ -1,6 +1,6 @@
 # Swift OpenAPI Generator
 
-* Proposal: [SSWG-NNNN](NNNN-swift-openapi-generator.md)
+* Proposal: [SSWG-0026](0026-swift-openapi-generator.md)
 * Authors: [Honza Dvorsky](https://github.com/czechboy0)
 * Review Manager: [Joannis Orlandos](https://github.com/joannis)
 * Status: **Implemented**
