@@ -18,7 +18,7 @@ using tools such as tracers.
 | -- | -- |
 | **Package Name** | `swift-distributed-tracing` |
 | **Module Names** | `Tracing`, `Instrumentation` |
-| **Proposed Maturity Level** | [Incubating](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
+| **Proposed Maturity Level** | [Incubating](https://www.swift.org/sswg/incubation-process.html#process-diagram) |
 | **License** | [Apache 2.0](https://github.com/apple/swift-distributed-tracing/blob/main/LICENSE.txt) |
 | **Dependencies** | [swift-service-context](https://github.com/apple/swift-service-context) |
 
@@ -197,7 +197,7 @@ transport-specific injectors and extractors to pass the current
 
 ```swift
 struct HTTPHeadersInjector: Injector {
-    func inject(_ value: String, forKey name: String, into headers: HTTPHeaders) {
+    func inject(_ value: String, forKey name: String, into headers: inout HTTPHeaders) {
         headers.add(name: name, value: value)
     }
 }
@@ -219,7 +219,7 @@ func execute(_ request: HTTPRequest) async throws -> HTTPResponse {
         var request = request
         InstrumentationSystem.instrument.inject(
             span.context,
-            into: request.headers,
+            into: &request.headers,
             using: HTTPHeadersInjector()
         )
         return try await execute(request)
@@ -232,7 +232,7 @@ func handleRequest(_ request: Request) async throws -> Response {
     var context = ServiceContext.topLevel
     InstrumentationSystem.instrument.extract(
         request.headers,
-        into: context,
+        into: &context,
         using: HTTPHeadersExtractor()
     )
     try await withSpan(request.endpointPath, context: context) { span in
@@ -301,7 +301,7 @@ Incubating Requirements:
 * Document that it is being used successfully in production by at least two independent end users which, in the SSWG judgment, are of adequate quality and scope.
   * We are aware of 3+ production use-cases in large deployments, using [swift-otel](https://github.com/slashmo/swift-otel) as a backend.
 * Must have 2+ maintainers and/or committers. In this context, a committer is an individual who was given write access to the codebase and actively writes code to add new features and fix any bugs and security issues. A maintainer is an individual who has write access to the codebase and actively reviews and manages contributions from the rest of the project's community. In all cases, code should be reviewed by at least one other individual before being released.
-  * **Actively maintained by Moritz ([@slashmo](https://github.com/slashmo) and Konrad ([@ktoso](https://github.com/ktoso))**
+  * **Actively maintained by Moritz ([@slashmo](https://github.com/slashmo)) and Konrad ([@ktoso](https://github.com/ktoso))**
 * Packages must have more than one person with admin access. This is to avoid losing access to any packages. For packages hosted on GitHub and GitLab, the packages must live in an organization with at least two administrators. If you don't want to create an organization for the package, you can host them in the [Swift Server Community](https://github.com/swift-server-community) organization.
   * **SSWG members Franz, Konrad have admin rights, and the project is under the Apple organization which has multiple admins.**
 * Demonstrate an ongoing flow of commits and merged contributions, or issues addressed in timely manner, or similar indication of activity.
