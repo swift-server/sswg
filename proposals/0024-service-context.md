@@ -23,7 +23,7 @@ Refer to distributed tracing [documentation](https://swiftpackageindex.com/apple
 |--|--|
 | **Package Name** | `swift-service-context` |
 | **Module Name** | `ServiceContextModule` |
-| **Proposed Maturity Level** | [Incubating](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
+| **Proposed Maturity Level** | [Incubating](https://www.swift.org/sswg/incubation-process.html#process-diagram) |
 | **License** | [Apache v2](https://github.com/apple/swift-distributed-tracing/blob/main/LICENSE.txt) |
 | **Dependencies** | - |
 
@@ -185,7 +185,7 @@ Incubating Requirements:
 * Document that it is being used successfully in production by at least two independent end users which, in the SSWG judgment, are of adequate quality and scope.
   * **We are aware of 3+ production use-cases in large deployments using [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing).**
 * Must have 2+ maintainers and/or committers. 
-  * **Actively maintained by Moritz ([@slashmo](https://github.com/slashmo) and Konrad ([@ktoso](https://github.com/ktoso))**
+  * **Actively maintained by Moritz ([@slashmo](https://github.com/slashmo)) and Konrad ([@ktoso](https://github.com/ktoso))**
 * Packages must have more than one person with admin access. This is to avoid losing access to any packages. For packages hosted on GitHub and GitLab, the packages must live in an organization with at least two administrators. If you don't want to create an organization for the package, you can host them in the [Swift Server Community](https://github.com/swift-server-community) organization.
   * **SSWG members Franz, Konrad have admin rights, and the project is under the Apple organization which has multiple admins.**
 * Demonstrate an ongoing flow of commits and merged contributions, or issues addressed in timely manner, or similar indication of activity.
