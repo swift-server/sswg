@@ -3,7 +3,7 @@
 * Proposal: [SSWG-NNNN](https://github.com/swift-server/sswg/tree/gwynne-sqlite-nio-proposal/proposals/NNNN-sqlite-nio.md)
 * Author(s): [Gwynne Raskind](https://github.com/gwynne)
 * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
-* Status: **Implemented**
+* Status: **Accepted (Sandbox)**
 * Implementation: [vapor/sqlite-nio](https://github.com/vapor/sqlite-nio)
 * Forum Threads: [Pitch](https://forums.swift.org/t/sqlitenio/46664/25), Discussion (Pending)
 
