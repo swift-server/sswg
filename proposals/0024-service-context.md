@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0024](0024-service-context.md)
 * Authors: [Konrad 'ktoso' Malawski](https://github.com/ktoso) / [Moritz Lang](https://github.com/slashmo)
 * Review Manager: Adam Fowler
-* Status: **Implemented**
+* Status: **Accepted (Incubating)**
 * Implementation: 
   * [swift-service-context](https://github.com/apple/swift-service-context)
 * Forum Threads: 
