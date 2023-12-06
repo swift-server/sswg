@@ -140,7 +140,6 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
 * Ecosystem
   * Uses SwiftPM
   * Integrated with critical SSWG ecosystem building blocks, e.g., Logging and Metrics APIs, SwiftNIO for IO
-  * Note that you are **not** required to only depend on packages in the incubation process but you should only include dependencies where they are necessary. Package authors are responsible for ensuring the security of dependencies and must be able to fix any issues if dependency authors are unresponsive to security issues.
 * Longevity
   * Must be from a team that has more than one public repository (or similar indication of experience)
   * SSWG should have access / authorization to graduated repositories in case of emergency
@@ -155,11 +154,15 @@ Changes to the Swift Server Ecosystem index page will be announced by the SSWG u
   * Adopt [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
   * Follow [SSWG Technical Best Practices](#technical-best-practices) when applicable.
   * Prefer to adopt code formatting tools and integrate them into the CI
+* Dependencies
+  * You are **not** required to only depend on packages in the incubation process
+  * Dependencies should only be included where necessary
+  * Package authors are responsible for ensuring the security of dependencies and must be able to fix any issues if dependency authors are unresponsive to security issues.
 
 ## Graduation Requirements
 
 * [Minimal Requirements](#minimal-requirements)
-* Have stable API (no pending/planned breaking API changes before submission), with at least one published major release (e.g. 1.0.0). Breaking changes are allowed following semantic versioning rules, but major versions should not be released regularly to aid adoption.
+* Have stable API (no pending/planned breaking API changes before graduation), with at least one published major release (e.g. 1.0.0). Breaking changes are allowed following semantic versioning rules, but major versions should not be released regularly to aid adoption.
 * Support new GA versions of Swift within 30d
 * CI setup for two latest Swift.org recommended versions of Swift
 * CI setup for at least one of Swift.org recommended Linux distributions
