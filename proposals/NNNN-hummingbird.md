@@ -155,7 +155,7 @@ Currently the Hummingbird library makes no use of Foundation to further reduce t
 
 I am currently considering whether to allow the core Hummingbird module to include `FoundationEssentials`. Depending on what is eventually included in `FoundationEssentials` I might be able to merge the whole of `HummingbirdFoundation` back into `Hummingbird`. 
 
-### TLS/HTTP2/WebSockets
+### TLS/HTTP2
 
 The initializer for `HBApplication` includes a few parameters not included in the example at the top. One of these is a `server` parameter which indicates what kind of server you want to run. This defaults to `.http1()`. But servers with TLS, HTTP2 and WebSocket support are also available.
 
@@ -180,6 +180,8 @@ let app = HBApplication(
     server: .tls(.http1(), tlsConfiguration: myTLSConfig)
 )
 ```
+
+### WebSockets
 
 WebSockets have their own repository [hummingbird-websockets](https://github.com/hummingbird-project/hummingbird-websockets) and are added in a similar manner to above except you need to provide a function that returns whether the websocket upgrade should happen and if so the handler function or reading and writing text and data to the websocket.
 
