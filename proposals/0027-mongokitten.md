@@ -1,8 +1,8 @@
 # MongoKitten
 
-* Proposal: [SSWG-NNNN](NNNN-mongokitten.md)
+* Proposal: [SSWG-0027](0027-mongokitten.md)
 * Authors: [Joannis Orlandos](https://github.com/joannis)
-* Review Manager: TBD
+* Review Manager: [Sven A. Schmidt](https://github.com/finestructure)
 * Status: **Implemented**
 * Implementation: [MongoKitten](https://github.com/orlandos-nl/MongoKitten)
 * Forum Threads: None
