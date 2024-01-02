@@ -14,7 +14,7 @@ A MongoDB client library for Swift that embraces Codable and Swift's modern conc
 |--|--|
 | **Package Name** | `MongoKitten` |
 | **Module Name** | `MongoKitten` |
-| **Proposed Maturity Level** | [Sandbox or Incubating](https://github.com/swift-server/sswg/blob/main/process/incubation.png) |
+| **Proposed Maturity Level** | [Sandbox or Incubating](https://www.swift.org/sswg/incubation-process.html#process-diagram) |
 | **License** | [MIT](https://github.com/orlandos-nl/MongoKitten/blob/main/LICENSE.md) |
 | **Dependencies** | [BSON 8.x](https://github.com/orlandos-nl/BSON), [swift-nio 2.43+](https://github.com/apple/swift-nio), [swift-log 1.0](https://github.com/apple/swift-log), [swift-metrics 1.0 or 2.0](https://github.com/apple/swift-metrics), [swift-atomics 1.0](https://github.com/apple/swift-atomics), [DNSClient 2.2](https://github.com/orlandos-nl/DNSClient), [swift-nio-ssl 2.x](https://github.com/apple/swift-nio-ssl) |
 
