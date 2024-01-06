@@ -29,7 +29,7 @@ HTTP libraries are a core component of any server-side Swift application. Vapor 
 
 ## Proposed solution
 
-We propose that the existing MultipartKit implementation be promoted to an officially supported package as is.
+We propose that the existing Vapor library be promoted to an officially supported package as is.
 
 ## Detailed design
 
