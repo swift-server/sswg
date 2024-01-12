@@ -1,4 +1,4 @@
-# Solution name
+# Hummingbird
 
 * Proposal: [SSWG-NNNN](NNNN-hummingbird.md)
 * Authors: [Adam Fowler](https://github.com/adam-fowler), [Joannis Orlandos](https://github.com/Joannis)
@@ -23,7 +23,7 @@ Lightweight, modular, modern, extensible HTTP server framework written in Swift.
 | **Module Name** | `Hummingbird` |
 | **Proposed Maturity Level** | [Sandbox](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
 | **License** | [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/) |
-| **Dependencies** | [swift-atomics](https://github.com/apple/swift-atomics), [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), [swift-log](https://github.com/apple/swift-log), [swift-metrics](https://github.com/apple/swift-metrics), [swift-nio](https://github.com/apple/swift-nio), [swift-nio-http2](https://github.com/apple/swift-nio-http2), [swift-nio-extras](https://github.com/apple/swift-nio-extras), [swift-nio-ssl](https://github.com/apple/swift-nio-ssl), [swift-nio-transport-services](https://github.com/apple/swift-nio-transport-services), [swift-service-lifecycle](https://github.com/swift-server/swift-service-lifecycle) |
+| **Dependencies** | [swift-async-algorithms](https://github.com/apple/swift-async-algorithms), [swift-atomics](https://github.com/apple/swift-atomics), [swift-distributed-tracing](https://github.com/apple/swift-distributed-tracing), [swift-http-types](https://github.com/apple/swift-http-types), [swift-log](https://github.com/apple/swift-log), [swift-metrics](https://github.com/apple/swift-metrics), [swift-nio](https://github.com/apple/swift-nio), [swift-nio-http2](https://github.com/apple/swift-nio-http2), [swift-nio-extras](https://github.com/apple/swift-nio-extras), [swift-nio-ssl](https://github.com/apple/swift-nio-ssl), [swift-nio-transport-services](https://github.com/apple/swift-nio-transport-services), [swift-service-lifecycle](https://github.com/swift-server/swift-service-lifecycle) |
 
 ## Introduction
 
@@ -41,7 +41,7 @@ Hummingbird is designed in a modular format. It provides a server framework to b
 
 ## Detailed design
 
-Hummingbird v2.0 is curently being developed and this is what I am proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published.
+Hummingbird v2.0 is curently being developed and this is what I am proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It also uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published.
 
 The Hummingbird web application framework is broken into three main components. The router `HBRouter`, the server `HBServer` and the application framework `HBApplication` which provides the glue between the server and the router. A simple Hummingbird application could be setup as follows
 
@@ -64,11 +64,11 @@ try await application.runService()
 
 ### Service Lifecycle
 
-`HBApplication` conforms to the Swift Service Lifecycle protocol `Service` so can be included in the list of services controlled by a `ServiceGroup`. In actual fact `HBApplication.runService` is a shortcut to setting up a `ServiceGroup` and running it.
+`HBApplication` conforms to the Swift Service Lifecycle protocol `Service` so can be included in the list of services controlled by a `ServiceGroup`. In actual fact `HBApplication.runService` is a shortcut to setting up a `ServiceGroup` with just `Hummingbird` and running it.
 
 ### Router
 
-The router has functions to setup routes using all the standard HTTP verbs
+The router has functions to setup routes using all the common HTTP verbs
 
 ```swift
 router.put("todo") { _,_ in }
@@ -86,8 +86,11 @@ router.post("upload") { request,_ -> HTTPResponseStatus in
     return .ok
 }
 ```
+If you need your request body to be collated into one ByteBuffer you can use `request.body.collect(upTo:)`.
 
-Any type that conforms to `HBResponseGenerator` can be returned from a route. These include `String`, `ByteBuffer` and `HTTPResponse.Status`. Types that conform to `HBResponseEncodable` automatically conform to `HBResponseGenerator` and will use the Codable to generate a response.
+### Request decoding, response encoding
+
+Any type that conforms to `HBResponseGenerator` can be returned from a route. These include `String`, `ByteBuffer` and `HTTPResponse.Status`. Types that conform to `HBResponseEncodable` automatically conform to `HBResponseGenerator` and will use Codable to generate a response.
 
 ```swift
 struct User: HBResponseEncodable {
@@ -97,6 +100,19 @@ router.get("user/:id") { request, context in
     let id = try context.parameters.require("id", as: Int.self)
     let user = try await getUser(id)
     return User(name: user.name)
+}
+```
+
+Similarly any type that conforms to `Decodable` can be extracted from the request body. 
+
+```swift
+struct SignUpRequest: Decodable {
+    let name: String
+}
+router.put("user") { request, context -> HTTPResponse.Status in
+    let user = try await request.decode(as: SignUpRequest.self, using: context)
+    try await createUser(user)
+    return .created
 }
 ```
 
@@ -181,30 +197,9 @@ let app = HBApplication(
 )
 ```
 
-### WebSockets
+### Additional support
 
-WebSockets have their own repository [hummingbird-websockets](https://github.com/hummingbird-project/hummingbird-websockets) and are added in a similar manner to above except you need to provide a function that returns whether the websocket upgrade should happen and if so the handler function or reading and writing text and data to the websocket.
-
-```swift
-import HummingbirdWebSocket
-
-let app = HBApplication(
-    router: router
-    server: .httpAndWebSocket { _,_ in
-        let handler: WebSocketHandler = { inbound, outbound in
-            for try await packet in inbound {
-                // if we receive disconnect text then disconnect by jumping out of loop
-                if case .text("disconnect") = packet {
-                    break
-                }
-                // echo inbound back to outboud
-                try await outbound.write(packet)
-            }
-        }
-        return .upgrade(HTTPHeaders(), handler)
-    }
-)
-```
+Hummingbird also comes along with a series of other packages. Providing an authentication middleware, integration with [RediStack](https://github.com/swift-server/RediStack), WebSocket support, integration with Vapor's [FluentKit](https://github.com/Vapor/fluent-kit), Mustache templating and a AWS Lambda framework.
 
 ## Maturity Justification
 
