@@ -41,7 +41,7 @@ Hummingbird is designed in a modular format. It provides a server framework to b
 
 ## Detailed design
 
-Hummingbird v2.0 is curently being developed and this is what I am proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It also uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published.
+Hummingbird v2.0 is currently under development and this is what I am proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It also uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published.
 
 The Hummingbird web application framework is broken into three main components. The router `HBRouter`, the server `HBServer` and the application framework `HBApplication` which provides the glue between the server and the router. A simple Hummingbird application could be setup as follows
 
@@ -143,7 +143,7 @@ router.group("todo")
 
 ### Request context
 
-You will notice in all the examples above the route handler includes a second parameter. This provides contextual information that is passed along with the request type, for example a Logger, ByteBufferAllocator, Codable Encoder and Decoder instances. The router defaults to using `HBBasicRequestContext` for its context type but you can provide your own context type as long as it conforms to the `HBRequestContext` protocol.
+The route handler and middleware functions all include a second parameter. This provides contextual information that is passed along with the request type. This is a generic type and the user can set it to be any type they want as long as if conforms to the protocol `HBRequestContext`. The router defaults to using `HBBasicRequestContext` which is provided out of the box.
 
 If you create your own context type you can add additional information to it, or change its default values. For example the Hummingbird authentication framework requires that you use a custom request context that includes login information.
 
@@ -157,12 +157,18 @@ public struct MyRequestContext: HBRequestContext {
         self.string = ""
     }
 
-    /// parameter required by `HBRequestContext`
+    /// member variable required by `HBRequestContext`
     public var coreContext: HBCoreRequestContext
 
     /// my additional data
     public var string: String
 }
+```
+
+To use this context you need to provide the type in the router initializer.
+
+```swift
+let router = HBRouter(context: MyRequestContext.self)
 ```
 
 ### HummingbirdFoundation
@@ -173,7 +179,7 @@ I am currently considering whether to allow the core Hummingbird module to inclu
 
 ### TLS/HTTP2
 
-The initializer for `HBApplication` includes a few parameters not included in the example at the top. One of these is a `server` parameter which indicates what kind of server you want to run. This defaults to `.http1()`. But servers with TLS, HTTP2 and WebSocket support are also available.
+When initializing an `HBApplication` you can include a parameter to indicate the type of server you want. This defaults to `.http1()`. But servers with TLS, HTTP2 support are available and WebSocket support will be available soon.
 
 These are all added in similar ways. Import library and include `server` parameter in `HBApplication.init` 
 
@@ -188,6 +194,7 @@ app.runService()
 ```
 
 The TLS server type can be used to wrap any other server type.
+
 ```swift
 import HummingbirdTLS
 
@@ -199,7 +206,7 @@ let app = HBApplication(
 
 ### Additional support
 
-Hummingbird also comes along with a series of other packages. Providing an authentication middleware, integration with [RediStack](https://github.com/swift-server/RediStack), WebSocket support, integration with Vapor's [FluentKit](https://github.com/Vapor/fluent-kit), Mustache templating and a AWS Lambda framework.
+Hummingbird also comes along with a series of other packages. Providing an authentication middleware, integration with [RediStack](https://github.com/swift-server/RediStack), WebSocket support (in development), integration with Vapor's [FluentKit](https://github.com/Vapor/fluent-kit), Mustache templating and a AWS Lambda framework.
 
 ## Maturity Justification
 
