@@ -1,6 +1,6 @@
 # Solution name
 
-* Proposal: [SSWG-NNNN](NNNN-oracle-nio.md)
+* Proposal: [SSWG-0028](0028-oracle-nio.md)
 * Authors: [Timo Zacherl](https://github.com/lovetodream)
 * Review Manager: [Sébastien Stormacq](https://github.com/sebsto)
 * Status: **Awaiting implementation**
