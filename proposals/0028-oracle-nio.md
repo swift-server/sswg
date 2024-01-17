@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0028](0028-oracle-nio.md)
 * Authors: [Timo Zacherl](https://github.com/lovetodream)
 * Review Manager: [Sébastien Stormacq](https://github.com/sebsto)
-* Status: **Awaiting implementation**
+* Status: **implementated**
 * Implementation: [oracle-nio](https://github.com/lovetodream/oracle-nio)
 * Forum Threads: [Pitch](https://forums.swift.org/t/pitch-oraclenio-oracle-db-driver-built-on-swiftnio/69088)
 
