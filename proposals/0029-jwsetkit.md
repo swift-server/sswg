@@ -1,8 +1,8 @@
 # JWSETKit
 
- * Proposal: [SSWG-NNNN](NNNN-jwsetkit.md)
+ * Proposal: [SSWG-0029](0029-jwsetkit.md)
  * Authors: [Amir-Abbas Mousavian](https://github.com/amosavian)
- * Review Manager: TBD
+ * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
  * Status: **Implemented**
  * Implementation: [amosavian/JWSETKit](https://github.com/amosavian/JWSETKit)
  * Forum Threads: [Pitch](https://forums.swift.org/t/pitch-jwt-jws-jwt-support-kit/68113), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
@@ -27,14 +27,6 @@ We propose that the [JWSETKit](https://github.com/amosavian/JWSETKit) library be
 
 Security is a paramount concern in server-side development. The JWSETKit library provides a robust and Swift-native solution for handling JWE, JWS, and JWT. These are widely used standards for securing data and managing user authentication and authorization. By incubating JWSETKit, the Swift Server Workgroup can help to ensure that server-side Swift developers have access to high-quality, community-vetted tools for secure data handling and user authentication.
 
-## Proposed Solution
-
-We propose that the Swift Server Workgroup accept JWSETKit into the incubation process. During this process, the library will undergo a thorough review and vetting by the workgroup. This will include:
-
-- Reviewing the library's API and implementation for compliance with Swift Server Workgroup guidelines.
-- Evaluating the library's performance and robustness through comprehensive testing.
-- Assessing the library's documentation and ease of use.
-
 ## Detailed Design
 
 JWSETKit library provides following objectives according to RFCs:
@@ -52,13 +44,13 @@ which are supported by this library:
 
 All types conform to `JSONWebAlgorithm` and can be type-erased using `AnyJSONWebAlgorithm`.
 
-New algorithms can be defined and registered using `register` method of each type by declaring public and private key classes and associated data.
+New algorithms can be defined and registered using a `register` method of each type by declaring public and private key classes and associated data.
 
 ### JWK
 
 All key types including CommonCrypto's `SecKey` and `SecCertificate` and
 CryptoKit's types including `P256`, `P384`, `P521` and `SymmetricKey` can be
-encoded to JWK using JSONEncoder or be deserialized from JWK using JSONDecoder.
+encoded to JWK using `JSONEncoder` or be deserialized from JWK using `JSONDecoder`.
 
 This library also provides custom key types:
 1. To support other key types such as `AES-CBC-HMAC`, `AES-GCM` and `HMAC`.
