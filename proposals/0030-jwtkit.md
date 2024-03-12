@@ -14,7 +14,7 @@ A JWT library that allows signing and verifying tokens with all modern algorithm
 | **Package Name**            | `jwt-kit`                                                    |
 | --------------------------- | ------------------------------------------------------------ |
 | **Module Name**             | `JWTKit`                                                     |
-| **Proposed Maturity Level** | TBD |
+| **Proposed Maturity Level** | Incubating |
 | **License**                 | [MIT](https://choosealicense.com/licenses/mit/)                            |
 | **Dependencies**            | [swift-crypto 3.0.0](https://github.com/apple/swift-crypto.git)<br />[swift-certificates 1.2.0](https://github.com/apple/swift-certificates.git)<br />[BigInt 5.3.0](https://github.com/attaswift/BigInt.git) |
 
