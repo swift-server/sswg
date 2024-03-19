@@ -2,10 +2,11 @@
 
 * Proposal: [SSWG-NNNN](NNNN-hummingbird.md)
 * Authors: [Adam Fowler](https://github.com/adam-fowler), [Joannis Orlandos](https://github.com/Joannis)
-* Review Manager: TBD
+* Review Manager: [Tim Condon](https://github.com/0xTim)
 * Status: **Implemented**
 * Implementation: [Hummingbird](https://github.com/hummingbird-project/hummingbird)
 * Forum Threads:
+  * [Pitch](https://forums.swift.org/t/pitch-hummingbird/70700)
 
 <!-- *During the review process, add the following fields as needed:*
 
@@ -37,25 +38,25 @@ Providing a solution that covers all of these cases is desirable. But when you b
 
 ## Proposed solution
 
-Hummingbird is designed in a modular format. It provides a server framework to build lightweight servers but can be extended to support as complex a server as you require. Don't want TLS, HTTP2, WebSockets don't include them. But they are available if you require them.
+Hummingbird is a lightweight, modular, flexible HTTP server framework. It provides a server framework to build lightweight servers but can be extended to support as complex a server as you require. Don't want TLS, HTTP2, WebSockets don't include them. But they are available if you require them.
 
 ## Detailed design
 
-Hummingbird v2.0 is currently under development and this is what I am proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It also uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published.
+Hummingbird v2.0 is currently under development and this is what we are proposing. Version 2.0 brings a complete Swift concurrency based solution based off SwiftNIO's `NIOAsyncChannel` bringing all the benefits of structured concurrency including task cancellation, task locals and local reasoning. It also uses the [new HTTP types](https://github.com/apple/swift-http-types) that Apple recently published and integrates with the recently released structured concurrency based version of [ServiceLifecycle](https://github.com/swift-server/swift-service-lifecycle).
 
-The Hummingbird web application framework is broken into three main components. The router `HBRouter`, the server `HBServer` and the application framework `HBApplication` which provides the glue between the server and the router. A simple Hummingbird application could be setup as follows
+The Hummingbird web application framework is broken into three main components. The router `Router`, the server `Server` and the application framework `Application` which provides the glue between the server and the router. A simple Hummingbird application involves setting up a router and building an application from that router. 
 
 ```swift
 import Hummingbird
 
 // construct router with one route that returns the string "Hello" in
 // its response
-let router = HBRouter()
+let router = Router()
 router.get{"hello"} { request, context in
     "Hello"
 }
 // construct application which 
-let application = HBApplication(
+let application = Application(
     router: router,
     configuration: .init(address: .hostname("127.0.0.1", port: 8080))
 )
@@ -64,22 +65,31 @@ try await application.runService()
 
 ### Service Lifecycle
 
-`HBApplication` conforms to the Swift Service Lifecycle protocol `Service` so can be included in the list of services controlled by a `ServiceGroup`. In actual fact `HBApplication.runService` is a shortcut to setting up a `ServiceGroup` with just `Hummingbird` and running it.
+`Application` conforms to the Swift Service Lifecycle protocol `Service` so can be included in the list of services controlled by a `ServiceGroup`. In actual fact `Application.runService` is a shortcut to setting up a `ServiceGroup` with just `Hummingbird` and running it.
 
 ### Router
 
-The router has functions to setup routes using all the common HTTP verbs
+The router has functions to setup routes using the most common HTTP verbs
 
 ```swift
 router.put("todo") { _,_ in }
-router.get("todo/:id") { _,_ in }
 router.post("login") { _,_ in }
+router.on("test", .connect) {_,_ in }
 ...
+```
+
+Parameters can be extracted from the URI path when matching routes. 
+
+```swift
+router.get("todo/{id}") { request, context in
+    let id = try context.parameters.require("id", as: Int.self)
+    return try await getTodo(id)
+}
 ```
 
 By default the request body is a stream of NIO `ByteBuffers`. 
 ```swift
-router.post("upload") { request,_ -> HTTPResponseStatus in 
+router.post("upload") { request,_ -> HTTPResponse.Status in 
     for try await buffer in request.body {
         processBuffer(buffer)
     }
@@ -90,13 +100,13 @@ If you need your request body to be collated into one ByteBuffer you can use `re
 
 ### Request decoding, response encoding
 
-Any type that conforms to `HBResponseGenerator` can be returned from a route. These include `String`, `ByteBuffer` and `HTTPResponse.Status`. Types that conform to `HBResponseEncodable` automatically conform to `HBResponseGenerator` and will use Codable to generate a response.
+Any type that conforms to `ResponseGenerator` can be returned from a route. These include `String`, `ByteBuffer` and `HTTPResponse.Status`. Types that conform to `ResponseEncodable` automatically conform to `ResponseGenerator` and will use Codable to generate a response.
 
 ```swift
-struct User: HBResponseEncodable {
+struct User: ResponseEncodable {
     let name: String
 }
-router.get("user/:id") { request, context in
+router.get("user/{id}") { request, context in
     let id = try context.parameters.require("id", as: Int.self)
     let user = try await getUser(id)
     return User(name: user.name)
@@ -119,13 +129,14 @@ router.put("user") { request, context -> HTTPResponse.Status in
 ### Middleware
 
 You can add middleware to the router that is run on all routes. The framework has a number of middleware already implemented 
-- `HBLogRequestMiddleware`: Logging of requests
-- `HBMetricsMiddleware`: Provide metrics for each request
-- `HBTracingMiddleware`: Create distributed tracing spans for each request. 
-- `HBCORSMiddleware`: Implementing Cross-Origin Resource Sharing (CORS) headers
+- `LogRequestMiddleware`: Logging of requests
+- `MetricsMiddleware`: Provide metrics for each request
+- `TracingMiddleware`: Create distributed tracing spans for each request. 
+- `FileMiddleware`: Serve static files
+- `CORSMiddleware`: Implementing Cross-Origin Resource Sharing (CORS) headers
 
 ```swift
-router.middlewares.add(HBLogRequestMiddleware(.debug))
+router.middlewares.add(LogRequestMiddleware(.debug))
 ```
 
 Middleware can also be applied to a group of routes instead of all routes
@@ -143,22 +154,22 @@ router.group("todo")
 
 ### Request context
 
-The route handler and middleware functions all include a second parameter. This provides contextual information that is passed along with the request type. This is a generic type and the user can set it to be any type they want as long as if conforms to the protocol `HBRequestContext`. The router defaults to using `HBBasicRequestContext` which is provided out of the box.
+The route handler and middleware functions all include a second parameter. This provides contextual information that is passed along with the request type. This is a generic type and the user can set it to be any type they want as long as if conforms to the protocol `RequestContext`. The router defaults to using `BasicRequestContext` which is provided out of the box.
 
 If you create your own context type you can add additional information to it, or change its default values. For example the Hummingbird authentication framework requires that you use a custom request context that includes login information.
 
 Below is a request context that includes an additional `string`` value which can be edited in a middleware and passed on to the eventual route handler.
 
 ```swift
-public struct MyRequestContext: HBRequestContext {
-    /// Initializer required by `HBRequestContext`
-    public init(allocator: ByteBufferAllocator, logger: Logger) {
+public struct MyRequestContext: RequestContext {
+    /// Initializer required by `RequestContext`
+    public init(channel: Channel, logger: Logger) {
         self.coreContext = .init(allocator: allocator, logger: logger)
         self.string = ""
     }
 
-    /// member variable required by `HBRequestContext`
-    public var coreContext: HBCoreRequestContext
+    /// member variable required by `RequestContext`
+    public var coreContext: CoreRequestContext
 
     /// my additional data
     public var string: String
@@ -168,25 +179,19 @@ public struct MyRequestContext: HBRequestContext {
 To use this context you need to provide the type in the router initializer.
 
 ```swift
-let router = HBRouter(context: MyRequestContext.self)
+let router = Router(context: MyRequestContext.self)
 ```
-
-### HummingbirdFoundation
-
-Currently the Hummingbird library makes no use of Foundation to further reduce the size of applications built with Hummingbird, but there are many features that cannot be built without the functionality provided by Foundation. These include JSON and URLEncodedForm encoding and decoding, file serving and Cookie parsing. You can find support for these in the `HummingbirdFoundation` library.
-
-I am currently considering whether to allow the core Hummingbird module to include `FoundationEssentials`. Depending on what is eventually included in `FoundationEssentials` I might be able to merge the whole of `HummingbirdFoundation` back into `Hummingbird`. 
 
 ### TLS/HTTP2
 
-When initializing an `HBApplication` you can include a parameter to indicate the type of server you want. This defaults to `.http1()`. But servers with TLS, HTTP2 support are available and WebSocket support will be available soon.
+When initializing an `Application` you can include a parameter to indicate the type of server you want. This defaults to `.http1()`. But servers with TLS, HTTP2 support are available and WebSocket support will be available soon.
 
-These are all added in similar ways. Import library and include `server` parameter in `HBApplication.init` 
+These are all added in similar ways. Import library and include `server` parameter in `Application.init` 
 
 ```swift
 import HummingbirdHTTP2
 
-let app = HBApplication(
+let app = Application(
     router: router
     server: .http2(tlsConfiguration: myTLSConfig)
 )
@@ -198,7 +203,7 @@ The TLS server type can be used to wrap any other server type.
 ```swift
 import HummingbirdTLS
 
-let app = HBApplication(
+let app = Application(
     router: router
     server: .tls(.http1(), tlsConfiguration: myTLSConfig)
 )
@@ -206,7 +211,7 @@ let app = HBApplication(
 
 ### Additional support
 
-Hummingbird also comes along with a series of other packages. Providing an authentication middleware, integration with [RediStack](https://github.com/swift-server/RediStack), WebSocket support (in development), integration with Vapor's [FluentKit](https://github.com/Vapor/fluent-kit), Mustache templating and a AWS Lambda framework.
+Hummingbird also comes along with a series of other packages. Providing an authentication framework, integration with [RediStack](https://github.com/swift-server/RediStack), WebSocket support (in development), integration with Vapor's [FluentKit](https://github.com/Vapor/fluent-kit), Mustache templating and a AWS Lambda framework.
 
 ## Maturity Justification
 
