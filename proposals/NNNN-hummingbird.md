@@ -164,7 +164,7 @@ Below is a request context that includes an additional `string`` value which can
 public struct MyRequestContext: RequestContext {
     /// Initializer required by `RequestContext`
     public init(channel: Channel, logger: Logger) {
-        self.coreContext = .init(allocator: allocator, logger: logger)
+        self.coreContext = .init(allocator: channel.allocator, logger: logger)
         self.string = ""
     }
 
