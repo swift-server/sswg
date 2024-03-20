@@ -2,7 +2,7 @@
 
 * Proposal: [SSWG-NNNN](NNNN-vapor.md)
 * Authors: [Tim Condon](https://github.com/0xTim), [Gwynne Raskind](https://github.com/gwynne)
-* Review Manager: TBD
+* Review Manager: Adam Fowler
 * Status: **Implemented**
 * Implementation: [vapor/vapor](https://github.com/vapor/vapor)
 * Forum Threads: [Proposal - TBD](), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
