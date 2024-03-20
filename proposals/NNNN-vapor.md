@@ -9,7 +9,7 @@
 
 ## Package Description
 
-[Vapor](https://www.vapor.codes) is a framework for building server applications, APIS and backends in Swift.
+[Vapor](https://www.vapor.codes) is a framework for building server applications, APIs and backends in Swift.
 
 |  |  |
 |--|--|
