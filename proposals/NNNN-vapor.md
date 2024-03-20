@@ -5,7 +5,7 @@
 * Review Manager: Adam Fowler
 * Status: **Implemented**
 * Implementation: [vapor/vapor](https://github.com/vapor/vapor)
-* Forum Threads: [Proposal - TBD](), [Discussion](https://forums.swift.org/), [Review](https://forums.swift.org/)
+* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-vapor/70660)
 
 ## Package Description
 
