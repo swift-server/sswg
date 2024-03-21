@@ -1,6 +1,6 @@
 # Hummingbird
 
-* Proposal: [SSWG-NNNN](NNNN-hummingbird.md)
+* Proposal: [SSWG-0032](0032-hummingbird.md)
 * Authors: [Adam Fowler](https://github.com/adam-fowler), [Joannis Orlandos](https://github.com/Joannis)
 * Review Manager: [Tim Condon](https://github.com/0xTim)
 * Status: **Implemented**
