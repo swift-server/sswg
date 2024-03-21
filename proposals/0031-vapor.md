@@ -1,6 +1,6 @@
 # Vapor
 
-* Proposal: [SSWG-NNNN](NNNN-vapor.md)
+* Proposal: [SSWG-0031](0031-vapor.md)
 * Authors: [Tim Condon](https://github.com/0xTim), [Gwynne Raskind](https://github.com/gwynne)
 * Review Manager: Adam Fowler
 * Status: **Implemented**
