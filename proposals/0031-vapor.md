@@ -15,7 +15,7 @@
 |--|--|
 | **Package Name** | [`vapor`](https://github.com/vapor/vapor) |
 | **Module Name** | `Vapor` (Main library), `XCTVapor` (Testing Library) |
-| **Proposed Maturity Level** | [Incubating](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
+| **Proposed Maturity Level** | [Graduated](https://github.com/swift-server/sswg/blob/main/process/incubation.md#process-diagram) |
 | **License** | [MIT](https://github.com/vapor/vapor/blob/main/LICENSE) |
 | **Dependencies** | [AsyncHTTPClient](https://github.com/swift-server/async-http-client.git) (v1), [AsyncKit](https://github.com/vapor/async-kit.git) (v1), [ConsoleKit](https://github.com/vapor/console-kit.git) (v4), [Swift Crypto](https://github.com/apple/swift-crypto.git) (v1, v2, v3, v4), [RoutingKit](https://github.com/vapor/routing-kit.git) (v4), [SwiftNIO](https://github.com/apple/swift-nio.git) (v2), [SwiftNIO SSL](https://github.com/apple/swift-nio-ssl.git) (v2), [SwiftNIO HTTP2](https://github.com/apple/swift-nio-http2.git) (v1), [SwiftNIO Extras](https://github.com/apple/swift-nio-extras.git) (v1), [Swift Log](https://github.com/apple/swift-log.git) (v1), [Swift Metrics](https://github.com/apple/swift-metrics.git) (v2), [Swift Algorithms](https://github.com/apple/swift-algorithms.git) (v1), [WebsocketKit](https://github.com/vapor/websocket-kit.git) (v2), [MultipartKit](https://github.com/vapor/multipart-kit.git) (v4), [Swift Atomics](https://github.com/apple/swift-atomics.git) (v1) |
 
