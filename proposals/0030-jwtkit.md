@@ -3,7 +3,7 @@
 * Proposal: [SSWG-0030](0030-jwtkit.md)
 * Authors: [Paul Toffoloni](https://github.com/ptoffy), [Tim Condon](https://github.com/0xTim), [Gwynne Raskind](https://github.com/gwynne) 
 * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
-* Status: **Awaiting Implementation**
+* Status: **Graduated**
 * Implementation: [JWTKit](https://github.com/vapor/jwt-kit)
 * Forum Threads: [Initial pitch](https://forums.swift.org/t/pitch-jwtkit/70205)
 
