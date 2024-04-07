@@ -30,7 +30,7 @@ These conversations will take place on the [Swift Server forum](https://forums.s
 
 Membership in the work group is contribution-based and expected to evolve over time. Adding new members and removing inactive ones is subject to a SSWG vote and requires unanimous agreement. A cap of two members per company is in place to avoid overweight representation. A cap of ten members total is in place to keep the group small enough to be effective. Membership term is capped at 2 years, but exiting members may re-apply at the end of their term. When multiple candidates compete for the same seat, the SSWG will vote between all candidates, with a final voting round between the two candidates that received most votes in the first round.
 
-Companies or individuals that would like to join the SSWG should apply by posting a request to the [Swift Server forum](https://forums.swift.org/c/server). Applicants will then be invited to the next available SSWG meeting to present their case.
+Companies or individuals that would like to join the SSWG should apply by posting a request to the [Swift Server Workgroup](https://forums.swift.org/g/server-workgroup). Applicants will then be invited to the next available SSWG meeting to present their case.
 
 Inactive members that do not participate in four consecutive SSWG meetings will be contacted to confirm their desire to stay with the group. After missing ten consecutive meetings, the SSWG will vote on removing them from the group.
 
