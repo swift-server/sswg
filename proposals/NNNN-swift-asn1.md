@@ -55,3 +55,5 @@ Parsing ASN.1 description documents is not supported.  The user implements their
 The project has been in use for a little over a year.  It is used from swift-certificates and has proven robust.
 
 ## Alternatives considered
+
+A [Codable](https://developer.apple.com/documentation/swift/codable) based implementation was considered but rejected.  Codable itself doesn’t have sufficient expressivity for tagging, which would require frustrating property wrappers or macro wrappers that would give a poor user experience.
