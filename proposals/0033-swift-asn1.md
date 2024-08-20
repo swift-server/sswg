@@ -5,7 +5,7 @@
 * Review Manager: Tim Condon
 * Status: **Implemented**
 * Implementation: [swift-asn1](https://github.com/apple/swift-asn1)
-* Forum Threads: TBD
+* Forum Threads: https://forums.swift.org/t/sswg-0033-swift-asn-1/74063
 
 *During the review process, add the following fields as needed:*
 
