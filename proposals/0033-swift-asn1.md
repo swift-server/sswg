@@ -1,11 +1,11 @@
 # Solution name
 
-* Proposal: [SSWG-NNNN](NNNN-swift-asn1.md)
+* Proposal: [SSWG-0033](0033-swift-asn1.md)
 * Authors: [Cory Benfield](https://github.com/Lukasa), [David Nadoba](https://github.com/dnadoba)
-* Review Manager: TBD
+* Review Manager: Tim Condon
 * Status: **Implemented**
 * Implementation: [swift-asn1](https://github.com/apple/swift-asn1)
-* Forum Threads: 
+* Forum Threads: TBD
 
 *During the review process, add the following fields as needed:*
 
