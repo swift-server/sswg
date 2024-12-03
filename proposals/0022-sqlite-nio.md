@@ -1,6 +1,6 @@
 # SQLiteNIO: An Swift-native driver for SQLite
 
-* Proposal: [SSWG-NNNN](https://github.com/swift-server/sswg/tree/gwynne-sqlite-nio-proposal/proposals/NNNN-sqlite-nio.md)
+* Proposal: [SSWG-0022](https://github.com/swift-server/sswg/blob/main/proposals/0022-sqlite-nio.md)
 * Author(s): [Gwynne Raskind](https://github.com/gwynne)
 * Review Manager: [Konrad 'ktoso' Malawski](https://github.com/ktoso)
 * Status: **Accepted (Sandbox)**
