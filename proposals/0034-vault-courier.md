@@ -5,7 +5,7 @@
 * Review Manager: [Tim Condon](https://github.com/0xTim)
 * Status: **Implemented**
 * Implementation: [vault-courier](https://github.com/vault-courier/vault-courier)
-* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-vaultcourier/80367)
+* Forum Threads: [Pitch](https://forums.swift.org/t/pitch-vaultcourier/80367), [Proposal](https://forums.swift.org/t/sswg-0034-vault-courier/80959)
 
 <!-- *During the review process, add the following fields as needed:*
 
